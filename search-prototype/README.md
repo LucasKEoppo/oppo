@@ -42,6 +42,18 @@ python3 -m http.server 8080
 - 图标搜索页：http://localhost:8080/search-prototype/index.html?type=icon
 - 搜索结果示例：http://localhost:8080/search-prototype/results.html?type=wallpaper&q=简约
 
+## 官方资源
+
+搜索关键词包含「官方」时，返回当前资源类型下的系统内置资源。官方资源与普通资源展示规则不同：
+
+| 字段 | 普通资源 | 官方资源 |
+|------|---------|---------|
+| 资源标签 | 可有（畅销、热门等） | 无 |
+| 标题 | 资源名称 | 固定为「官方资源」 |
+| 价格 | 价格 / 免费 / VIP 免费 | 免费（可通过 `showPrice: false` 隐藏） |
+
+预览：http://localhost:8080/search-prototype/results.html?type=wallpaper&q=官方
+
 ## 交互
 
 1. 搜索页输入关键词或点击历史/热词 → 跳转结果页

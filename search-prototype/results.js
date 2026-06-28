@@ -3,6 +3,8 @@ import {
   getTypeFromUrl,
   buildResultsUrl,
   buildSearchUrl,
+  searchResources,
+  isOfficialSearch,
 } from './data.js';
 
 const typeId = getTypeFromUrl();
@@ -15,27 +17,47 @@ const resultsGrid = document.getElementById('results-grid');
 const resultsCount = document.getElementById('results-count');
 const btnClearInput = document.getElementById('btn-clear-input');
 
+const results = searchResources(typeId, query);
+
 searchInput.value = query;
 searchInput.placeholder = resourceType.placeholder;
-resultsCount.textContent = `已为您搜到 ${resourceType.results.length * 32} 个${resourceType.name}`;
+resultsCount.textContent = `已为您搜到 ${results.length} 个${resourceType.name}`;
+
+function renderOfficialCard(item) {
+  return `
+    <div class="result-card result-card-official">
+      <div class="result-thumb official-thumb" style="background:${item.color}">
+        <span class="official-mark">系统</span>
+      </div>
+      <p class="result-title">${item.title}</p>
+      ${item.showPrice ? '<p class="result-price"><span class="price-free">免费</span></p>' : ''}
+    </div>`;
+}
+
+function renderNormalCard(item) {
+  return `
+    <div class="result-card">
+      <div class="result-thumb" style="background:${item.color}"></div>
+      <p class="result-title">
+        ${item.tag ? `<span class="result-tag">${item.tag}</span>` : ''}${item.title}
+      </p>
+      <p class="result-price">
+        ${item.price === '免费'
+          ? '<span class="price-free">免费</span>'
+          : `<span class="price-paid">${item.price}</span>${item.vip ? '<span class="price-vip">VIP 免费</span>' : ''}`
+        }
+      </p>
+    </div>`;
+}
 
 function renderResults() {
-  resultsGrid.innerHTML = resourceType.results
-    .map(
-      (item) => `
-      <div class="result-card">
-        <div class="result-thumb" style="background:${item.color}"></div>
-        <p class="result-title">
-          ${item.tag ? `<span class="result-tag">${item.tag}</span>` : ''}${item.title}
-        </p>
-        <p class="result-price">
-          ${item.price === '免费'
-            ? '<span class="price-free">免费</span>'
-            : `<span class="price-paid">${item.price}</span>${item.vip ? '<span class="price-vip">VIP 免费</span>' : ''}`
-          }
-        </p>
-      </div>`
-    )
+  if (results.length === 0) {
+    resultsGrid.innerHTML = '<p class="results-empty">暂无搜索结果</p>';
+    return;
+  }
+
+  resultsGrid.innerHTML = results
+    .map((item) => (item.isOfficial ? renderOfficialCard(item) : renderNormalCard(item)))
     .join('');
 }
 
@@ -73,5 +95,6 @@ document.getElementById('btn-back').addEventListener('click', () => {
 });
 
 document.getElementById('sort-dropdown').addEventListener('click', () => {
+  if (isOfficialSearch(query)) return;
   alert('原型演示：切换排序方式');
 });

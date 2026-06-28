@@ -7,7 +7,7 @@ export const RESOURCE_TYPES = {
     id: 'wallpaper',
     name: '壁纸',
     placeholder: '搜索壁纸',
-    history: ['简约壁纸', '风景', '动漫', '星空'],
+    history: ['官方', '简约壁纸', '风景', '动漫', '星空'],
     hotComprehensive: [
       { rank: 1, word: '简约', heat: '1008 万热度' },
       { rank: 2, word: '风景', heat: '365 万热度' },
@@ -38,6 +38,11 @@ export const RESOURCE_TYPES = {
       { id: 7, title: '莫兰迪简约', price: '2.0 可币', vip: true, color: '#D7CCC8' },
       { id: 8, title: '简约几何', price: '免费', vip: false, color: '#B2DFDB' },
       { id: 9, title: '简约花卉', price: '4.0 可币', vip: true, tag: '优质', color: '#F8BBD0' },
+    ],
+    officialResources: [
+      { id: 'official-1', color: '#546E7A' },
+      { id: 'official-2', color: '#78909C' },
+      { id: 'official-3', color: '#607D8B' },
     ],
   },
   theme: {
@@ -76,6 +81,10 @@ export const RESOURCE_TYPES = {
       { id: 8, title: '扁平化主题', price: '免费', vip: false, color: '#4FC3F7' },
       { id: 9, title: '赛博朋克', price: '6.0 可币', vip: true, color: '#7C4DFF' },
     ],
+    officialResources: [
+      { id: 'official-1', color: '#455A64' },
+      { id: 'official-2', color: '#37474F' },
+    ],
   },
   icon: {
     id: 'icon',
@@ -113,6 +122,9 @@ export const RESOURCE_TYPES = {
       { id: 8, title: '莫兰迪图标', price: '4.0 可币', vip: true, color: '#D7CCC8' },
       { id: 9, title: '赛博朋克图标', price: '6.0 可币', vip: true, color: '#651FFF' },
     ],
+    officialResources: [
+      { id: 'official-1', color: '#90A4AE' },
+    ],
   },
 };
 
@@ -132,4 +144,46 @@ export function buildResultsUrl(typeId, query) {
 
 export function buildSearchUrl(typeId) {
   return typeId === 'wallpaper' ? 'index.html' : `index.html?type=${typeId}`;
+}
+
+/** 官方资源检索关键词 */
+export const OFFICIAL_KEYWORD = '官方';
+
+/** 判断搜索词是否命中官方资源 */
+export function isOfficialSearch(query) {
+  return query.trim().includes(OFFICIAL_KEYWORD);
+}
+
+/** 将官方资源转为搜索结果项 */
+function toOfficialResultItem(item) {
+  return {
+    ...item,
+    isOfficial: true,
+    title: '官方资源',
+    showPrice: true,
+    price: '免费',
+  };
+}
+
+/** 将普通资源转为搜索结果项 */
+function toNormalResultItem(item) {
+  return { ...item, isOfficial: false };
+}
+
+/**
+ * 根据搜索词返回结果列表
+ * - 命中「官方」关键词：返回该类型下的官方资源
+ * - 其他关键词：返回匹配的普通资源（标题包含搜索词）
+ */
+export function searchResources(typeId, query) {
+  const type = getResourceType(typeId);
+  const q = query.trim();
+
+  if (isOfficialSearch(q)) {
+    return (type.officialResources || []).map(toOfficialResultItem);
+  }
+
+  return type.results
+    .filter((item) => !q || item.title.includes(q))
+    .map(toNormalResultItem);
 }
