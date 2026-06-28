@@ -20,8 +20,8 @@ from PIL import Image, ImageDraw, ImageFont
 FREE_CATEGORY = "绿野闲行"
 
 BADGE_CONFIG = {
-    "免费": {"bg": (76, 175, 80, 235), "text": (255, 255, 255, 255)},
-    "付费": {"bg": (255, 152, 0, 235), "text": (255, 255, 255, 255)},
+    "免费": {"bg": (0, 0, 0, 97), "text": (255, 255, 255, 242)},
+    "付费": {"bg": (0, 0, 0, 97), "text": (255, 255, 255, 242)},
 }
 
 SUPPORTED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
@@ -51,22 +51,22 @@ def add_badge(image: Image.Image, label: str) -> Image.Image:
     draw = ImageDraw.Draw(overlay)
 
     config = BADGE_CONFIG[label]
-    font_size = max(14, img.width // 22)
+    font_size = max(11, img.width // 28)
     font = find_font(font_size)
 
     bbox = draw.textbbox((0, 0), label, font=font)
     text_w = bbox[2] - bbox[0]
     text_h = bbox[3] - bbox[1]
 
-    padding_x = max(6, img.width // 40)
-    padding_y = max(3, img.height // 80)
+    padding_x = max(5, img.width // 50)
+    padding_y = max(2, img.height // 120)
     badge_w = text_w + padding_x * 2
     badge_h = text_h + padding_y * 2
 
     margin = max(6, img.width // 50)
     x = img.width - badge_w - margin
     y = margin
-    radius = max(4, img.width // 60)
+    radius = badge_h // 2  # 胶囊形：圆角 = 高度一半
 
     draw.rounded_rectangle(
         [x, y, x + badge_w, y + badge_h],

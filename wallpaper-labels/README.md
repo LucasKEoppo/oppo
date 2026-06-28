@@ -26,8 +26,8 @@ wallpaper-labels/
 
 在浏览器中打开 `wallpaper-labels/index.html` 即可查看效果。每张壁纸右上角会根据所属栏目自动显示标识：
 
-- **绿野闲行** → 绿色「免费」角标
-- **青空漫行 / 幻彩花绽** → 橙色「付费」角标
+- **绿野闲行** → 半透明小胶囊「免费」角标
+- **青空漫行 / 幻彩花绽** → 半透明小胶囊「付费」角标
 
 ## 批量处理图片文件
 
@@ -57,13 +57,19 @@ function getPriceLabel(categoryName) {
 }
 ```
 
-CSS 定位（右上角）：
+CSS 定位（右上角半透明小胶囊）：
 
 ```css
 .price-badge {
   position: absolute;
   top: 6px;
   right: 6px;
+  padding: 2px 7px;
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(6px);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 10px;
 }
 ```
 

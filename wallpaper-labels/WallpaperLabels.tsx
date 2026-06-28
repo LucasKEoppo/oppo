@@ -93,13 +93,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 6,
     right: 6,
-    paddingHorizontal: 8,
+    paddingHorizontal: 7,
     paddingVertical: 2,
-    borderRadius: 4,
+    borderRadius: 100,
+    backgroundColor: 'rgba(0, 0, 0, 0.38)',
   },
-  badgeFree: { backgroundColor: 'rgba(76, 175, 80, 0.92)' },
-  badgePaid: { backgroundColor: 'rgba(255, 152, 0, 0.92)' },
-  badgeText: { fontSize: 11, fontWeight: '600', color: '#fff' },
+  badgeFree: {},
+  badgePaid: {},
+  badgeText: { fontSize: 10, fontWeight: '500', color: 'rgba(255, 255, 255, 0.95)' },
 });
 
 export { PriceBadge, WallpaperCard, CategorySection, getPriceLabel, FREE_CATEGORY };
