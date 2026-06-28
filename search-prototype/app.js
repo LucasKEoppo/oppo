@@ -9,8 +9,6 @@ const searchInput = document.getElementById('search-input');
 const historyList = document.getElementById('history-list');
 
 searchInput.placeholder = resourceType.placeholder;
-document.getElementById('type-hint').textContent =
-  `当前搜索范围：${resourceType.name}`;
 
 function renderHistory() {
   historyList.innerHTML = resourceType.history

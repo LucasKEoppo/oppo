@@ -24,10 +24,10 @@ function renderResults() {
     .map(
       (item) => `
       <div class="result-card">
-        <div class="result-thumb" style="background:${item.color}">
-          ${item.tag ? `<span class="result-tag">${item.tag}</span>` : ''}
-        </div>
-        <p class="result-title">${item.title}</p>
+        <div class="result-thumb" style="background:${item.color}"></div>
+        <p class="result-title">
+          ${item.tag ? `<span class="result-tag">${item.tag}</span>` : ''}${item.title}
+        </p>
         <p class="result-price">
           ${item.price === '免费'
             ? '<span class="price-free">免费</span>'
