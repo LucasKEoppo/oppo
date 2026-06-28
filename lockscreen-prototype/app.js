@@ -20,7 +20,6 @@ const modalPurchase = document.getElementById('modal-purchase');
 const modalFree = document.getElementById('modal-free');
 const loadingOverlay = document.getElementById('loading-overlay');
 const loadingProgress = document.getElementById('loading-progress');
-const loadingText = document.getElementById('loading-text');
 const btnApply = document.getElementById('btn-apply');
 
 document.getElementById('resource-name').textContent = `"${RESOURCE_NAME}"`;
@@ -40,8 +39,7 @@ function hideAllModals() {
   [modalPaid, modalPurchase, modalFree].forEach(hideModal);
 }
 
-function showLoading(text = '正在应用资源...') {
-  loadingText.textContent = text;
+function showLoading() {
   loadingProgress.style.strokeDashoffset = RING_CIRCUMFERENCE;
   loadingOverlay.classList.remove('hidden');
   btnApply.classList.add('loading');
@@ -65,7 +63,7 @@ function startApplying(onComplete) {
   isApplying = true;
 
   hideAllModals();
-  showLoading(resourceUnlocked ? '正在应用资源...' : '正在解锁并应用...');
+  showLoading();
 
   const startTime = Date.now();
 
