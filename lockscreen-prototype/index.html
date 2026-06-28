@@ -161,6 +161,20 @@
       </div>
     </div>
 
+    <!-- ========== 应用加载层 ========== -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+      <div class="loading-content">
+        <div class="loading-ring">
+          <svg class="loading-ring-svg" viewBox="0 0 80 80">
+            <circle class="loading-ring-track" cx="40" cy="40" r="34" />
+            <circle class="loading-ring-progress" id="loading-progress" cx="40" cy="40" r="34" />
+          </svg>
+          <div class="loading-spinner"></div>
+        </div>
+        <p class="loading-text" id="loading-text">正在应用资源...</p>
+      </div>
+    </div>
+
   </div>
 
   <script src="app.js"></script>

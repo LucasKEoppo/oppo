@@ -2,27 +2,34 @@
  * 锁屏付费资源交互原型
  *
  * 流程：
- *   锁屏页 → 点击「应用」→ 付费资源弹窗
- *   付费资源弹窗 → 「购买」→ 购买方式弹窗
- *   付费资源弹窗 → 「做任务免费领」→ 免费领弹窗
- *   各弹窗 → 「取消」→ 关闭弹窗
+ *   锁屏页 → 点击「应用」→ 付费资源弹窗（未解锁时）
+ *   付费资源弹窗 → 「购买」→ 购买方式弹窗 → 解锁 → 转圈应用
+ *   付费资源弹窗 → 「做任务免费领」→ 免费领弹窗 → 解锁 → 转圈应用
+ *   已解锁 → 点击「应用」→ 转圈应用
  */
 
 const RESOURCE_NAME = '风来啦全局';
+const APPLY_DURATION_MS = 2500;
+const RING_CIRCUMFERENCE = 2 * Math.PI * 34; // r=34
+
+let resourceUnlocked = false;
+let isApplying = false;
 
 const modalPaid = document.getElementById('modal-paid');
 const modalPurchase = document.getElementById('modal-purchase');
 const modalFree = document.getElementById('modal-free');
+const loadingOverlay = document.getElementById('loading-overlay');
+const loadingProgress = document.getElementById('loading-progress');
+const loadingText = document.getElementById('loading-text');
+const btnApply = document.getElementById('btn-apply');
 
 document.getElementById('resource-name').textContent = `"${RESOURCE_NAME}"`;
+loadingProgress.style.strokeDasharray = RING_CIRCUMFERENCE;
+loadingProgress.style.strokeDashoffset = RING_CIRCUMFERENCE;
 
 function showModal(modal, asSheet = false) {
   modal.classList.remove('hidden');
-  if (asSheet) {
-    modal.classList.add('sheet-mode');
-  } else {
-    modal.classList.remove('sheet-mode');
-  }
+  modal.classList.toggle('sheet-mode', asSheet);
 }
 
 function hideModal(modal) {
@@ -33,8 +40,64 @@ function hideAllModals() {
   [modalPaid, modalPurchase, modalFree].forEach(hideModal);
 }
 
-// 屏幕1 → 屏幕2：点击「应用」
-document.getElementById('btn-apply').addEventListener('click', () => {
+function showLoading(text = '正在应用资源...') {
+  loadingText.textContent = text;
+  loadingProgress.style.strokeDashoffset = RING_CIRCUMFERENCE;
+  loadingOverlay.classList.remove('hidden');
+  btnApply.classList.add('loading');
+}
+
+function hideLoading() {
+  loadingOverlay.classList.add('hidden');
+  btnApply.classList.remove('loading');
+}
+
+function updateRingProgress(percent) {
+  const offset = RING_CIRCUMFERENCE * (1 - percent / 100);
+  loadingProgress.style.strokeDashoffset = offset;
+}
+
+/**
+ * 模拟解锁后应用资源，展示转圈 + 环形进度
+ */
+function startApplying(onComplete) {
+  if (isApplying) return;
+  isApplying = true;
+
+  hideAllModals();
+  showLoading(resourceUnlocked ? '正在应用资源...' : '正在解锁并应用...');
+
+  const startTime = Date.now();
+
+  const tick = () => {
+    const elapsed = Date.now() - startTime;
+    const percent = Math.min(100, (elapsed / APPLY_DURATION_MS) * 100);
+    updateRingProgress(percent);
+
+    if (elapsed < APPLY_DURATION_MS) {
+      requestAnimationFrame(tick);
+    } else {
+      resourceUnlocked = true;
+      hideLoading();
+      isApplying = false;
+      btnApply.textContent = '已应用';
+      btnApply.classList.add('applied');
+      if (onComplete) onComplete();
+    }
+  };
+
+  requestAnimationFrame(tick);
+}
+
+// 屏幕1 → 屏幕2 或 直接应用
+btnApply.addEventListener('click', () => {
+  if (isApplying) return;
+
+  if (resourceUnlocked) {
+    startApplying();
+    return;
+  }
+
   hideAllModals();
   showModal(modalPaid);
 });
@@ -88,13 +151,14 @@ document.querySelectorAll('.purchase-option').forEach((option) => {
   });
 });
 
-// 占位交互
+// 购买完成 → 解锁并应用（转圈进度）
 document.getElementById('btn-open-vip').addEventListener('click', () => {
-  alert('原型演示：支付流程');
+  startApplying();
 });
 
+// 赚金币免费兑 → 解锁并应用（原型模拟金币已够）
 document.getElementById('btn-earn-coins').addEventListener('click', () => {
-  alert('原型演示：跳转赚金币任务页');
+  startApplying();
 });
 
 document.getElementById('btn-rules').addEventListener('click', () => {
