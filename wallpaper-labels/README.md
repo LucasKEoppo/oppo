@@ -6,7 +6,7 @@
 
 | 栏目 | 标识 |
 |------|------|
-| 绿野闲行 | 免费 |
+| 绿野闲行 | 不展示标识 |
 | 青空漫行、幻彩花绽及其他栏目 | 付费 |
 
 ## 目录结构
@@ -26,7 +26,7 @@ wallpaper-labels/
 
 在浏览器中打开 `wallpaper-labels/index.html` 即可查看效果。每张壁纸右上角会根据所属栏目自动显示标识：
 
-- **绿野闲行** → 半透明小胶囊「免费」角标
+- **绿野闲行** → 不展示标识
 - **青空漫行 / 幻彩花绽** → 半透明小胶囊「付费」角标
 
 ## 批量处理图片文件
@@ -54,6 +54,10 @@ const FREE_CATEGORY = '绿野闲行';
 
 function getPriceLabel(categoryName) {
   return categoryName === FREE_CATEGORY ? '免费' : '付费';
+}
+
+function shouldShowPriceBadge(categoryName) {
+  return categoryName !== FREE_CATEGORY;
 }
 ```
 

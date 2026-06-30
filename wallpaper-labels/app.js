@@ -2,6 +2,7 @@ import {
   wallpaperCategories,
   getPriceLabel,
   getPriceBadgeClass,
+  shouldShowPriceBadge,
 } from './data.js';
 
 const downloadIconSvg = `
@@ -18,13 +19,15 @@ const arrowSvg = `
 
 /** 渲染单张壁纸卡片（含右上角标识） */
 function renderWallpaperCard(wallpaper, categoryName) {
-  const label = getPriceLabel(categoryName);
-  const badgeClass = getPriceBadgeClass(categoryName);
+  const showBadge = shouldShowPriceBadge(categoryName);
+  const badgeHtml = showBadge
+    ? `<span class="price-badge ${getPriceBadgeClass(categoryName)}">${getPriceLabel(categoryName)}</span>`
+    : '';
 
   return `
     <div class="wallpaper-card" data-id="${wallpaper.id}" data-category="${categoryName}">
       <div class="wallpaper-placeholder" style="background: linear-gradient(160deg, ${wallpaper.color} 0%, ${adjustColor(wallpaper.color, -30)} 100%)"></div>
-      <span class="price-badge ${badgeClass}">${label}</span>
+      ${badgeHtml}
       <div class="download-icon">${downloadIconSvg}</div>
     </div>
   `;

@@ -85,6 +85,7 @@ def add_badge(image: Image.Image, label: str) -> Image.Image:
 
 def process_directory(input_dir: Path, output_dir: Path, category_name: str) -> int:
     label = get_label(category_name)
+    is_free = category_name == FREE_CATEGORY
     output_dir.mkdir(parents=True, exist_ok=True)
     count = 0
 
@@ -93,13 +94,17 @@ def process_directory(input_dir: Path, output_dir: Path, category_name: str) -> 
             continue
 
         with Image.open(file_path) as img:
-            result = add_badge(img, label)
+            if is_free:
+                result = img.convert("RGBA")
+            else:
+                result = add_badge(img, label)
 
         out_path = output_dir / file_path.name
         if file_path.suffix.lower() in {".jpg", ".jpeg"}:
             result = result.convert("RGB")
         result.save(out_path, quality=95)
-        print(f"  [{label}] {file_path.name} → {out_path}")
+        action = "无标识" if is_free else label
+        print(f"  [{action}] {file_path.name} → {out_path}")
         count += 1
 
     return count
@@ -123,7 +128,8 @@ def main():
         raise SystemExit(f"输入目录不存在: {input_dir}")
 
     label = get_label(category_name)
-    print(f"栏目: {category_name} → 标识: {label}")
+    badge_desc = "不添加标识" if category_name == FREE_CATEGORY else f"标识: {label}"
+    print(f"栏目: {category_name} → {badge_desc}")
     print(f"输入: {input_dir}")
     print(f"输出: {output_dir}")
     print("-" * 40)

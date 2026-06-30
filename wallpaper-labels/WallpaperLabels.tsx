@@ -13,9 +13,9 @@ function getPriceLabel(categoryName: string): string {
 }
 
 function PriceBadge({ categoryName }: { categoryName: string }) {
-  const isFree = categoryName === FREE_CATEGORY;
+  if (categoryName === FREE_CATEGORY) return null;
   return (
-    <View style={[styles.badge, isFree ? styles.badgeFree : styles.badgePaid]}>
+    <View style={[styles.badge, styles.badgePaid]}>
       <Text style={styles.badgeText}>{getPriceLabel(categoryName)}</Text>
     </View>
   );

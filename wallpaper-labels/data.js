@@ -55,5 +55,10 @@ export function getPriceLabel(categoryName) {
 
 /** 获取标识样式类名 */
 export function getPriceBadgeClass(categoryName) {
-  return isFreeCategory(categoryName) ? 'badge-free' : 'badge-paid';
+  return 'badge-paid';
+}
+
+/** 是否展示价格标识（免费不展示，付费展示） */
+export function shouldShowPriceBadge(categoryName) {
+  return !isFreeCategory(categoryName);
 }
