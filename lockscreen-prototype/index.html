@@ -163,15 +163,13 @@
 
     <!-- ========== 应用加载层 ========== -->
     <div id="loading-overlay" class="loading-overlay hidden">
-      <div class="loading-content">
-        <div class="loading-ring">
-          <svg class="loading-ring-svg" viewBox="0 0 80 80">
-            <circle class="loading-ring-track" cx="40" cy="40" r="34" />
-            <circle class="loading-ring-progress" id="loading-progress" cx="40" cy="40" r="34" />
+      <div class="loading-card">
+        <div class="loading-spinner" aria-hidden="true">
+          <svg class="loading-spinner-svg" viewBox="0 0 48 48">
+            <circle class="loading-spinner-arc" cx="24" cy="24" r="20" />
           </svg>
-          <div class="loading-spinner"></div>
         </div>
-        <p class="loading-text" id="loading-text">应用中</p>
+        <p class="loading-text">正在应用</p>
       </div>
     </div>
 

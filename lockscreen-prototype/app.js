@@ -2,15 +2,14 @@
  * 编辑框架内付费资源应用原型
  *
  * 流程：
- *   锁屏页 → 点击「应用」→ 付费资源弹窗（未解锁时）
- *   付费资源弹窗 → 「购买」→ 购买方式弹窗 → 解锁 → 转圈应用
- *   付费资源弹窗 → 「做任务免费领」→ 免费领弹窗 → 解锁 → 转圈应用
- *   已解锁 → 点击「应用」→ 转圈应用
+ *   锁屏页 → 点击「购买」→ 付费资源弹窗（未解锁时）
+ *   付费资源弹窗 → 「购买」→ 购买方式弹窗 → 解锁 → 正在应用
+ *   付费资源弹窗 → 「做任务免费领」→ 免费领弹窗 → 解锁 → 正在应用
+ *   已解锁 → 点击「购买」→ 正在应用
  */
 
 const RESOURCE_NAME = '风来啦全局';
 const APPLY_DURATION_MS = 2500;
-const RING_CIRCUMFERENCE = 2 * Math.PI * 34; // r=34
 
 let resourceUnlocked = false;
 let isApplying = false;
@@ -19,12 +18,9 @@ const modalPaid = document.getElementById('modal-paid');
 const modalPurchase = document.getElementById('modal-purchase');
 const modalFree = document.getElementById('modal-free');
 const loadingOverlay = document.getElementById('loading-overlay');
-const loadingProgress = document.getElementById('loading-progress');
 const btnApply = document.getElementById('btn-apply');
 
 document.getElementById('resource-name').textContent = `"${RESOURCE_NAME}"`;
-loadingProgress.style.strokeDasharray = RING_CIRCUMFERENCE;
-loadingProgress.style.strokeDashoffset = RING_CIRCUMFERENCE;
 
 function showModal(modal, asSheet = false) {
   modal.classList.remove('hidden');
@@ -40,7 +36,6 @@ function hideAllModals() {
 }
 
 function showLoading() {
-  loadingProgress.style.strokeDashoffset = RING_CIRCUMFERENCE;
   loadingOverlay.classList.remove('hidden');
   btnApply.classList.add('loading');
 }
@@ -50,14 +45,7 @@ function hideLoading() {
   btnApply.classList.remove('loading');
 }
 
-function updateRingProgress(percent) {
-  const offset = RING_CIRCUMFERENCE * (1 - percent / 100);
-  loadingProgress.style.strokeDashoffset = offset;
-}
-
-/**
- * 模拟解锁后应用资源，展示转圈 + 环形进度
- */
+/** 模拟解锁后应用资源，展示正在应用加载态 */
 function startApplying(onComplete) {
   if (isApplying) return;
   isApplying = true;
@@ -65,26 +53,14 @@ function startApplying(onComplete) {
   hideAllModals();
   showLoading();
 
-  const startTime = Date.now();
-
-  const tick = () => {
-    const elapsed = Date.now() - startTime;
-    const percent = Math.min(100, (elapsed / APPLY_DURATION_MS) * 100);
-    updateRingProgress(percent);
-
-    if (elapsed < APPLY_DURATION_MS) {
-      requestAnimationFrame(tick);
-    } else {
-      resourceUnlocked = true;
-      hideLoading();
-      isApplying = false;
-      btnApply.textContent = '已应用';
-      btnApply.classList.add('applied');
-      if (onComplete) onComplete();
-    }
-  };
-
-  requestAnimationFrame(tick);
+  setTimeout(() => {
+    resourceUnlocked = true;
+    hideLoading();
+    isApplying = false;
+    btnApply.textContent = '已应用';
+    btnApply.classList.add('applied');
+    if (onComplete) onComplete();
+  }, APPLY_DURATION_MS);
 }
 
 // 屏幕1 → 屏幕2 或 直接应用
@@ -149,7 +125,7 @@ document.querySelectorAll('.purchase-option').forEach((option) => {
   });
 });
 
-// 购买完成 → 解锁并应用（转圈进度）
+// 购买完成 → 解锁并应用
 document.getElementById('btn-open-vip').addEventListener('click', () => {
   startApplying();
 });
