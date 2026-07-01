@@ -7,28 +7,24 @@ import {
 const resourceType = getResourceType(getTypeFromUrl());
 const searchInput = document.getElementById('search-input');
 const historyList = document.getElementById('history-list');
+const hotGrid = document.getElementById('hot-grid');
 
 searchInput.placeholder = resourceType.placeholder;
 
 function renderHistory() {
   historyList.innerHTML = resourceType.history
-    .map(
-      (word) =>
-        `<button class="tag" data-word="${word}">${word}</button>`
-    )
+    .map((word) => `<button class="tag" data-word="${word}">${word}</button>`)
     .join('');
 }
 
-function renderHotList(containerId, items) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = items
+function renderHotSearch() {
+  hotGrid.innerHTML = resourceType.hotSearch
     .map(
       (item) => `
-      <li class="hot-item" data-word="${item.word}">
-        <span class="hot-rank rank-${item.rank}">${item.rank}</span>
-        <span class="hot-word">${item.word}</span>
-        <span class="hot-heat">${item.heat}</span>
-      </li>`
+      <button class="hot-grid-item" data-word="${item.word}">
+        <span class="hot-grid-text">${item.word}</span>
+        ${item.hot ? '<span class="hot-tag">热</span>' : ''}
+      </button>`
     )
     .join('');
 }
@@ -39,9 +35,15 @@ function goSearch(query) {
   window.location.href = buildResultsUrl(resourceType.id, q);
 }
 
+function bindSearchClicks() {
+  document.querySelectorAll('.tag, .hot-grid-item').forEach((el) => {
+    el.addEventListener('click', () => goSearch(el.dataset.word));
+  });
+}
+
 renderHistory();
-renderHotList('hot-comprehensive', resourceType.hotComprehensive);
-renderHotList('hot-rising', resourceType.hotRising);
+renderHotSearch();
+bindSearchClicks();
 
 document.getElementById('btn-search').addEventListener('click', () => {
   goSearch(searchInput.value);
@@ -49,10 +51,6 @@ document.getElementById('btn-search').addEventListener('click', () => {
 
 searchInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') goSearch(searchInput.value);
-});
-
-document.querySelectorAll('.tag, .hot-item').forEach((el) => {
-  el.addEventListener('click', () => goSearch(el.dataset.word));
 });
 
 document.getElementById('btn-clear-history').addEventListener('click', () => {

@@ -8,7 +8,7 @@
 
 - 搜索框 + 分类提示词（placeholder 随资源类型变化）
 - 历史搜索（可清空）
-- 热门搜索（热词综合榜 + 热词飙升榜）
+- 热门搜索（双列简洁列表，参考「猜你想搜」格式）
 - **不含**今日话题、推荐卡片等底部内容
 
 ### 搜索结果页（results.html）
@@ -58,4 +58,4 @@ python3 -m http.server 8080
 
 1. 搜索页输入关键词或点击历史/热词 → 跳转结果页
 2. 结果页点击返回 → 回到对应类型的搜索页
-3. 修改 `data.js` 中各类型的 `placeholder`、`history`、`hotComprehensive`、`results` 等数据即可定制
+3. 修改 `data.js` 中各类型的 `placeholder`、`history`、`hotSearch`、`results` 等数据即可定制

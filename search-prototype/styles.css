@@ -156,79 +156,56 @@ body {
   background: #ebebeb;
 }
 
-/* ========== 热门搜索 ========== */
-.hot-boards {
+/* ========== 热门搜索（双列简洁列表） ========== */
+.btn-more {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
   display: flex;
-  gap: 10px;
-  margin-top: 12px;
+  align-items: center;
 }
 
-.hot-board {
-  flex: 1;
-  background: #fafafa;
-  border-radius: 12px;
-  padding: 12px 10px;
-  min-width: 0;
+.hot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 4px;
 }
 
-.hot-board-title {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.hot-board-title.comprehensive {
-  color: #FF9500;
-}
-
-.hot-board-title.rising {
-  color: #FF3B30;
-}
-
-.hot-list {
-  list-style: none;
-}
-
-.hot-item {
+.hot-grid-item {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 0;
+  background: none;
+  border: none;
+  padding: 14px 0;
   cursor: pointer;
-  font-size: 12px;
+  text-align: left;
+  min-width: 0;
 }
 
-.hot-item:active {
+.hot-grid-item:active {
   opacity: 0.6;
 }
 
-.hot-rank {
-  width: 16px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 13px;
-  flex-shrink: 0;
-  color: #ccc;
-}
-
-.hot-rank.rank-1 { color: #FF3B30; }
-.hot-rank.rank-2 { color: #FF9500; }
-.hot-rank.rank-3 { color: #FFCC00; }
-
-.hot-word {
-  flex: 1;
+.hot-grid-text {
+  font-size: 15px;
   color: #333;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.hot-heat {
-  font-size: 10px;
-  color: #bbb;
+.hot-tag {
   flex-shrink: 0;
-  white-space: nowrap;
+  background: #FF3B30;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 1px 4px;
+  border-radius: 3px;
+  line-height: 14px;
 }
 
 /* ========== 搜索结果页 ========== */
