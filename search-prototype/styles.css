@@ -157,15 +157,6 @@ body {
 }
 
 /* ========== 热门搜索（双列简洁列表） ========== */
-.btn-more {
-  background: none;
-  border: none;
-  padding: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
 .hot-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
