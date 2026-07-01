@@ -23,7 +23,6 @@ function renderHotSearch() {
       (item) => `
       <button class="hot-grid-item" data-word="${item.word}">
         <span class="hot-grid-text">${item.word}</span>
-        ${item.hot ? '<span class="hot-tag">热</span>' : ''}
       </button>`
     )
     .join('');

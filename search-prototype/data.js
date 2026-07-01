@@ -9,12 +9,12 @@ export const RESOURCE_TYPES = {
     placeholder: '搜索壁纸',
     history: ['官方', '简约壁纸', '风景', '动漫', '星空'],
     hotSearch: [
-      { word: '简约', hot: true },
-      { word: '风景', hot: false },
-      { word: '动漫', hot: false },
-      { word: '星空', hot: true },
-      { word: 'ins风', hot: false },
-      { word: '治愈', hot: false },
+      { word: '简约' },
+      { word: '风景' },
+      { word: '动漫' },
+      { word: '星空' },
+      { word: 'ins风' },
+      { word: '治愈' },
     ],
     results: [
       { id: 1, title: '简约 OS', price: '1.0 可币', vip: true, tag: '畅销', color: '#E8DDD4' },
