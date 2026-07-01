@@ -19,12 +19,10 @@ function renderHistory() {
 
 function renderHotSearch() {
   hotGrid.innerHTML = resourceType.hotSearch
-    .map(
-      (item) => `
-      <button class="hot-grid-item" data-word="${item.word}">
-        <span class="hot-grid-text">${item.word}</span>
-      </button>`
-    )
+    .map((item) => {
+      const word = typeof item === 'string' ? item : item.word;
+      return `<button class="hot-grid-item" data-word="${word}">${word}</button>`;
+    })
     .join('');
 }
 
