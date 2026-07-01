@@ -48,9 +48,9 @@ python3 -m http.server 8080
 
 | 字段 | 普通资源 | 官方资源 |
 |------|---------|---------|
-| 资源标签 | 可有（畅销、热门等） | 无 |
+| 预览图标识 | 付费资源右上角「付费」 | 无 |
 | 标题 | 资源名称 | 固定为「官方资源」 |
-| 价格 | 价格 / 免费 / VIP 免费 | 免费（可通过 `showPrice: false` 隐藏） |
+| 价格 / 标签 / 排序 | 不展示 | 不展示 |
 
 预览：http://localhost:8080/search-prototype/results.html?type=wallpaper&q=官方
 

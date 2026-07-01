@@ -124,7 +124,6 @@ function toOfficialResultItem(item) {
     ...item,
     isOfficial: true,
     title: '官方资源',
-    showPrice: true,
     price: '免费',
   };
 }
@@ -132,6 +131,12 @@ function toOfficialResultItem(item) {
 /** 将普通资源转为搜索结果项 */
 function toNormalResultItem(item) {
   return { ...item, isOfficial: false };
+}
+
+/** 是否为付费资源（免费及官方资源不展示标识） */
+export function isPaidResource(item) {
+  if (item.isOfficial) return false;
+  return item.price !== '免费';
 }
 
 /**

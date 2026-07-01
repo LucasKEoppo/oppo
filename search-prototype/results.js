@@ -4,7 +4,7 @@ import {
   buildResultsUrl,
   buildSearchUrl,
   searchResources,
-  isOfficialSearch,
+  isPaidResource,
 } from './data.js';
 
 const typeId = getTypeFromUrl();
@@ -23,6 +23,12 @@ searchInput.value = query;
 searchInput.placeholder = resourceType.placeholder;
 resultsCount.textContent = `已为您搜到 ${results.length} 个${resourceType.name}`;
 
+function renderPaidBadge(item) {
+  return isPaidResource(item)
+    ? '<span class="price-badge badge-paid">付费</span>'
+    : '';
+}
+
 function renderOfficialCard(item) {
   return `
     <div class="result-card result-card-official">
@@ -30,23 +36,16 @@ function renderOfficialCard(item) {
         <span class="official-mark">系统</span>
       </div>
       <p class="result-title">${item.title}</p>
-      ${item.showPrice ? '<p class="result-price"><span class="price-free">免费</span></p>' : ''}
     </div>`;
 }
 
 function renderNormalCard(item) {
   return `
     <div class="result-card">
-      <div class="result-thumb" style="background:${item.color}"></div>
-      <p class="result-title">
-        ${item.tag ? `<span class="result-tag">${item.tag}</span>` : ''}${item.title}
-      </p>
-      <p class="result-price">
-        ${item.price === '免费'
-          ? '<span class="price-free">免费</span>'
-          : `<span class="price-paid">${item.price}</span>${item.vip ? '<span class="price-vip">VIP 免费</span>' : ''}`
-        }
-      </p>
+      <div class="result-thumb" style="background:${item.color}">
+        ${renderPaidBadge(item)}
+      </div>
+      <p class="result-title">${item.title}</p>
     </div>`;
 }
 
@@ -92,9 +91,4 @@ btnClearInput.addEventListener('click', () => {
 
 document.getElementById('btn-back').addEventListener('click', () => {
   window.location.href = buildSearchUrl(typeId);
-});
-
-document.getElementById('sort-dropdown').addEventListener('click', () => {
-  if (isOfficialSearch(query)) return;
-  alert('原型演示：切换排序方式');
 });

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>搜索结果 - 资源搜索原型</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <div class="phone-frame">
@@ -33,15 +33,9 @@
         </div>
       </header>
 
-      <!-- 结果统计 + 排序（无资源类型 Tab） -->
+      <!-- 结果统计 -->
       <div class="results-meta">
         <span class="results-count" id="results-count"></span>
-        <button class="sort-dropdown" id="sort-dropdown">
-          综合
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 9l6 6 6-6"/>
-          </svg>
-        </button>
       </div>
 
       <!-- 搜索结果网格 -->
@@ -50,6 +44,6 @@
     </div>
   </div>
 
-  <script type="module" src="results.js"></script>
+  <script type="module" src="results.js?v=4"></script>
 </body>
 </html>
