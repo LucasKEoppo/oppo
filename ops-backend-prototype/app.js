@@ -34,7 +34,7 @@ function renderConditionRows() {
             </select>
           </td>
           <td class="col-filter">
-            <textarea class="form-textarea condition-value" data-id="${row.id}" rows="3">${row.value}</textarea>
+            <textarea class="form-textarea condition-value" data-id="${row.id}" rows="3" placeholder="">${row.value}</textarea>
           </td>
           <td class="col-action">
             <button class="btn-add-row" data-after="${row.id}" title="新增条件">+</button>
