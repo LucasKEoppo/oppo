@@ -1,8 +1,4 @@
-import {
-  CONDITION_TYPES,
-  createEmptyCondition,
-  getConditionPlaceholder,
-} from './data.js';
+import { CONDITION_TYPES, createEmptyCondition } from './data.js';
 
 const modalOverlay = document.getElementById('modal-overlay');
 const conditionRows = document.getElementById('condition-rows');
@@ -26,8 +22,6 @@ function renderConditionRows() {
           `<option value="${type}" ${row.type === type ? 'selected' : ''}>${type}</option>`
       ).join('');
 
-      const placeholder = getConditionPlaceholder(row.type);
-
       return `
         <tr data-id="${row.id}">
           <td class="col-id">
@@ -40,7 +34,7 @@ function renderConditionRows() {
             </select>
           </td>
           <td class="col-filter">
-            <textarea class="form-textarea condition-value" data-id="${row.id}" rows="3" placeholder="${placeholder}">${row.value}</textarea>
+            <textarea class="form-textarea condition-value" data-id="${row.id}" rows="3">${row.value}</textarea>
           </td>
           <td class="col-action">
             <button class="btn-add-row" data-after="${row.id}" title="新增条件">+</button>
