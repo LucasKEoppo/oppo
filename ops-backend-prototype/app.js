@@ -1,4 +1,8 @@
-import { CONDITION_TYPES, createEmptyCondition } from './data.js';
+import {
+  CONDITION_TYPES,
+  createEmptyCondition,
+  getConditionPlaceholder,
+} from './data.js';
 
 const modalOverlay = document.getElementById('modal-overlay');
 const conditionRows = document.getElementById('condition-rows');
@@ -22,6 +26,8 @@ function renderConditionRows() {
           `<option value="${type}" ${row.type === type ? 'selected' : ''}>${type}</option>`
       ).join('');
 
+      const placeholder = getConditionPlaceholder(row.type);
+
       return `
         <tr data-id="${row.id}">
           <td class="col-id">
@@ -34,7 +40,7 @@ function renderConditionRows() {
             </select>
           </td>
           <td class="col-filter">
-            <textarea class="form-textarea condition-value" data-id="${row.id}" rows="3" placeholder="请输入条件筛选值">${row.value}</textarea>
+            <textarea class="form-textarea condition-value" data-id="${row.id}" rows="3" placeholder="${placeholder}">${row.value}</textarea>
           </td>
           <td class="col-action">
             <button class="btn-add-row" data-after="${row.id}" title="新增条件">+</button>
@@ -52,7 +58,10 @@ function bindRowEvents() {
     el.addEventListener('change', (e) => {
       const id = Number(e.target.dataset.id);
       const row = conditions.find((r) => r.id === id);
-      if (row) row.type = e.target.value;
+      if (row) {
+        row.type = e.target.value;
+        renderConditionRows();
+      }
     });
   });
 
@@ -92,8 +101,9 @@ modalOverlay.addEventListener('click', (e) => {
 
 document.getElementById('btn-confirm').addEventListener('click', () => {
   const logic = document.querySelector('input[name="logic"]:checked')?.value;
-  console.log('提交配置', { logic, conditions });
-  alert('原型演示：配置已提交');
+  const logicLabel = logic === 'any' ? '满足任意条件' : '满足所有条件';
+  console.log('提交定投配置', { logic: logicLabel, conditions });
+  alert('原型演示：定投配置已提交');
   closeModal();
 });
 
