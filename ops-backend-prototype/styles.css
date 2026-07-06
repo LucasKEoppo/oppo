@@ -190,16 +190,10 @@ body {
 
 .section-label {
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.section-desc {
-  font-size: 12px;
-  color: #999;
-  margin-bottom: 16px;
 }
 
 .section-label.required::before {
