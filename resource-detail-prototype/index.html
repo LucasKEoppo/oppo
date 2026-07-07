@@ -28,6 +28,113 @@
       </footer>
 
     </div>
+
+    <!-- 付费资源弹窗 -->
+    <div id="modal-paid" class="modal-overlay hidden">
+      <div class="modal-card paid-modal">
+        <h2 class="modal-title"><span id="resource-name">海鸥与海浪</span>为付费资源</h2>
+        <div class="modal-preview">
+          <div class="preview-wallpaper" id="modal-preview"></div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-primary" id="btn-free-task">做任务免费领</button>
+          <button class="btn-link" id="btn-buy">¥ 6.0 购买</button>
+          <button class="btn-link" id="btn-paid-cancel">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 购买方式弹窗 -->
+    <div id="modal-purchase" class="modal-overlay hidden">
+      <div class="bottom-sheet purchase-sheet">
+        <header class="sheet-header">
+          <button class="btn-text-red" id="btn-purchase-cancel">取消</button>
+          <h2 class="sheet-title">购买方式</h2>
+          <div class="header-spacer"></div>
+        </header>
+
+        <div class="purchase-options">
+          <label class="purchase-option selected" data-option="vip">
+            <div class="option-content">
+              <div class="option-title-row">
+                <span class="option-title">开通 VIP</span>
+                <span class="option-tag">尝鲜价</span>
+              </div>
+              <p class="option-desc">该装扮永久用，且畅享20万+装扮</p>
+              <div class="option-price-row">
+                <span class="price-main">¥3.8</span>
+                <span class="price-origin">¥15/月</span>
+              </div>
+            </div>
+            <span class="radio checked"></span>
+          </label>
+
+          <label class="purchase-option" data-option="single">
+            <div class="option-content">
+              <p class="option-desc single-desc">该装扮永久用，仅享有该装扮</p>
+              <div class="option-price-row">
+                <span class="price-main">¥6.0</span>
+              </div>
+            </div>
+            <span class="radio"></span>
+          </label>
+        </div>
+
+        <div class="purchase-agreement">
+          <input type="checkbox" id="agree-check" checked>
+          <label for="agree-check">
+            我已阅读并同意 <a href="#">VIP服务协议</a> 和 <a href="#">自动续费协议</a>，到期前 1 天以 13 元/月扣费，可随时取消
+          </label>
+        </div>
+
+        <button class="btn-primary btn-full" id="btn-open-vip">立即开通</button>
+      </div>
+    </div>
+
+    <!-- 免费领弹窗 -->
+    <div id="modal-free" class="modal-overlay hidden">
+      <div class="bottom-sheet free-sheet">
+        <header class="sheet-header three-col">
+          <button class="btn-text-red" id="btn-free-cancel">取消</button>
+          <h2 class="sheet-title">免费领</h2>
+          <button class="btn-text-red" id="btn-rules">规则</button>
+        </header>
+
+        <div class="free-progress-card">
+          <div class="free-thumb" id="free-thumb">
+            <div class="free-thumb-inner" id="free-thumb-inner"></div>
+          </div>
+          <div class="free-progress-info">
+            <p class="free-progress-title">再赚 <strong>190</strong> 金币兑换资源</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 36.7%"></div>
+                <div class="progress-coin" style="left: 36.7%"></div>
+              </div>
+            </div>
+            <div class="progress-labels">
+              <span>我的金币 110</span>
+              <span>当前资源 300 金币</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary btn-full" id="btn-earn-coins">赚金币，免费兑</button>
+      </div>
+    </div>
+
+    <!-- 应用加载层 -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+      <div class="loading-card">
+        <div class="loading-spinner" aria-hidden="true">
+          <svg class="loading-spinner-svg" viewBox="0 0 48 48">
+            <circle class="loading-spinner-arc" cx="24" cy="24" r="20" />
+          </svg>
+        </div>
+        <p class="loading-text">正在应用</p>
+      </div>
+    </div>
+
   </div>
 
   <script type="module" src="app.js"></script>
