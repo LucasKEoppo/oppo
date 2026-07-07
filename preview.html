@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原型预览入口</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+      background: #f5f5f5;
+      padding: 40px 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 22px; margin-bottom: 8px; }
+    .tip { color: #666; font-size: 14px; margin-bottom: 24px; line-height: 1.7; }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .card h2 { font-size: 16px; margin-bottom: 4px; }
+    .card p { font-size: 13px; color: #999; margin-bottom: 10px; }
+    .links a {
+      display: block;
+      color: #1677ff;
+      font-size: 14px;
+      text-decoration: none;
+      margin-top: 6px;
+      word-break: break-all;
+    }
+    .links a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>原型预览入口</h1>
+  <p class="tip">在 Cursor 中打开 <strong>Ports</strong> 面板，确认端口已转发后点击链接。若打不开，请用 Ports 里的 Open in Browser，或 Ctrl+P 直接打开下方 html 文件。</p>
+
+  <div class="card">
+    <h2>更换壁纸 · 付费标识</h2>
+    <p>资源分发页，付费栏目展示「付费」角标</p>
+    <div class="links">
+      <a href="wallpaper-labels/index.html">wallpaper-labels/index.html</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>锁屏 · 付费资源应用</h2>
+    <p>购买 / 免费领 / 正在应用</p>
+    <div class="links">
+      <a href="lockscreen-prototype/index.html">lockscreen-prototype/index.html</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>资源搜索</h2>
+    <p>搜索页 + 搜索结果页</p>
+    <div class="links">
+      <a href="search-prototype/index.html">search-prototype/index.html</a>
+      <a href="search-prototype/results.html?type=wallpaper&q=简约">搜索结果示例（简约）</a>
+      <a href="search-prototype/results.html?type=wallpaper&q=官方">搜索结果示例（官方）</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>资源详情页</h2>
+    <p>同栏目推荐 · 付费标识</p>
+    <div class="links">
+      <a href="resource-detail-prototype/index.html">resource-detail-prototype/index.html</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>运营后台 · 定投配置</h2>
+    <p>新增弹窗 · 全部定投标签</p>
+    <div class="links">
+      <a href="ops-backend-prototype/index.html">ops-backend-prototype/index.html</a>
+    </div>
+  </div>
+</body>
+</html>
