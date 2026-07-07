@@ -5,12 +5,6 @@ import {
   shouldShowPriceBadge,
 } from './data.js';
 
-const downloadIconSvg = `
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4h14v-2H5v2z"/>
-  </svg>
-`;
-
 const arrowSvg = `
   <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M9 6l6 6-6 6"/>
