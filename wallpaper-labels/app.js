@@ -22,7 +22,6 @@ function renderWallpaperCard(wallpaper, categoryName) {
     <div class="wallpaper-card" data-id="${wallpaper.id}" data-category="${categoryName}">
       <div class="wallpaper-placeholder" style="background: linear-gradient(160deg, ${wallpaper.color} 0%, ${adjustColor(wallpaper.color, -30)} 100%)"></div>
       ${badgeHtml}
-      <div class="download-icon">${downloadIconSvg}</div>
     </div>
   `;
 }
