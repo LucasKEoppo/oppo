@@ -155,24 +155,3 @@ body {
 .badge-paid {
   background: rgba(0, 0, 0, 0.38);
 }
-
-/* 右下角下载图标 */
-.download-icon {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 24px;
-  height: 24px;
-  background: rgba(0, 0, 0, 0.35);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-.download-icon svg {
-  width: 14px;
-  height: 14px;
-  fill: #fff;
-}
