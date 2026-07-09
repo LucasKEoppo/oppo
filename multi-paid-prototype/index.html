@@ -74,42 +74,10 @@
 
         <div class="resource-list" id="resource-list"></div>
 
-        <div class="price-summary">
-          <span class="price-summary-label">合计</span>
-          <span class="price-summary-main" id="price-total">¥12.0</span>
-        </div>
-
         <div class="modal-actions">
-          <button class="btn-primary" id="btn-vip-apply">
-            开通 VIP，应用全部已选装扮
-            <span class="btn-sub">尝鲜价 ¥3.8/月</span>
-          </button>
-          <button class="btn-secondary" id="btn-buy-all">¥12.0 购买并应用</button>
-          <button class="btn-link" id="btn-free-task">做任务免费领</button>
-          <button class="btn-link" id="btn-select-buy">选择购买</button>
+          <button class="btn-primary" id="btn-free-task">做任务免费领</button>
+          <button class="btn-link" id="btn-buy">¥ 12.0 购买</button>
           <button class="btn-link muted" id="btn-multi-cancel">取消</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 选择购买弹窗 -->
-    <div id="modal-select" class="modal-overlay hidden">
-      <div class="bottom-sheet select-sheet">
-        <header class="sheet-header">
-          <button class="btn-text-red" id="btn-select-cancel">取消</button>
-          <h2 class="sheet-title">选择购买</h2>
-          <div class="header-spacer"></div>
-        </header>
-
-        <p class="select-hint">勾选要购买的资源，未勾选项将不会应用</p>
-        <div class="select-list" id="select-list"></div>
-
-        <div class="select-footer">
-          <div class="select-total">
-            已选 <span id="select-count">2</span> 项，合计
-            <strong id="select-total-price">¥12.0</strong>
-          </div>
-          <button class="btn-primary btn-full" id="btn-select-confirm">立即购买</button>
         </div>
       </div>
     </div>
@@ -130,7 +98,7 @@
                 <span class="option-title">开通 VIP</span>
                 <span class="option-tag">尝鲜价</span>
               </div>
-              <p class="option-desc">本次所选付费装扮均可应用，且畅享20万+装扮</p>
+              <p class="option-desc">该装扮永久用，且畅享20万+装扮</p>
               <div class="option-price-row">
                 <span class="price-main">¥3.8</span>
                 <span class="price-origin">¥15/月</span>
@@ -139,9 +107,9 @@
             <span class="radio checked"></span>
           </label>
 
-          <label class="purchase-option" data-option="purchase">
+          <label class="purchase-option" data-option="single">
             <div class="option-content">
-              <p class="option-desc single-desc">购买本次所选装扮</p>
+              <p class="option-desc single-desc">该装扮永久用，仅享有该装扮</p>
               <div class="option-price-row">
                 <span class="price-main" id="purchase-total-price">¥12.0</span>
               </div>
