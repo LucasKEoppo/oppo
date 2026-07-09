@@ -1,6 +1,5 @@
 import {
   pendingPaidResources,
-  BUNDLE_DISCOUNT_PRICE,
   USER_COINS,
   getTotalPrice,
   getTotalCoinCost,
@@ -12,7 +11,6 @@ const APPLY_DURATION_MS = 2500;
 let resources = pendingPaidResources.map((item) => ({ ...item }));
 let selectedIds = new Set(resources.map((item) => item.id));
 let isApplying = false;
-let purchaseMode = 'bundle';
 
 const modalMultiPaid = document.getElementById('modal-multi-paid');
 const modalSelect = document.getElementById('modal-select');
@@ -28,6 +26,12 @@ function formatPrice(value) {
 
 function getPending() {
   return getPendingResources(resources);
+}
+
+function getSelectedTotal() {
+  const pending = getPending();
+  const selected = pending.filter((item) => selectedIds.has(item.id));
+  return getTotalPrice(selected);
 }
 
 function showModal(modal, asSheet = false) {
@@ -56,11 +60,12 @@ function hideLoading() {
 function renderResourceList() {
   const pending = getPending();
   const total = getTotalPrice(pending);
+  const totalText = formatPrice(total);
 
   document.getElementById('paid-count').textContent = pending.length;
   document.getElementById('multi-count').textContent = pending.length;
-  document.getElementById('price-origin').textContent = formatPrice(total);
-  document.getElementById('price-bundle').textContent = `打包 ${formatPrice(BUNDLE_DISCOUNT_PRICE)}`;
+  document.getElementById('price-total').textContent = totalText;
+  document.getElementById('btn-buy-all').textContent = `${totalText} 购买并应用`;
 
   document.getElementById('resource-list').innerHTML = pending
     .map(
@@ -77,6 +82,7 @@ function renderResourceList() {
     .join('');
 
   paidHint.classList.toggle('hidden', pending.length === 0);
+  updatePurchaseTotal();
 }
 
 function renderSelectList() {
@@ -108,10 +114,12 @@ function updateSelectTotal() {
 
   document.getElementById('select-count').textContent = selected.length;
   document.getElementById('select-total-price').textContent = formatPrice(total);
-  document.getElementById('purchase-bundle-price').textContent = formatPrice(
-    selected.length === pending.length ? BUNDLE_DISCOUNT_PRICE : total
-  );
-  document.getElementById('purchase-origin-price').textContent = formatPrice(total);
+  updatePurchaseTotal();
+}
+
+function updatePurchaseTotal() {
+  const total = getSelectedTotal() || getTotalPrice(getPending());
+  document.getElementById('purchase-total-price').textContent = formatPrice(total);
 }
 
 function renderFreeList() {
@@ -166,6 +174,7 @@ function handleApplyClick() {
     return;
   }
 
+  selectedIds = new Set(pending.map((item) => item.id));
   hideAllModals();
   renderResourceList();
   showModal(modalMultiPaid);
@@ -174,17 +183,16 @@ function handleApplyClick() {
 btnApply.addEventListener('click', handleApplyClick);
 
 document.getElementById('btn-vip-apply').addEventListener('click', () => {
-  purchaseMode = 'vip';
   hideModal(modalMultiPaid);
   showModal(modalPurchase, true);
   selectPurchaseOption('vip');
 });
 
-document.getElementById('btn-bundle-buy').addEventListener('click', () => {
-  purchaseMode = 'bundle';
+document.getElementById('btn-buy-all').addEventListener('click', () => {
+  selectedIds = new Set(getPending().map((item) => item.id));
   hideModal(modalMultiPaid);
   showModal(modalPurchase, true);
-  selectPurchaseOption('bundle');
+  selectPurchaseOption('purchase');
 });
 
 document.getElementById('btn-free-task').addEventListener('click', () => {
@@ -235,10 +243,9 @@ document.getElementById('btn-select-confirm').addEventListener('click', () => {
     alert('请至少选择 1 个资源');
     return;
   }
-  purchaseMode = 'select';
   hideModal(modalSelect);
   showModal(modalPurchase, true);
-  selectPurchaseOption('bundle');
+  selectPurchaseOption('purchase');
 });
 
 function selectPurchaseOption(option) {

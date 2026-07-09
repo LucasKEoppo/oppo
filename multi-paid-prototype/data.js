@@ -18,18 +18,8 @@ export const pendingPaidResources = [
     coinCost: 300,
     unlocked: false,
   },
-  {
-    id: 'st-1',
-    name: '流光景深',
-    type: '样式',
-    price: 3.0,
-    gradient: 'linear-gradient(165deg, #9B59B6 0%, #3498DB 100%)',
-    coinCost: 200,
-    unlocked: false,
-  },
 ];
 
-export const BUNDLE_DISCOUNT_PRICE = 12.8;
 export const VIP_PRICE = 3.8;
 export const VIP_ORIGIN_PRICE = 15;
 export const USER_COINS = 110;
@@ -40,10 +30,6 @@ export function getTotalPrice(resources) {
 
 export function getTotalCoinCost(resources) {
   return resources.reduce((sum, item) => sum + item.coinCost, 0);
-}
-
-export function getUnlockedCount(resources) {
-  return resources.filter((item) => item.unlocked).length;
 }
 
 export function getPendingResources(resources) {

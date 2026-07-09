@@ -19,7 +19,7 @@
 
       <div class="paid-hint" id="paid-hint">
         <span class="paid-hint-dot"></span>
-        当前编辑含 <strong id="paid-count">3</strong> 个付费资源，应用前需解锁
+        当前编辑含 <strong id="paid-count">2</strong> 个付费资源，应用前需解锁
       </div>
 
       <div class="lock-preview-area">
@@ -49,19 +49,19 @@
       </div>
 
       <footer class="bottom-toolbar">
-        <div class="tool-item active">
+        <div class="tool-item active selected-paid">
           <div class="tool-icon wallpaper-icon">
             <div class="mini-wallpaper"></div>
           </div>
           <span>壁纸</span>
         </div>
         <div class="tool-item selected-paid">
+          <div class="tool-icon icon-icon">◆</div>
+          <span>图标</span>
+        </div>
+        <div class="tool-item">
           <div class="tool-icon style-icon">✦</div>
           <span>样式</span>
-        </div>
-        <div class="tool-item selected-paid">
-          <div class="tool-icon depth-icon">▣</div>
-          <span>景深</span>
         </div>
       </footer>
     </div>
@@ -69,15 +69,14 @@
     <!-- 多资源付费弹窗 -->
     <div id="modal-multi-paid" class="modal-overlay hidden">
       <div class="modal-card multi-paid-modal">
-        <h2 class="modal-title">以下 <span id="multi-count">3</span> 个装扮为付费资源</h2>
+        <h2 class="modal-title">以下 <span id="multi-count">2</span> 个装扮为付费资源</h2>
         <p class="modal-subtitle">应用前需解锁以下资源</p>
 
         <div class="resource-list" id="resource-list"></div>
 
         <div class="price-summary">
           <span class="price-summary-label">合计</span>
-          <span class="price-summary-origin" id="price-origin">¥15.0</span>
-          <span class="price-summary-main" id="price-bundle">打包 ¥12.8</span>
+          <span class="price-summary-main" id="price-total">¥12.0</span>
         </div>
 
         <div class="modal-actions">
@@ -85,7 +84,7 @@
             开通 VIP，应用全部已选装扮
             <span class="btn-sub">尝鲜价 ¥3.8/月</span>
           </button>
-          <button class="btn-secondary" id="btn-bundle-buy">¥12.8 打包购买并应用</button>
+          <button class="btn-secondary" id="btn-buy-all">¥12.0 购买并应用</button>
           <button class="btn-link" id="btn-free-task">做任务免费领</button>
           <button class="btn-link" id="btn-select-buy">选择购买</button>
           <button class="btn-link muted" id="btn-multi-cancel">取消</button>
@@ -107,8 +106,8 @@
 
         <div class="select-footer">
           <div class="select-total">
-            已选 <span id="select-count">3</span> 项，合计
-            <strong id="select-total-price">¥15.0</strong>
+            已选 <span id="select-count">2</span> 项，合计
+            <strong id="select-total-price">¥12.0</strong>
           </div>
           <button class="btn-primary btn-full" id="btn-select-confirm">立即购买</button>
         </div>
@@ -140,12 +139,11 @@
             <span class="radio checked"></span>
           </label>
 
-          <label class="purchase-option" data-option="bundle">
+          <label class="purchase-option" data-option="purchase">
             <div class="option-content">
-              <p class="option-desc single-desc">打包购买本次所选装扮</p>
+              <p class="option-desc single-desc">购买本次所选装扮</p>
               <div class="option-price-row">
-                <span class="price-main" id="purchase-bundle-price">¥12.8</span>
-                <span class="price-origin" id="purchase-origin-price">¥15.0</span>
+                <span class="price-main" id="purchase-total-price">¥12.0</span>
               </div>
             </div>
             <span class="radio"></span>
@@ -176,16 +174,16 @@
 
         <div class="free-progress-card">
           <div class="free-progress-info full">
-            <p class="free-progress-title">再赚 <strong id="coins-needed">690</strong> 金币兑换全部资源</p>
+            <p class="free-progress-title">再赚 <strong id="coins-needed">490</strong> 金币兑换全部资源</p>
             <div class="progress-bar-wrap">
               <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill" style="width: 13.7%"></div>
-                <div class="progress-coin" id="progress-coin" style="left: 13.7%"></div>
+                <div class="progress-fill" id="progress-fill" style="width: 18.3%"></div>
+                <div class="progress-coin" id="progress-coin" style="left: 18.3%"></div>
               </div>
             </div>
             <div class="progress-labels">
               <span>我的金币 <span id="user-coins">110</span></span>
-              <span>全部资源 <span id="total-coins">800</span> 金币</span>
+              <span>全部资源 <span id="total-coins">600</span> 金币</span>
             </div>
           </div>
         </div>

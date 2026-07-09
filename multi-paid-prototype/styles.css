@@ -313,8 +313,8 @@ body {
   background: rgba(255, 255, 255, 0.12);
 }
 
-.depth-icon {
-  background: #007AFF;
+.icon-icon {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* ========== 弹窗通用 ========== */
@@ -458,9 +458,7 @@ body {
 }
 
 .price-summary-origin {
-  font-size: 13px;
-  color: #bbb;
-  text-decoration: line-through;
+  display: none;
 }
 
 .price-summary-main {
