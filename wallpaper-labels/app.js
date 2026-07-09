@@ -3,7 +3,6 @@ import {
   getPriceLabel,
   getPriceBadgeClass,
   shouldShowPriceBadge,
-  shouldShowDownloadIcon,
 } from './data.js';
 
 const downloadIconSvg = `
@@ -24,9 +23,7 @@ function renderWallpaperCard(wallpaper, categoryName) {
   const badgeHtml = showBadge
     ? `<span class="price-badge ${getPriceBadgeClass(categoryName)}">${getPriceLabel(categoryName)}</span>`
     : '';
-  const downloadHtml = shouldShowDownloadIcon(categoryName)
-    ? `<div class="download-icon">${downloadIconSvg}</div>`
-    : '';
+  const downloadHtml = `<div class="download-icon">${downloadIconSvg}</div>`;
 
   return `
     <div class="wallpaper-card" data-id="${wallpaper.id}" data-category="${categoryName}">

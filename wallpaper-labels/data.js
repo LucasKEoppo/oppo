@@ -1,8 +1,7 @@
 /**
  * 壁纸栏目数据配置
- * 规则：清川鹭起 → 付费标识、无下载按钮；其余栏目 → 展示下载按钮
+ * 规则：清川鹭起 → 付费标识；所有栏目资源均展示右下角下载按钮
  */
-export const NO_DOWNLOAD_CATEGORY = '清川鹭起';
 export const PAID_CATEGORIES = ['清川鹭起'];
 
 export const wallpaperCategories = [
@@ -70,7 +69,7 @@ export function shouldShowPriceBadge(categoryName) {
   return PAID_CATEGORIES.includes(categoryName);
 }
 
-/** 是否展示右下角下载按钮（清川鹭起不展示） */
-export function shouldShowDownloadIcon(categoryName) {
-  return categoryName !== NO_DOWNLOAD_CATEGORY;
+/** 是否展示右下角下载按钮 */
+export function shouldShowDownloadIcon() {
+  return true;
 }

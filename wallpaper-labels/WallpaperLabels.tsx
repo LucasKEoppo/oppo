@@ -7,7 +7,6 @@ import React from 'react';
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
 const FREE_CATEGORY = '绿野闲行';
-const NO_DOWNLOAD_CATEGORY = '清川鹭起';
 const PAID_CATEGORIES = ['清川鹭起'];
 
 function getPriceLabel(categoryName: string): string {
@@ -32,17 +31,13 @@ function WallpaperCard({
   categoryName: string;
   onPress?: () => void;
 }) {
-  const showDownload = categoryName !== NO_DOWNLOAD_CATEGORY;
-
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.85}>
       <Image source={{ uri: wallpaper.thumbnailUrl }} style={styles.thumbnail} />
       <PriceBadge categoryName={categoryName} />
-      {showDownload ? (
-        <View style={styles.downloadIcon}>
-          <Text style={styles.downloadIconText}>↓</Text>
-        </View>
-      ) : null}
+      <View style={styles.downloadIcon}>
+        <Text style={styles.downloadIconText}>↓</Text>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -110,6 +105,24 @@ const styles = StyleSheet.create({
   badgeFree: {},
   badgePaid: {},
   badgeText: { fontSize: 10, fontWeight: '500', color: 'rgba(255, 255, 255, 0.95)' },
+  downloadIcon: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'rgba(0, 0, 0, 0.35)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  downloadIconText: { color: '#fff', fontSize: 12, lineHeight: 14 },
 });
 
-export { PriceBadge, WallpaperCard, CategorySection, getPriceLabel, FREE_CATEGORY };
+export {
+  PriceBadge,
+  WallpaperCard,
+  CategorySection,
+  getPriceLabel,
+  FREE_CATEGORY,
+};
