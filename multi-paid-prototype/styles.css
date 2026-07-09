@@ -256,20 +256,7 @@ body {
   position: relative;
 }
 
-.tool-item.active,
-.tool-item.selected-paid {
-  color: #fff;
-}
-
-.tool-item.selected-paid::after {
-  content: '付费';
-  position: absolute;
-  top: -4px;
-  right: -8px;
-  font-size: 8px;
-  padding: 1px 4px;
-  border-radius: 100px;
-  background: rgba(255, 149, 0, 0.9);
+.tool-item.active {
   color: #fff;
 }
 
