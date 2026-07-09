@@ -3,7 +3,14 @@ import {
   getPriceLabel,
   getPriceBadgeClass,
   shouldShowPriceBadge,
+  shouldShowDownloadIcon,
 } from './data.js';
+
+const downloadIconSvg = `
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4h14v-2H5v2z"/>
+  </svg>
+`;
 
 const arrowSvg = `
   <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -17,11 +24,15 @@ function renderWallpaperCard(wallpaper, categoryName) {
   const badgeHtml = showBadge
     ? `<span class="price-badge ${getPriceBadgeClass(categoryName)}">${getPriceLabel(categoryName)}</span>`
     : '';
+  const downloadHtml = shouldShowDownloadIcon(categoryName)
+    ? `<div class="download-icon">${downloadIconSvg}</div>`
+    : '';
 
   return `
     <div class="wallpaper-card" data-id="${wallpaper.id}" data-category="${categoryName}">
       <div class="wallpaper-placeholder" style="background: linear-gradient(160deg, ${wallpaper.color} 0%, ${adjustColor(wallpaper.color, -30)} 100%)"></div>
       ${badgeHtml}
+      ${downloadHtml}
     </div>
   `;
 }

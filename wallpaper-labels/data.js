@@ -1,64 +1,76 @@
 /**
  * 壁纸栏目数据配置
- * 规则：绿野闲行 → 免费，其余栏目 → 付费
+ * 规则：清川鹭起 → 付费标识、无下载按钮；其余栏目 → 展示下载按钮
  */
-export const FREE_CATEGORY = '绿野闲行';
+export const NO_DOWNLOAD_CATEGORY = '清川鹭起';
+export const PAID_CATEGORIES = ['清川鹭起'];
 
 export const wallpaperCategories = [
   {
-    id: 'lvyexianxing',
-    name: '绿野闲行',
-    count: 13,
+    id: 'liuguangyicai',
+    name: '流光溢彩',
+    count: 9,
     wallpapers: [
-      { id: 'ly-1', color: '#6B9E4E' },
-      { id: 'ly-2', color: '#4A8B6F' },
-      { id: 'ly-3', color: '#7CB342' },
-      { id: 'ly-4', color: '#558B2F' },
-      { id: 'ly-5', color: '#689F38' },
+      { id: 'lg-1', color: '#E85D4C' },
+      { id: 'lg-2', color: '#4ECDC4' },
+      { id: 'lg-3', color: '#9B59B6' },
+      { id: 'lg-4', color: '#F39C12' },
+      { id: 'lg-5', color: '#3498DB' },
     ],
   },
   {
-    id: 'qingkongmanxing',
-    name: '青空漫行',
-    count: 10,
+    id: 'shanzhidao',
+    name: '山之道',
+    count: 3,
     wallpapers: [
-      { id: 'qk-1', color: '#64B5F6' },
-      { id: 'qk-2', color: '#42A5F5' },
-      { id: 'qk-3', color: '#29B6F6' },
-      { id: 'qk-4', color: '#4FC3F7' },
-      { id: 'qk-5', color: '#81D4FA' },
+      { id: 'sz-1', color: '#5D6D7E' },
+      { id: 'sz-2', color: '#7F8C8D' },
+      { id: 'sz-3', color: '#566573' },
     ],
   },
   {
-    id: 'huancaihuazhan',
-    name: '幻彩花绽',
-    count: 10,
+    id: 'qingchuanluqi',
+    name: '清川鹭起',
+    count: 6,
     wallpapers: [
-      { id: 'hc-1', color: '#AB47BC' },
-      { id: 'hc-2', color: '#EC407A' },
-      { id: 'hc-3', color: '#7E57C2' },
-      { id: 'hc-4', color: '#5C6BC0' },
-      { id: 'hc-5', color: '#EF5350' },
+      { id: 'qc-1', color: '#6B9E8E' },
+      { id: 'qc-2', color: '#7BA7C9' },
+      { id: 'qc-3', color: '#8EC5D6' },
+      { id: 'qc-4', color: '#5A8A9A' },
+      { id: 'qc-5', color: '#A8C4A0' },
+      { id: 'qc-6', color: '#4A7C8C' },
+    ],
+  },
+  {
+    id: 'zhanfang',
+    name: '绽放',
+    count: 5,
+    wallpapers: [
+      { id: 'zf-1', color: '#E74C3C' },
+      { id: 'zf-2', color: '#F5B7B1' },
+      { id: 'zf-3', color: '#F1948A' },
+      { id: 'zf-4', color: '#C0392B' },
+      { id: 'zf-5', color: '#E67E22' },
     ],
   },
 ];
 
-/** 根据栏目名称判断是否为免费 */
-export function isFreeCategory(categoryName) {
-  return categoryName === FREE_CATEGORY;
-}
-
 /** 获取标识文案 */
-export function getPriceLabel(categoryName) {
-  return isFreeCategory(categoryName) ? '免费' : '付费';
+export function getPriceLabel() {
+  return '付费';
 }
 
 /** 获取标识样式类名 */
-export function getPriceBadgeClass(categoryName) {
+export function getPriceBadgeClass() {
   return 'badge-paid';
 }
 
-/** 是否展示价格标识（免费不展示，付费展示） */
+/** 是否展示价格标识 */
 export function shouldShowPriceBadge(categoryName) {
-  return !isFreeCategory(categoryName);
+  return PAID_CATEGORIES.includes(categoryName);
+}
+
+/** 是否展示右下角下载按钮（清川鹭起不展示） */
+export function shouldShowDownloadIcon(categoryName) {
+  return categoryName !== NO_DOWNLOAD_CATEGORY;
 }

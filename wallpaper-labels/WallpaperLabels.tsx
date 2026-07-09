@@ -7,13 +7,15 @@ import React from 'react';
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
 const FREE_CATEGORY = '绿野闲行';
+const NO_DOWNLOAD_CATEGORY = '清川鹭起';
+const PAID_CATEGORIES = ['清川鹭起'];
 
 function getPriceLabel(categoryName: string): string {
-  return categoryName === FREE_CATEGORY ? '免费' : '付费';
+  return PAID_CATEGORIES.includes(categoryName) ? '付费' : '免费';
 }
 
 function PriceBadge({ categoryName }: { categoryName: string }) {
-  if (categoryName === FREE_CATEGORY) return null;
+  if (!PAID_CATEGORIES.includes(categoryName)) return null;
   return (
     <View style={[styles.badge, styles.badgePaid]}>
       <Text style={styles.badgeText}>{getPriceLabel(categoryName)}</Text>
@@ -30,10 +32,17 @@ function WallpaperCard({
   categoryName: string;
   onPress?: () => void;
 }) {
+  const showDownload = categoryName !== NO_DOWNLOAD_CATEGORY;
+
   return (
     <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.85}>
       <Image source={{ uri: wallpaper.thumbnailUrl }} style={styles.thumbnail} />
       <PriceBadge categoryName={categoryName} />
+      {showDownload ? (
+        <View style={styles.downloadIcon}>
+          <Text style={styles.downloadIconText}>↓</Text>
+        </View>
+      ) : null}
     </TouchableOpacity>
   );
 }
