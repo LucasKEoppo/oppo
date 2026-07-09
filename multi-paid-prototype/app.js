@@ -16,7 +16,6 @@ const modalPurchase = document.getElementById('modal-purchase');
 const modalFree = document.getElementById('modal-free');
 const loadingOverlay = document.getElementById('loading-overlay');
 const btnApply = document.getElementById('btn-apply');
-const paidHint = document.getElementById('paid-hint');
 
 function formatPrice(value) {
   return `¥${value.toFixed(1)}`;
@@ -57,7 +56,6 @@ function renderResourceList() {
   const pending = getPending();
   const total = getTotalPrice(pending);
 
-  document.getElementById('paid-count').textContent = pending.length;
   document.getElementById('multi-count').textContent = pending.length;
   document.getElementById('btn-buy').textContent = formatBuyLabel(total);
   document.getElementById('purchase-total-price').textContent = formatPrice(total);
@@ -75,8 +73,6 @@ function renderResourceList() {
       </div>`
     )
     .join('');
-
-  paidHint.classList.toggle('hidden', pending.length === 0);
 }
 
 function renderFreeList() {
