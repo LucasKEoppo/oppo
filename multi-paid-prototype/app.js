@@ -1,45 +1,48 @@
 import {
   pendingPaidResources,
-  USER_COINS,
-  getTotalPrice,
-  getTotalCoinCost,
+  VIP_PRICE,
+  VIP_ORIGIN_PRICE,
+  DIRECT_BUY_PRICE,
+  TOTAL_COINS,
   getPendingResources,
 } from './data.js';
 
 const APPLY_DURATION_MS = 2500;
 
-let resources = pendingPaidResources.map((item) => ({ ...item }));
+let resources = pendingPaidResources.map((item) => ({ ...item, unlocked: false }));
 let isApplying = false;
+let moreExpanded = false;
 
-const modalMultiPaid = document.getElementById('modal-multi-paid');
-const modalPurchase = document.getElementById('modal-purchase');
-const modalFree = document.getElementById('modal-free');
+const sheetMulti = document.getElementById('sheet-multi');
+const dialogInfo = document.getElementById('dialog-info');
 const loadingOverlay = document.getElementById('loading-overlay');
+const moreOptions = document.getElementById('more-options');
+const chevron = document.getElementById('chevron');
 const btnApply = document.getElementById('btn-apply');
-
-function formatPrice(value) {
-  return `¥${value.toFixed(1)}`;
-}
-
-function formatBuyLabel(value) {
-  return `¥ ${value.toFixed(1)} 购买`;
-}
 
 function getPending() {
   return getPendingResources(resources);
 }
 
-function showModal(modal, asSheet = false) {
-  modal.classList.remove('hidden');
-  modal.classList.toggle('sheet-mode', asSheet);
+function showSheet() {
+  sheetMulti.classList.remove('hidden');
 }
 
-function hideModal(modal) {
-  modal.classList.add('hidden');
+function hideSheet() {
+  sheetMulti.classList.add('hidden');
 }
 
-function hideAllModals() {
-  [modalMultiPaid, modalPurchase, modalFree].forEach(hideModal);
+function showDialog() {
+  dialogInfo.classList.remove('hidden');
+}
+
+function hideDialog() {
+  dialogInfo.classList.add('hidden');
+}
+
+function hideAll() {
+  hideSheet();
+  hideDialog();
 }
 
 function showLoading() {
@@ -54,58 +57,36 @@ function hideLoading() {
 
 function renderResourceList() {
   const pending = getPending();
-  const total = getTotalPrice(pending);
-
-  document.getElementById('multi-count').textContent = pending.length;
-  document.getElementById('btn-buy').textContent = formatBuyLabel(total);
-  document.getElementById('purchase-total-price').textContent = formatPrice(total);
 
   document.getElementById('resource-list').innerHTML = pending
     .map(
       (item) => `
-      <div class="resource-item">
+      <div class="resource-row">
         <div class="resource-thumb" style="background: ${item.gradient}"></div>
-        <div class="resource-info">
-          <span class="resource-name">${item.name}</span>
+        <div class="resource-meta">
           <span class="resource-type">${item.type}</span>
+          <span class="resource-name">${item.name}</span>
+          <span class="resource-price-line">
+            <strong>${item.coinPrice.toFixed(1)}</strong> 可币
+            <span class="vip-free-tag">VIP 免费</span>
+          </span>
         </div>
-        <span class="resource-price">${formatPrice(item.price)}</span>
       </div>`
     )
     .join('');
 }
 
-function renderFreeList() {
-  const pending = getPending();
-  const totalCoins = getTotalCoinCost(pending);
-  const needed = Math.max(0, totalCoins - USER_COINS);
-  const progress = Math.min(100, (USER_COINS / totalCoins) * 100);
-
-  document.getElementById('free-multi-list').innerHTML = pending
-    .map(
-      (item) => `
-      <div class="free-item">
-        <div class="resource-thumb small" style="background: ${item.gradient}"></div>
-        <div class="resource-info">
-          <span class="resource-name">${item.name}</span>
-          <span class="resource-type">${item.type} · ${item.coinCost} 金币</span>
-        </div>
-      </div>`
-    )
-    .join('');
-
-  document.getElementById('coins-needed').textContent = needed;
-  document.getElementById('user-coins').textContent = USER_COINS;
-  document.getElementById('total-coins').textContent = totalCoins;
-  document.getElementById('progress-fill').style.width = `${progress}%`;
-  document.getElementById('progress-coin').style.left = `${progress}%`;
+function setMoreExpanded(expanded) {
+  moreExpanded = expanded;
+  moreOptions.classList.toggle('hidden', !expanded);
+  chevron.classList.toggle('expanded', expanded);
 }
 
 function startApplying() {
   if (isApplying) return;
   isApplying = true;
 
-  hideAllModals();
+  hideAll();
   showLoading();
 
   setTimeout(() => {
@@ -118,82 +99,51 @@ function startApplying() {
   }, APPLY_DURATION_MS);
 }
 
-function handleApplyClick() {
+function handleBuyClick() {
   if (isApplying) return;
 
-  const pending = getPending();
-  if (pending.length === 0) {
+  if (getPending().length === 0) {
     startApplying();
     return;
   }
 
-  hideAllModals();
+  hideDialog();
   renderResourceList();
-  showModal(modalMultiPaid);
+  setMoreExpanded(false);
+  showSheet();
 }
 
-btnApply.addEventListener('click', handleApplyClick);
+btnApply.addEventListener('click', handleBuyClick);
 
-document.getElementById('btn-buy').addEventListener('click', () => {
-  hideModal(modalMultiPaid);
-  showModal(modalPurchase, true);
-  selectPurchaseOption('vip');
+document.getElementById('btn-sheet-close').addEventListener('click', hideSheet);
+
+document.getElementById('btn-info').addEventListener('click', showDialog);
+
+document.getElementById('btn-info-ok').addEventListener('click', hideDialog);
+
+document.getElementById('btn-vip').addEventListener('click', startApplying);
+
+document.getElementById('btn-more-toggle').addEventListener('click', () => {
+  setMoreExpanded(!moreExpanded);
 });
 
-document.getElementById('btn-free-task').addEventListener('click', () => {
-  hideModal(modalMultiPaid);
-  renderFreeList();
-  showModal(modalFree, true);
+document.getElementById('btn-direct-buy').addEventListener('click', startApplying);
+
+document.getElementById('btn-coin-exchange').addEventListener('click', startApplying);
+
+document.getElementById('btn-cancel').addEventListener('click', hideAll);
+
+sheetMulti.addEventListener('click', (e) => {
+  if (e.target === sheetMulti) hideSheet();
 });
 
-document.getElementById('btn-multi-cancel').addEventListener('click', () => {
-  hideModal(modalMultiPaid);
+dialogInfo.addEventListener('click', (e) => {
+  if (e.target === dialogInfo) hideDialog();
 });
 
-document.getElementById('btn-purchase-cancel').addEventListener('click', () => {
-  hideModal(modalPurchase);
-});
-
-document.getElementById('btn-free-cancel').addEventListener('click', () => {
-  hideModal(modalFree);
-});
-
-[modalMultiPaid, modalPurchase, modalFree].forEach((modal) => {
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) hideModal(modal);
-  });
-});
-
-function selectPurchaseOption(option) {
-  document.querySelectorAll('.purchase-option').forEach((el) => {
-    const isSelected = el.dataset.option === option;
-    el.classList.toggle('selected', isSelected);
-    el.querySelector('.radio').classList.toggle('checked', isSelected);
-  });
-  document.getElementById('btn-open-vip').textContent =
-    option === 'vip' ? '立即开通' : '立即购买';
-}
-
-document.querySelectorAll('.purchase-option').forEach((option) => {
-  option.addEventListener('click', () => {
-    selectPurchaseOption(option.dataset.option);
-  });
-});
-
-document.getElementById('btn-open-vip').addEventListener('click', () => {
-  startApplying();
-});
-
-document.getElementById('btn-earn-coins').addEventListener('click', () => {
-  startApplying();
-});
-
-document.getElementById('btn-rules').addEventListener('click', () => {
-  alert('原型演示：查看活动规则');
-});
-
-document.getElementById('btn-lock-cancel').addEventListener('click', () => {
-  hideAllModals();
-});
+document.getElementById('vip-price').textContent = VIP_PRICE;
+document.getElementById('vip-origin').textContent = VIP_ORIGIN_PRICE;
+document.getElementById('direct-price').textContent = `¥${DIRECT_BUY_PRICE.toFixed(1)}`;
+document.getElementById('coin-total').textContent = TOTAL_COINS;
 
 renderResourceList();

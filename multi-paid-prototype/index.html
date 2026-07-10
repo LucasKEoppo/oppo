@@ -3,154 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>多付费资源解锁原型</title>
+  <title>多资源应用原型</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="phone-frame">
 
-    <!-- 锁屏编辑页 -->
-    <div id="screen-lock" class="screen active">
-      <header class="top-bar">
-        <button class="btn-text" id="btn-lock-cancel">取消</button>
-        <h1 class="top-title">锁屏</h1>
+    <!-- 桌面编辑页 -->
+    <div id="screen-desktop" class="screen active">
+      <header class="top-bar light">
+        <button class="btn-text light" id="btn-cancel">取消</button>
+        <h1 class="top-title dark">桌面</h1>
         <button class="btn-apply" id="btn-apply">购买</button>
       </header>
 
-      <div class="lock-preview-area">
-        <div class="lock-preview-card">
-          <div class="lock-wallpaper">
-            <div class="wallpaper-stones">
-              <div class="stone s1"></div>
-              <div class="stone s2"></div>
-              <div class="stone s3"></div>
-              <div class="planet"></div>
-            </div>
-          </div>
-          <div class="lock-widget-date">
-            <span class="date-line">6月28日 周日 五月十四</span>
-            <span class="time-line">15:25</span>
-          </div>
-          <div class="lock-widget-add">
-            <span class="add-icon">+</span>
-            <span>添加小组件</span>
-          </div>
-          <div class="lock-bottom-icons">
-            <div class="lock-icon-btn"></div>
-            <span class="pinch-hint">双指捏合可裁剪壁纸</span>
-            <div class="lock-icon-btn camera"></div>
-          </div>
+      <div class="desktop-preview">
+        <div class="desktop-wallpaper"></div>
+        <div class="desktop-icons">
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
         </div>
-      </div>
-
-      <footer class="bottom-toolbar">
-        <div class="tool-item active">
-          <div class="tool-icon wallpaper-icon">
-            <div class="mini-wallpaper"></div>
-          </div>
-          <span>壁纸</span>
-        </div>
-        <div class="tool-item">
-          <div class="tool-icon icon-icon">◆</div>
-          <span>图标</span>
-        </div>
-        <div class="tool-item">
-          <div class="tool-icon style-icon">✦</div>
-          <span>样式</span>
-        </div>
-      </footer>
-    </div>
-
-    <!-- 多资源付费弹窗 -->
-    <div id="modal-multi-paid" class="modal-overlay hidden">
-      <div class="modal-card multi-paid-modal">
-        <h2 class="modal-title">以下 <span id="multi-count">2</span> 个装扮为付费资源</h2>
-
-        <div class="resource-list" id="resource-list"></div>
-
-        <div class="modal-actions">
-          <button class="btn-primary" id="btn-free-task">做任务免费领</button>
-          <button class="btn-link" id="btn-buy">¥ 12.0 购买</button>
-          <button class="btn-link muted" id="btn-multi-cancel">取消</button>
+        <div class="desktop-dock">
+          <div class="dock-icon"></div>
+          <div class="dock-icon"></div>
+          <div class="dock-icon"></div>
+          <div class="dock-icon"></div>
         </div>
       </div>
     </div>
 
-    <!-- 购买方式弹窗 -->
-    <div id="modal-purchase" class="modal-overlay hidden">
-      <div class="bottom-sheet purchase-sheet">
-        <header class="sheet-header">
-          <button class="btn-text-red" id="btn-purchase-cancel">取消</button>
-          <h2 class="sheet-title">购买方式</h2>
-          <div class="header-spacer"></div>
+    <!-- 多资源获取底部弹窗 -->
+    <div id="sheet-multi" class="sheet-overlay hidden">
+      <div class="acquire-sheet">
+        <header class="sheet-top">
+          <button class="btn-close" id="btn-sheet-close">关闭</button>
+          <h2 class="sheet-title">需先获取以下资源</h2>
+          <div class="sheet-top-spacer"></div>
         </header>
 
-        <div class="purchase-options">
-          <label class="purchase-option selected" data-option="vip">
-            <div class="option-content">
-              <div class="option-title-row">
-                <span class="option-title">开通 VIP</span>
-                <span class="option-tag">尝鲜价</span>
-              </div>
-              <p class="option-desc">该装扮永久用，且畅享20万+装扮</p>
-              <div class="option-price-row">
-                <span class="price-main">¥3.8</span>
-                <span class="price-origin">¥15/月</span>
-              </div>
-            </div>
-            <span class="radio checked"></span>
-          </label>
+        <button class="info-banner" id="btn-info">
+          <span class="info-icon">i</span>
+          <span class="info-text">可单独购买锁屏、图标资源</span>
+          <svg class="info-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 6l6 6-6 6"/>
+          </svg>
+        </button>
 
-          <label class="purchase-option" data-option="single">
-            <div class="option-content">
-              <p class="option-desc single-desc">该装扮永久用，仅享有该装扮</p>
-              <div class="option-price-row">
-                <span class="price-main" id="purchase-total-price">¥12.0</span>
-              </div>
+        <div class="resource-card" id="resource-list"></div>
+
+        <div class="vip-bar">
+          <div class="vip-bar-text">
+            <div class="vip-price-row">
+              <span>开通VIP</span>
+              <strong>¥ <span id="vip-price">4</span></strong>
+              <span class="vip-origin">¥<span id="vip-origin">15</span>/月</span>
             </div>
-            <span class="radio"></span>
-          </label>
+            <p class="vip-desc">开通VIP全场装扮免费用</p>
+          </div>
+          <button class="btn-vip" id="btn-vip">立即开通</button>
         </div>
 
-        <div class="purchase-agreement">
-          <input type="checkbox" id="agree-check" checked>
-          <label for="agree-check">
-            我已阅读并同意 <a href="#">VIP服务协议</a> 和 <a href="#">自动续费协议</a>，到期前 1 天以 13 元/月扣费，可随时取消
-          </label>
-        </div>
+        <button class="more-toggle" id="btn-more-toggle">
+          <span>更多获取方式</span>
+          <svg class="chevron" id="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
 
-        <button class="btn-primary btn-full" id="btn-open-vip">立即开通</button>
+        <div class="more-options hidden" id="more-options">
+          <button class="option-card" id="btn-direct-buy">
+            <div class="option-text">
+              <span class="option-title">直接购买</span>
+              <span class="option-desc">购买后资源永久有效</span>
+            </div>
+            <span class="option-price" id="direct-price">¥4.0</span>
+          </button>
+          <button class="option-card" id="btn-coin-exchange">
+            <div class="option-text">
+              <span class="option-title">金币兑换</span>
+              <span class="option-desc">做任务免费获取资源</span>
+            </div>
+            <span class="option-price coin">
+              <span id="coin-total">400</span>
+              <span class="coin-icon">🪙</span>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- 免费领弹窗 -->
-    <div id="modal-free" class="modal-overlay hidden">
-      <div class="bottom-sheet free-sheet">
-        <header class="sheet-header three-col">
-          <button class="btn-text-red" id="btn-free-cancel">取消</button>
-          <h2 class="sheet-title">免费领</h2>
-          <button class="btn-text-red" id="btn-rules">规则</button>
-        </header>
-
-        <div class="free-multi-list" id="free-multi-list"></div>
-
-        <div class="free-progress-card">
-          <div class="free-progress-info full">
-            <p class="free-progress-title">再赚 <strong id="coins-needed">490</strong> 金币兑换全部资源</p>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill" style="width: 18.3%"></div>
-                <div class="progress-coin" id="progress-coin" style="left: 18.3%"></div>
-              </div>
-            </div>
-            <div class="progress-labels">
-              <span>我的金币 <span id="user-coins">110</span></span>
-              <span>全部资源 <span id="total-coins">600</span> 金币</span>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn-primary btn-full" id="btn-earn-coins">赚金币，免费兑</button>
+    <!-- 说明弹窗 -->
+    <div id="dialog-info" class="dialog-overlay hidden">
+      <div class="dialog-card">
+        <h3 class="dialog-title">说明</h3>
+        <p class="dialog-body">现在可以单独购买锁屏、图标资源，无需整套主题。享受灵活的选择和经济实惠的购物体验，轻松打造独特的手机风格。</p>
+        <button class="btn-dialog-ok" id="btn-info-ok">知道了</button>
       </div>
     </div>
 
