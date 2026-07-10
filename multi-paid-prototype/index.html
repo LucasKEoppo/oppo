@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>多资源应用原型</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+
+    <!-- 桌面编辑页 -->
+    <div id="screen-desktop" class="screen active">
+      <header class="top-bar light">
+        <button class="btn-text light" id="btn-cancel">取消</button>
+        <h1 class="top-title dark">桌面</h1>
+        <button class="btn-apply" id="btn-apply">购买</button>
+      </header>
+
+      <div class="desktop-preview">
+        <div class="desktop-wallpaper"></div>
+        <div class="desktop-icons">
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+        </div>
+        <div class="desktop-dock">
+          <div class="dock-icon"></div>
+          <div class="dock-icon"></div>
+          <div class="dock-icon"></div>
+          <div class="dock-icon"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 多资源获取底部弹窗 -->
+    <div id="sheet-multi" class="sheet-overlay hidden">
+      <div class="acquire-sheet">
+        <header class="sheet-top">
+          <button class="btn-close" id="btn-sheet-close">关闭</button>
+          <h2 class="sheet-title">需先获取以下资源</h2>
+          <div class="sheet-top-spacer"></div>
+        </header>
+
+        <button class="info-banner" id="btn-info">
+          <span class="info-icon">i</span>
+          <span class="info-text">可单独购买锁屏、图标资源</span>
+          <svg class="info-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 6l6 6-6 6"/>
+          </svg>
+        </button>
+
+        <div class="resource-card" id="resource-list"></div>
+
+        <div class="vip-bar">
+          <div class="vip-bar-text">
+            <div class="vip-price-row">
+              <span>开通VIP</span>
+              <strong>¥ <span id="vip-price">4</span></strong>
+              <span class="vip-origin">¥<span id="vip-origin">15</span>/月</span>
+            </div>
+            <p class="vip-desc">开通VIP全场装扮免费用</p>
+          </div>
+          <button class="btn-vip" id="btn-vip">立即开通</button>
+        </div>
+
+        <button class="more-toggle" id="btn-more-toggle">
+          <span>更多获取方式</span>
+          <svg class="chevron" id="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+
+        <div class="more-options hidden" id="more-options">
+          <button class="option-card" id="btn-direct-buy">
+            <div class="option-text">
+              <span class="option-title">直接购买</span>
+              <span class="option-desc">购买后资源永久有效</span>
+            </div>
+            <span class="option-price" id="direct-price">¥4.0</span>
+          </button>
+          <button class="option-card" id="btn-coin-exchange">
+            <div class="option-text">
+              <span class="option-title">金币兑换</span>
+              <span class="option-desc">做任务免费获取资源</span>
+            </div>
+            <span class="option-price coin">
+              <span id="coin-total">400</span>
+              <span class="coin-icon">🪙</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 说明弹窗 -->
+    <div id="dialog-info" class="dialog-overlay hidden">
+      <div class="dialog-card">
+        <h3 class="dialog-title">说明</h3>
+        <p class="dialog-body">现在可以单独购买锁屏、图标资源，无需整套主题。享受灵活的选择和经济实惠的购物体验，轻松打造独特的手机风格。</p>
+        <button class="btn-dialog-ok" id="btn-info-ok">知道了</button>
+      </div>
+    </div>
+
+    <!-- 应用加载层 -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+      <div class="loading-card">
+        <div class="loading-spinner" aria-hidden="true">
+          <svg class="loading-spinner-svg" viewBox="0 0 48 48">
+            <circle class="loading-spinner-arc" cx="24" cy="24" r="20" />
+          </svg>
+        </div>
+        <p class="loading-text">正在应用</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

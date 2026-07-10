@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>运营后台 - 定投配置</title>
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+  <div class="admin-layout">
+  <header class="admin-header">
+    <h1>内容配置管理</h1>
+    <button class="btn-primary" id="btn-open-modal">新增</button>
+  </header>
+
+  <main class="admin-main">
+    <p class="hint-text">点击「新增」打开配置弹窗，在「定投配置」中设置全部定投标签条件。</p>
+  </main>
+  </div>
+
+  <!-- 新增弹窗 -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2>新增</h2>
+        <button class="btn-close" id="btn-close-modal" aria-label="关闭">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-item required">
+          <label>标题</label>
+          <input type="text" class="form-input" placeholder="请输入标题">
+        </div>
+
+        <div class="form-item required">
+          <label>词条id</label>
+          <input type="text" class="form-input" placeholder="请输入词条id">
+        </div>
+
+        <div class="form-item required">
+          <label>栏目顺序</label>
+          <input type="text" class="form-input" placeholder="数字越大，顺序越后">
+        </div>
+
+        <div class="form-item required">
+          <label>资源类型</label>
+          <select class="form-select" id="resource-type">
+            <option>主题</option>
+            <option>壁纸</option>
+            <option>字体</option>
+            <option>图标</option>
+            <option>组件卡</option>
+            <option>视频铃声</option>
+          </select>
+        </div>
+
+        <!-- 定投配置 -->
+        <div class="form-section">
+          <div class="section-label">
+            定投配置
+            <span class="tag-new">新增</span>
+          </div>
+
+          <div class="logic-radio-group">
+            <label class="radio-label">
+              <input type="radio" name="logic" value="any">
+              <span>满足以下任意一个条件，即可命中</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="logic" value="all" checked>
+              <span>满足以下所有条件，才可命中</span>
+            </label>
+          </div>
+
+          <div class="condition-table-wrap">
+            <table class="condition-table">
+              <thead>
+                <tr>
+                  <th class="col-id">ID</th>
+                  <th class="col-type">条件类型</th>
+                  <th class="col-filter">条件筛选</th>
+                  <th class="col-action"></th>
+                </tr>
+              </thead>
+              <tbody id="condition-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="form-item">
+            <label class="label-with-icon">
+              白名单
+              <span class="info-icon" title="白名单用户将直接命中">ⓘ</span>
+            </label>
+            <input type="text" class="form-input" placeholder="请输入白名单">
+          </div>
+        </div>
+
+        <div class="form-item required">
+          <label>操作理由</label>
+          <textarea class="form-textarea" rows="3" placeholder="请输入完善的操作理由和需求来源，否则将会被收回权限"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-primary" id="btn-confirm">确认</button>
+        <button class="btn-default" id="btn-cancel">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>编辑框架内付费资源应用原型</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+
+    <!-- ========== 屏幕1：锁屏编辑页 ========== -->
+    <div id="screen-lock" class="screen active">
+      <header class="top-bar">
+        <button class="btn-text" id="btn-lock-cancel">取消</button>
+        <h1 class="top-title">锁屏</h1>
+        <button class="btn-apply" id="btn-apply">购买</button>
+      </header>
+
+      <div class="lock-preview-area">
+        <div class="lock-preview-card">
+          <div class="lock-wallpaper">
+            <div class="wallpaper-stones">
+              <div class="stone s1"></div>
+              <div class="stone s2"></div>
+              <div class="stone s3"></div>
+              <div class="planet"></div>
+            </div>
+          </div>
+          <div class="lock-widget-date">
+            <span class="date-line">6月28日 周日 五月十四</span>
+            <span class="time-line">15:25</span>
+          </div>
+          <div class="lock-widget-add">
+            <span class="add-icon">+</span>
+            <span>添加小组件</span>
+          </div>
+          <div class="lock-bottom-icons">
+            <div class="lock-icon-btn"></div>
+            <span class="pinch-hint">双指捏合可裁剪壁纸</span>
+            <div class="lock-icon-btn camera"></div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="bottom-toolbar">
+        <div class="tool-item active">
+          <div class="tool-icon wallpaper-icon">
+            <div class="mini-wallpaper"></div>
+          </div>
+          <span>壁纸</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon style-icon">✦</div>
+          <span>样式</span>
+        </div>
+        <div class="tool-item">
+          <div class="tool-icon depth-icon">▣</div>
+          <span>景深</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ========== 屏幕2：付费资源弹窗 ========== -->
+    <div id="modal-paid" class="modal-overlay hidden">
+      <div class="modal-card paid-modal">
+        <h2 class="modal-title"><span id="resource-name">风来啦全局</span>为付费资源</h2>
+        <div class="modal-preview">
+          <div class="preview-lock">
+            <div class="preview-sky"></div>
+            <div class="preview-field"></div>
+            <div class="preview-time">10:00</div>
+            <div class="preview-date">SATURDAY 03.21</div>
+            <div class="preview-characters"></div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-primary" id="btn-free-task">做任务免费领</button>
+          <button class="btn-link" id="btn-buy">¥ 6.0 购买</button>
+          <button class="btn-link" id="btn-paid-cancel">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 屏幕3：购买方式弹窗 ========== -->
+    <div id="modal-purchase" class="modal-overlay hidden">
+      <div class="bottom-sheet purchase-sheet">
+        <header class="sheet-header">
+          <button class="btn-text-red" id="btn-purchase-cancel">取消</button>
+          <h2 class="sheet-title">购买方式</h2>
+          <div class="header-spacer"></div>
+        </header>
+
+        <div class="purchase-options">
+          <label class="purchase-option selected" data-option="vip">
+            <div class="option-content">
+              <div class="option-title-row">
+                <span class="option-title">开通 VIP</span>
+                <span class="option-tag">尝鲜价</span>
+              </div>
+              <p class="option-desc">该装扮永久用，且畅享20万+装扮</p>
+              <div class="option-price-row">
+                <span class="price-main">¥3.8</span>
+                <span class="price-origin">¥15/月</span>
+              </div>
+            </div>
+            <span class="radio checked"></span>
+          </label>
+
+          <label class="purchase-option" data-option="single">
+            <div class="option-content">
+              <p class="option-desc single-desc">该装扮永久用，仅享有该装扮</p>
+              <div class="option-price-row">
+                <span class="price-main">¥6.0</span>
+              </div>
+            </div>
+            <span class="radio"></span>
+          </label>
+        </div>
+
+        <div class="purchase-agreement">
+          <input type="checkbox" id="agree-check" checked>
+          <label for="agree-check">
+            我已阅读并同意 <a href="#">VIP服务协议</a> 和 <a href="#">自动续费协议</a>，到期前 1 天以 13 元/月扣费，可随时取消
+          </label>
+        </div>
+
+        <button class="btn-primary btn-full" id="btn-open-vip">立即开通</button>
+      </div>
+    </div>
+
+    <!-- ========== 屏幕4：免费领弹窗 ========== -->
+    <div id="modal-free" class="modal-overlay hidden">
+      <div class="bottom-sheet free-sheet">
+        <header class="sheet-header three-col">
+          <button class="btn-text-red" id="btn-free-cancel">取消</button>
+          <h2 class="sheet-title">免费领</h2>
+          <button class="btn-text-red" id="btn-rules">规则</button>
+        </header>
+
+        <div class="free-progress-card">
+          <div class="free-thumb">
+            <div class="free-thumb-inner"></div>
+          </div>
+          <div class="free-progress-info">
+            <p class="free-progress-title">再赚 <strong>190</strong> 金币兑换资源</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 36.7%"></div>
+                <div class="progress-coin" style="left: 36.7%"></div>
+              </div>
+            </div>
+            <div class="progress-labels">
+              <span>我的金币 110</span>
+              <span>当前资源 300 金币</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary btn-full" id="btn-earn-coins">赚金币，免费兑</button>
+      </div>
+    </div>
+
+    <!-- ========== 应用加载层 ========== -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+      <div class="loading-card">
+        <div class="loading-spinner" aria-hidden="true">
+          <svg class="loading-spinner-svg" viewBox="0 0 48 48">
+            <circle class="loading-spinner-arc" cx="24" cy="24" r="20" />
+          </svg>
+        </div>
+        <p class="loading-text">正在应用</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
