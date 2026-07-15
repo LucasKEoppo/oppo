@@ -21,7 +21,7 @@ const results = searchResources(typeId, query);
 
 searchInput.value = query;
 searchInput.placeholder = resourceType.placeholder;
-resultsCount.textContent = `已为您搜到 ${results.length} 个${resourceType.name}`;
+resultsCount.textContent = `已为您找到 ${results.length} 个${resourceType.name}`;
 
 function renderPaidBadge(item) {
   return isPaidResource(item)

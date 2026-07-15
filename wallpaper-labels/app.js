@@ -27,9 +27,12 @@ function renderWallpaperCard(wallpaper, categoryName) {
 
   return `
     <div class="wallpaper-card" data-id="${wallpaper.id}" data-category="${categoryName}">
-      <div class="wallpaper-placeholder" style="background: linear-gradient(160deg, ${wallpaper.color} 0%, ${adjustColor(wallpaper.color, -30)} 100%)"></div>
-      ${badgeHtml}
-      ${downloadHtml}
+      <div class="wallpaper-media">
+        <div class="wallpaper-placeholder" style="background: linear-gradient(160deg, ${wallpaper.color} 0%, ${adjustColor(wallpaper.color, -30)} 100%)"></div>
+        ${badgeHtml}
+        ${downloadHtml}
+      </div>
+      <p class="wallpaper-title">${wallpaper.title || ''}</p>
     </div>
   `;
 }

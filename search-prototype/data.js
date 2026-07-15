@@ -26,6 +26,15 @@ export const RESOURCE_TYPES = {
       { id: 7, title: '莫兰迪简约', price: '2.0 可币', vip: true, color: '#D7CCC8' },
       { id: 8, title: '简约几何', price: '免费', vip: false, color: '#B2DFDB' },
       { id: 9, title: '简约花卉', price: '4.0 可币', vip: true, tag: '优质', color: '#F8BBD0' },
+      { id: 10, title: '金色菊花', price: '免费', vip: false, color: '#F5A623', keywords: ['花卉', '花'] },
+      { id: 11, title: '白色马蹄莲', price: '免费', vip: false, color: '#F5F5F5', keywords: ['花卉', '花'] },
+      { id: 12, title: '红色郁金香', price: '免费', vip: false, color: '#E53935', keywords: ['花卉', '花'] },
+      { id: 13, title: '蓝调牡丹', price: '1.0 可币', vip: true, color: '#5C6BC0', keywords: ['花卉', '花'] },
+      { id: 14, title: '雪纺白花', price: '2.0 可币', vip: true, color: '#ECEFF1', keywords: ['花卉', '花'] },
+      { id: 15, title: '粉荷初开', price: '3.0 可币', vip: true, color: '#F48FB1', keywords: ['花卉', '花'] },
+      { id: 16, title: '浅黄花卉', price: '1.0 可币', vip: true, color: '#FFE082', keywords: ['花卉', '花'] },
+      { id: 17, title: '琥珀花影', price: '2.0 可币', vip: true, color: '#FFB74D', keywords: ['花卉', '花'] },
+      { id: 18, title: '粉莲绿叶', price: '4.0 可币', vip: true, color: '#EC407A', keywords: ['花卉', '花'] },
     ],
     officialResources: [
       { id: 'official-1', color: '#546E7A' },
@@ -153,6 +162,10 @@ export function searchResources(typeId, query) {
   }
 
   return type.results
-    .filter((item) => !q || item.title.includes(q))
+    .filter((item) => {
+      if (!q) return true;
+      if (item.title.includes(q)) return true;
+      return (item.keywords || []).some((kw) => kw.includes(q) || q.includes(kw));
+    })
     .map(toNormalResultItem);
 }
