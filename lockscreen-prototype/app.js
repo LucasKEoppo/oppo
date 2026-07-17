@@ -19,6 +19,7 @@ const modalPurchase = document.getElementById('modal-purchase');
 const modalFree = document.getElementById('modal-free');
 const loadingOverlay = document.getElementById('loading-overlay');
 const btnApply = document.getElementById('btn-apply');
+btnApply.textContent = '应用';
 
 document.getElementById('resource-name').textContent = `"${RESOURCE_NAME}"`;
 

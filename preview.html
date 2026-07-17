@@ -83,8 +83,8 @@
   </div>
 
   <nav class="tabs" id="tabs">
+    <a class="tab" href="?p=lockscreen" data-src="lockscreen-prototype/index.html?v=apply">单资源解锁</a>
     <a class="tab" href="?p=multi-paid" data-src="multi-paid-prototype/index.html">多资源应用</a>
-    <a class="tab" href="?p=lockscreen" data-src="lockscreen-prototype/index.html">单资源解锁</a>
     <a class="tab" href="?p=wallpaper" data-src="wallpaper-labels/index.html">壁纸分发</a>
     <a class="tab" href="?p=detail" data-src="resource-detail-prototype/index.html">资源详情</a>
     <a class="tab" href="?p=search" data-src="search-prototype/index.html">资源搜索</a>
@@ -94,9 +94,9 @@
   <div class="viewer">
     <div>
       <div class="phone-wrap">
-        <iframe id="proto-frame" title="原型预览" src="multi-paid-prototype/index.html"></iframe>
+        <iframe id="proto-frame" title="原型预览" src="lockscreen-prototype/index.html?v=apply"></iframe>
       </div>
-      <a class="open-full" id="open-full" href="multi-paid-prototype/index.html" target="_blank">全屏打开当前原型</a>
+      <a class="open-full" id="open-full" href="lockscreen-prototype/index.html?v=apply" target="_blank">全屏打开当前原型</a>
     </div>
   </div>
 
@@ -106,8 +106,8 @@
     const openFull = document.getElementById('open-full');
 
     const map = {
+      lockscreen: 'lockscreen-prototype/index.html?v=apply',
       'multi-paid': 'multi-paid-prototype/index.html',
-      lockscreen: 'lockscreen-prototype/index.html',
       wallpaper: 'wallpaper-labels/index.html',
       detail: 'resource-detail-prototype/index.html',
       search: 'search-prototype/index.html',
@@ -115,7 +115,7 @@
     };
 
     function activate(key) {
-      const src = map[key] || map['multi-paid'];
+      const src = map[key] || map.lockscreen;
       frame.src = src;
       openFull.href = src;
       tabs.forEach((t) => {
@@ -125,13 +125,13 @@
     }
 
     const params = new URLSearchParams(location.search);
-    activate(params.get('p') || 'multi-paid');
+    activate(params.get('p') || 'lockscreen');
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', (e) => {
         e.preventDefault();
         const src = tab.dataset.src;
-        const key = Object.keys(map).find((k) => map[k] === src) || 'multi-paid';
+        const key = Object.keys(map).find((k) => map[k] === src) || 'lockscreen';
         history.replaceState(null, '', `?p=${key}`);
         activate(key);
       });
