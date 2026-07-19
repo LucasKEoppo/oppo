@@ -22,11 +22,17 @@ searchInput.value = query;
 searchInput.placeholder =
   resourceType.id === 'wallpaper' ? '搜索在线壁纸' : resourceType.placeholder;
 
-/** 小刷子图标 */
+/** 小刷子图标（画笔剪影，更易辨认） */
 const brushIconSvg = `
   <svg class="brush-icon" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M7 14c-1.5 1.2-2.2 3-2.2 4.6 0 .8.6 1.4 1.4 1.4 1.7 0 3.5-.8 4.7-2.3L17.8 9.8a2.2 2.2 0 0 0-3.1-3.1L7 14z" fill="currentColor"/>
-    <path d="M15.2 5.5l3.3 3.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- 笔杆 -->
+    <path d="M14.2 3.2l6.6 6.6c.5.5.5 1.3 0 1.8l-1.2 1.2-8.4-8.4 1.2-1.2c.5-.5 1.3-.5 1.8 0z" fill="currentColor"/>
+    <!-- 金属箍 -->
+    <path d="M10.2 5.4l8.4 8.4-1.5 1.5-8.4-8.4 1.5-1.5z" fill="currentColor" opacity="0.85"/>
+    <!-- 笔头毛束 -->
+    <path d="M4.2 14.8c-.2 2.4.6 4.2 2.2 5.4.3-.9.5-1.9.4-2.9-.1-1.2-.6-2.3-1.4-3.1-.5.1-1 .3-1.2.6z" fill="currentColor"/>
+    <path d="M5.4 13.2c1.3 1.3 2 3.1 2.1 5 .7-.7 1.2-1.7 1.4-2.8.3-1.5 0-3.1-.9-4.4L5.4 13.2z" fill="currentColor"/>
+    <path d="M8.2 10.6l2.6 2.6c.9 1.4 1.1 3.1.7 4.6-.9-1.1-2.1-1.9-3.5-2.3-.1-1.5.1-3.1.2-4.9z" fill="currentColor"/>
   </svg>
 `;
 

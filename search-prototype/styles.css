@@ -241,10 +241,20 @@ body {
 }
 
 .brush-icon {
-  width: 11px;
-  height: 11px;
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
   display: block;
+}
+
+.badge-brush .brush-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.badge-paid .brush-icon {
+  width: 10px;
+  height: 10px;
 }
 
 .result-title {
