@@ -13,6 +13,17 @@ const brushIconSvg = `
   </svg>
 `;
 
+/** 右下角下载图标（圆角箭头 + 托盘） */
+const downloadIconSvg = `
+  <svg class="download-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.5v11"/>
+      <path d="M7.5 10.5L12 15l4.5-4.5"/>
+      <path d="M5 16.5v2.2c0 .7.5 1.3 1.2 1.3h11.6c.7 0 1.2-.6 1.2-1.3v-2.2"/>
+    </g>
+  </svg>
+`;
+
 function renderCornerBadge(paid) {
   if (paid) {
     return `<span class="corner-badge badge-paid">${brushIconSvg}<span>付费</span></span>`;
@@ -20,11 +31,16 @@ function renderCornerBadge(paid) {
   return `<span class="corner-badge badge-brush">${brushIconSvg}</span>`;
 }
 
+function renderDownloadIcon() {
+  return `<span class="download-icon" aria-hidden="true">${downloadIconSvg}</span>`;
+}
+
 function renderThemeCard(theme) {
   return `
     <div class="theme-card" data-id="${theme.id}">
       <div class="theme-thumb" style="background: ${theme.gradient}">
         ${renderCornerBadge(theme.paid)}
+        ${renderDownloadIcon()}
         <div class="theme-thumb-shine"></div>
       </div>
     </div>

@@ -154,3 +154,25 @@ body {
   width: 10px;
   height: 10px;
 }
+
+/* 右下角下载按钮 */
+.download-icon {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.download-icon-svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
