@@ -124,9 +124,11 @@ body {
 
 .btn-set {
   width: 100%;
-  border: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
   border-radius: 100px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #1a1a1a;
   font-size: 16px;
   font-weight: 500;
@@ -136,12 +138,12 @@ body {
   justify-content: center;
   gap: 6px;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .set-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   display: block;
   flex-shrink: 0;
 }
