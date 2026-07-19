@@ -101,7 +101,7 @@ body {
 .btn-search {
   background: none;
   border: none;
-  color: #FF6B35;
+  color: #007AFF;
   font-size: 15px;
   font-weight: 500;
   padding: 0 14px;
@@ -112,14 +112,14 @@ body {
 
 /* ========== 通用区块 ========== */
 .section {
-  padding: 16px 16px 0;
+  padding: 20px 16px 0;
 }
 
 .section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .section-title {
@@ -128,14 +128,21 @@ body {
   color: #1a1a1a;
 }
 
-.btn-clear-history {
+.btn-icon {
   background: none;
   border: none;
   cursor: pointer;
   padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ========== 历史搜索标签 ========== */
+.btn-icon:active {
+  opacity: 0.6;
+}
+
+/* ========== 搜索历史 / 热门搜索 标签 ========== */
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -145,44 +152,24 @@ body {
 .tag {
   background: #f5f5f5;
   border: none;
-  border-radius: 100px;
-  padding: 7px 16px;
+  border-radius: 8px;
+  padding: 8px 14px;
   font-size: 13px;
-  color: #555;
+  color: #333;
   cursor: pointer;
+  line-height: 1.2;
 }
 
 .tag:active {
   background: #ebebeb;
 }
 
-/* ========== 热门搜索（双列简洁列表） ========== */
-.hot-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 16px;
-  row-gap: 0;
-  margin-top: 0;
-}
-
-.hot-grid-item {
-  display: flex;
+.tag-expand {
+  width: 36px;
+  padding: 8px;
+  display: inline-flex;
   align-items: center;
-  background: none;
-  border: none;
-  padding: 8px 0;
-  cursor: pointer;
-  text-align: left;
-  min-width: 0;
-  font-size: 15px;
-  color: #333;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.hot-grid-item:active {
-  opacity: 0.6;
+  justify-content: center;
 }
 
 /* ========== 搜索结果页 ========== */
