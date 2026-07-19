@@ -28,6 +28,9 @@ export const RESOURCE_TYPES = {
       { word: '落日余晖' },
       { word: '线条小狗' },
       { word: '海贼王' },
+      { word: '简约' },
+      { word: '星空' },
+      { word: '治愈' },
     ],
     results: [
       { id: 1, title: '简约 OS', price: '1.0 可币', vip: true, tag: '畅销', color: '#E8DDD4' },

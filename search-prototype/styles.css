@@ -149,6 +149,12 @@ body {
   gap: 10px;
 }
 
+/* 热门搜索最多两行 */
+.tag-list-hot {
+  max-height: calc(32px * 2 + 10px);
+  overflow: hidden;
+}
+
 .tag {
   background: #f2f2f2;
   border: none;

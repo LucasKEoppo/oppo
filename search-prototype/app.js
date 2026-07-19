@@ -2,7 +2,7 @@ import {
   getResourceType,
   getTypeFromUrl,
   buildResultsUrl,
-} from './data.js?v=12';
+} from './data.js?v=14';
 
 const HISTORY_COLLAPSE_COUNT = 7;
 
@@ -59,6 +59,25 @@ function renderHistory() {
   }
 }
 
+/** 裁剪热门标签，保证只展示两行 */
+function trimHotTagsToTwoRows() {
+  const tags = [...hotList.querySelectorAll('.tag')];
+  if (tags.length === 0) return;
+
+  const firstTop = tags[0].offsetTop;
+  let secondTop = -1;
+
+  for (const tag of tags) {
+    const top = tag.offsetTop;
+    if (top > firstTop + 1 && secondTop < 0) {
+      secondTop = top;
+    }
+    if (secondTop >= 0 && top > secondTop + 1) {
+      tag.remove();
+    }
+  }
+}
+
 function renderHotSearch() {
   if (!showHotSearch) return;
 
@@ -69,6 +88,8 @@ function renderHotSearch() {
   hotList.querySelectorAll('.tag').forEach((el) => {
     el.addEventListener('click', () => goSearch(el.dataset.word));
   });
+
+  requestAnimationFrame(trimHotTagsToTwoRows);
 }
 
 function shuffleHotWords() {
