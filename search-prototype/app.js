@@ -12,6 +12,8 @@ const historyList = document.getElementById('history-list');
 const hotList = document.getElementById('hot-list');
 const sectionHistory = document.getElementById('section-history');
 const btnClearInput = document.getElementById('btn-clear-input');
+const btnRefreshHot = document.getElementById('btn-refresh-hot');
+const showHotSearch = Boolean(hotList && btnRefreshHot);
 
 let historyWords = [...resourceType.history];
 let hotWords = resourceType.hotSearch.map((item) =>
@@ -58,6 +60,8 @@ function renderHistory() {
 }
 
 function renderHotSearch() {
+  if (!showHotSearch) return;
+
   hotList.innerHTML = hotWords
     .map((word) => `<button class="tag" data-word="${word}">${word}</button>`)
     .join('');
@@ -68,6 +72,8 @@ function renderHotSearch() {
 }
 
 function shuffleHotWords() {
+  if (!showHotSearch) return;
+
   const next = [...hotWords];
   for (let i = next.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -113,7 +119,9 @@ document.getElementById('btn-clear-history').addEventListener('click', () => {
   renderHistory();
 });
 
-document.getElementById('btn-refresh-hot').addEventListener('click', shuffleHotWords);
+if (btnRefreshHot) {
+  btnRefreshHot.addEventListener('click', shuffleHotWords);
+}
 
 document.getElementById('btn-back').addEventListener('click', () => {
   history.back();
