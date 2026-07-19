@@ -38,17 +38,6 @@ const brushIconSvg = `
   </svg>
 `;
 
-/** 右下角下载图标（圆角箭头 + 托盘） */
-const downloadIconSvg = `
-  <svg class="download-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
-    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 3.5v11"/>
-      <path d="M7.5 10.5L12 15l4.5-4.5"/>
-      <path d="M5 16.5v2.2c0 .7.5 1.3 1.2 1.3h11.6c.7 0 1.2-.6 1.2-1.3v-2.2"/>
-    </g>
-  </svg>
-`;
-
 /** 左上角标识：全部展示刷子；付费资源展示「刷子 + 付费」胶囊 */
 function renderCornerBadge(item) {
   if (isPaidResource(item)) {
@@ -57,16 +46,11 @@ function renderCornerBadge(item) {
   return `<span class="corner-badge badge-brush">${brushIconSvg}</span>`;
 }
 
-function renderDownloadIcon() {
-  return `<span class="download-icon" aria-hidden="true">${downloadIconSvg}</span>`;
-}
-
 function renderOfficialCard(item) {
   return `
     <div class="result-card result-card-official">
       <div class="result-thumb official-thumb" style="background:${item.color}">
         ${renderCornerBadge(item)}
-        ${renderDownloadIcon()}
         <span class="official-mark">系统</span>
       </div>
       <p class="result-title">${item.title}</p>
@@ -78,7 +62,6 @@ function renderNormalCard(item) {
     <div class="result-card">
       <div class="result-thumb" style="background:${item.color}">
         ${renderCornerBadge(item)}
-        ${renderDownloadIcon()}
       </div>
       <p class="result-title">${item.title}</p>
     </div>`;
