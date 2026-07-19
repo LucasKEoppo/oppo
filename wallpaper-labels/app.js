@@ -1,62 +1,42 @@
-import {
-  wallpaperCategories,
-  getPriceLabel,
-  getPriceBadgeClass,
-  shouldShowPriceBadge,
-} from './data.js';
+import { wallpaperCategories } from './data.js';
 
+/** 小刷子图标（三齿笔头 + 箍 + 短笔杆，斜向） */
+const brushIconSvg = `
+  <svg class="brush-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <g fill="currentColor" transform="translate(12 12) rotate(-45) translate(-12 -12)">
+      <rect x="8.2" y="3.2" width="1.8" height="7.2" rx="0.4"/>
+      <rect x="11.1" y="2.2" width="1.8" height="8.2" rx="0.4"/>
+      <rect x="14" y="3.2" width="1.8" height="7.2" rx="0.4"/>
+      <rect x="7.2" y="10.6" width="9.6" height="2.6" rx="0.5"/>
+      <rect x="10" y="13.2" width="4" height="7.2" rx="0.7"/>
+    </g>
+  </svg>
+`;
+
+/** 右下角下载图标 */
 const downloadIconSvg = `
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4h14v-2H5v2z"/>
+  <svg class="download-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.5v11"/>
+      <path d="M7.5 10.5L12 15l4.5-4.5"/>
+      <path d="M5 16.5v2.2c0 .7.5 1.3 1.2 1.3h11.6c.7 0 1.2-.6 1.2-1.3v-2.2"/>
+    </g>
   </svg>
 `;
 
-const arrowSvg = `
-  <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M9 6l6 6-6 6"/>
-  </svg>
-`;
-
-/** 渲染单张壁纸卡片（含右上角标识） */
-function renderWallpaperCard(wallpaper, categoryName) {
-  const showBadge = shouldShowPriceBadge(categoryName);
-  const badgeHtml = showBadge
-    ? `<span class="price-badge ${getPriceBadgeClass(categoryName)}">${getPriceLabel(categoryName)}</span>`
-    : '';
-  const downloadHtml = `<div class="download-icon">${downloadIconSvg}</div>`;
-
-  return `
-    <div class="wallpaper-card" data-id="${wallpaper.id}" data-category="${categoryName}">
-      <div class="wallpaper-placeholder" style="background: linear-gradient(160deg, ${wallpaper.color} 0%, ${adjustColor(wallpaper.color, -30)} 100%)"></div>
-      ${badgeHtml}
-      ${downloadHtml}
-    </div>
-  `;
+function renderCornerBadge(wallpaper) {
+  if (!wallpaper.brush && !wallpaper.paid) return '';
+  if (wallpaper.paid) {
+    return `<span class="corner-badge badge-paid">${brushIconSvg}<span>付费</span></span>`;
+  }
+  return `<span class="corner-badge badge-brush">${brushIconSvg}</span>`;
 }
 
-/** 渲染栏目区块 */
-function renderCategorySection(category) {
-  const cards = category.wallpapers
-    .map((wp) => renderWallpaperCard(wp, category.name))
-    .join('');
-
-  return `
-    <section class="category-section" data-category-id="${category.id}">
-      <div class="category-header">
-        <div class="category-title-row">
-          <span class="category-name">${category.name}</span>
-          <span class="category-count">${category.count}</span>
-        </div>
-        ${arrowSvg}
-      </div>
-      <div class="wallpaper-scroll">
-        ${cards}
-      </div>
-    </section>
-  `;
+function renderDownloadIcon(wallpaper) {
+  if (!wallpaper.download) return '';
+  return `<span class="download-icon" aria-hidden="true">${downloadIconSvg}</span>`;
 }
 
-/** 简单颜色加深 */
 function adjustColor(hex, amount) {
   const num = parseInt(hex.replace('#', ''), 16);
   const r = Math.max(0, Math.min(255, (num >> 16) + amount));
@@ -65,12 +45,34 @@ function adjustColor(hex, amount) {
   return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
 }
 
-/** 初始化页面 */
-function init() {
-  const content = document.getElementById('content');
-  content.innerHTML = wallpaperCategories
-    .map(renderCategorySection)
-    .join('');
+function renderWallpaperCard(wallpaper) {
+  const bg = `linear-gradient(160deg, ${wallpaper.color} 0%, ${adjustColor(wallpaper.color, -28)} 100%)`;
+  return `
+    <div class="wallpaper-card" data-id="${wallpaper.id}">
+      <div class="wallpaper-placeholder" style="background: ${bg}"></div>
+      ${renderCornerBadge(wallpaper)}
+      ${renderDownloadIcon(wallpaper)}
+    </div>
+  `;
 }
 
-init();
+function renderCategorySection(category) {
+  const cards = category.wallpapers.map(renderWallpaperCard).join('');
+  return `
+    <section class="category-section" data-category-id="${category.id}">
+      <div class="category-header">
+        <div class="category-title-row">
+          <span class="category-name">${category.name}</span>
+          <span class="category-count">${category.count}</span>
+        </div>
+      </div>
+      <div class="wallpaper-scroll">
+        ${cards}
+      </div>
+    </section>
+  `;
+}
+
+document.getElementById('content').innerHTML = wallpaperCategories
+  .map(renderCategorySection)
+  .join('');

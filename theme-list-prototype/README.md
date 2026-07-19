@@ -15,7 +15,7 @@
 
 ## 预览
 
-**交互流程图（总览）**：`theme-list-prototype/flow.html`
+**交互流程图（逐步原型截图）**：`theme-list-prototype/flow.html`
 
 `Ctrl+P` 打开 `theme-list-prototype/index.html`  
 - 免费示例：下载未标「付费」的卡片（如 `lc-2`）  
