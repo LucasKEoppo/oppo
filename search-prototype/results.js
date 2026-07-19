@@ -5,7 +5,7 @@ import {
   buildSearchUrl,
   searchResources,
   isPaidResource,
-} from './data.js?v=12';
+} from './data.js?v=15';
 
 const typeId = getTypeFromUrl();
 const resourceType = getResourceType(typeId);
@@ -14,7 +14,6 @@ const query = params.get('q') || '简约';
 
 const searchInput = document.getElementById('search-input');
 const resultsGrid = document.getElementById('results-grid');
-const resultsCount = document.getElementById('results-count');
 const btnClearInput = document.getElementById('btn-clear-input');
 
 const results = searchResources(typeId, query);
@@ -22,7 +21,6 @@ const results = searchResources(typeId, query);
 searchInput.value = query;
 searchInput.placeholder =
   resourceType.id === 'wallpaper' ? '搜索在线壁纸' : resourceType.placeholder;
-resultsCount.textContent = `已为您搜到 ${results.length} 个${resourceType.name}`;
 
 function renderPaidBadge(item) {
   return isPaidResource(item)
