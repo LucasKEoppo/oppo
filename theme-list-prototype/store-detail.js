@@ -8,7 +8,7 @@ const themeId = params.get('id');
 const allThemes = themeSections.flatMap((s) => s.themes);
 const theme = allThemes.find((t) => t.id === themeId) || allThemes[0];
 
-const previewArt = document.getElementById('preview-art');
+const hero = document.getElementById('hero');
 const resourceName = document.getElementById('resource-name');
 const btnBack = document.getElementById('btn-back');
 const btnBuy = document.getElementById('btn-buy');
@@ -17,8 +17,8 @@ const modalBuy = document.getElementById('modal-buy');
 const btnBuyCancel = document.getElementById('btn-buy-cancel');
 const btnBuyConfirm = document.getElementById('btn-buy-confirm');
 
-previewArt.style.background = theme.gradient;
-resourceName.textContent = 'little emoji';
+hero.style.background = theme.gradient;
+resourceName.textContent = '琉璃';
 
 function returnToEdit(unlocked) {
   const q = new URLSearchParams({ id: theme.id });
