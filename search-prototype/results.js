@@ -5,7 +5,7 @@ import {
   buildSearchUrl,
   searchResources,
   isPaidResource,
-} from './data.js?v=17';
+} from './data.js?v=18';
 
 const typeId = getTypeFromUrl();
 const resourceType = getResourceType(typeId);
@@ -22,17 +22,15 @@ searchInput.value = query;
 searchInput.placeholder =
   resourceType.id === 'wallpaper' ? '搜索在线壁纸' : resourceType.placeholder;
 
-/** 小刷子图标（画笔剪影，更易辨认） */
+/** 小刷子图标（斜向画笔：笔杆 + 笔头） */
 const brushIconSvg = `
   <svg class="brush-icon" viewBox="0 0 24 24" aria-hidden="true">
-    <!-- 笔杆 -->
-    <path d="M14.2 3.2l6.6 6.6c.5.5.5 1.3 0 1.8l-1.2 1.2-8.4-8.4 1.2-1.2c.5-.5 1.3-.5 1.8 0z" fill="currentColor"/>
-    <!-- 金属箍 -->
-    <path d="M10.2 5.4l8.4 8.4-1.5 1.5-8.4-8.4 1.5-1.5z" fill="currentColor" opacity="0.85"/>
-    <!-- 笔头毛束 -->
-    <path d="M4.2 14.8c-.2 2.4.6 4.2 2.2 5.4.3-.9.5-1.9.4-2.9-.1-1.2-.6-2.3-1.4-3.1-.5.1-1 .3-1.2.6z" fill="currentColor"/>
-    <path d="M5.4 13.2c1.3 1.3 2 3.1 2.1 5 .7-.7 1.2-1.7 1.4-2.8.3-1.5 0-3.1-.9-4.4L5.4 13.2z" fill="currentColor"/>
-    <path d="M8.2 10.6l2.6 2.6c.9 1.4 1.1 3.1.7 4.6-.9-1.1-2.1-1.9-3.5-2.3-.1-1.5.1-3.1.2-4.9z" fill="currentColor"/>
+    <path fill="currentColor" d="
+      M15.1 2.9c.6-.6 1.6-.6 2.2 0l3.8 3.8c.6.6.6 1.6 0 2.2l-1.1 1.1-6-6 1.1-1.1z
+      M12.8 5.2l6 6-1.7 1.7-6-6 1.7-1.7z
+      M9.8 8.2l6 6c-1.1 1.8-2.9 3.1-5 3.7-.2-1.4-.8-2.7-1.8-3.7-1-1-2.3-1.6-3.7-1.8.6-2.1 1.9-3.9 3.7-5l.8.8z
+      M4.6 14.1c1.2.3 2.3.9 3.2 1.8.9.9 1.5 2 1.8 3.2C7.5 20.2 5.4 21 3.8 21c-.5 0-.8-.4-.8-.8 0-1.6.8-3.7 1.6-6.1z
+    "/>
   </svg>
 `;
 
