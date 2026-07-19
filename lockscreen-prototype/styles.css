@@ -107,7 +107,7 @@ body {
 .lock-wallpaper {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(180deg, #0D47A1 0%, #1565C0 50%, #42A5F5 100%);
 }
 
 .wallpaper-stones {
@@ -130,12 +130,12 @@ body {
 .planet {
   width: 36px;
   height: 36px;
-  background: radial-gradient(circle at 35% 35%, #ff6b35, #c0392b);
+  background: radial-gradient(circle at 35% 35%, #64B5F6, #0D47A1);
   border-radius: 50%;
   position: absolute;
   bottom: 75px;
   left: 5px;
-  box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+  box-shadow: 0 0 20px rgba(33, 150, 243, 0.45);
 }
 
 .lock-widget-date {
@@ -253,7 +253,7 @@ body {
 .mini-wallpaper {
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #1a1a2e, #0f3460);
+  background: linear-gradient(180deg, #1565C0, #0D47A1);
 }
 
 .wallpaper-icon::after {
@@ -346,7 +346,7 @@ body {
   left: 0;
   right: 0;
   height: 55%;
-  background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 100%);
+  background: linear-gradient(180deg, #64B5F6 0%, #1976D2 100%);
 }
 
 .preview-field {
@@ -355,7 +355,7 @@ body {
   left: 0;
   right: 0;
   height: 50%;
-  background: linear-gradient(180deg, #90EE90 0%, #228B22 100%);
+  background: linear-gradient(180deg, #1E88E5 0%, #0D47A1 100%);
 }
 
 .preview-time {
@@ -388,7 +388,7 @@ body {
   transform: translateX(-50%);
   width: 80px;
   height: 60px;
-  background: radial-gradient(ellipse, rgba(255, 200, 100, 0.6) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(100, 181, 246, 0.55) 0%, transparent 70%);
   border-radius: 50%;
 }
 
@@ -595,13 +595,13 @@ body {
   border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
-  background: linear-gradient(180deg, #a8d8ea, #f0c987);
+  background: linear-gradient(180deg, #42A5F5, #1565C0);
 }
 
 .free-thumb-inner {
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #87CEEB 30%, #f5deb3 70%);
+  background: linear-gradient(180deg, #64B5F6 30%, #0D47A1 70%);
 }
 
 .free-progress-info {
