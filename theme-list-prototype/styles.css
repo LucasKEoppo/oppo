@@ -155,24 +155,67 @@ body {
   height: 10px;
 }
 
-/* 右下角下载按钮 */
-.download-icon {
+/* 右下角下载按钮 / 环形进度 */
+.download-btn {
   position: absolute;
-  right: 6px;
-  bottom: 6px;
-  z-index: 2;
+  right: 4px;
+  bottom: 4px;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+  -webkit-tap-highlight-color: transparent;
+}
+
+.download-btn:active {
+  opacity: 0.85;
+}
+
+.download-icon {
   width: 20px;
   height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
   pointer-events: none;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
 }
 
 .download-icon-svg {
   width: 16px;
   height: 16px;
   display: block;
+}
+
+.download-progress {
+  width: 20px;
+  height: 20px;
+  display: block;
+  pointer-events: none;
+}
+
+.progress-ring-svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.progress-track {
+  stroke: rgba(255, 255, 255, 0.28);
+}
+
+.progress-arc {
+  stroke: #fff;
+  stroke-linecap: round;
+}
+
+.progress-tip {
+  fill: #fff;
 }
