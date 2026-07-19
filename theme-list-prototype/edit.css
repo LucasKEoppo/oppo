@@ -269,67 +269,67 @@ body {
   background: #007AFF;
 }
 
-/* 付费提示弹窗 */
+/* 付费提示弹窗（底部浮层，文案/结构对齐产品图） */
 .modal-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
   z-index: 180;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 0 40px;
+  padding: 0 16px 28px;
   animation: fadeIn 0.2s ease;
 }
 
-.purchase-hint-card {
+.purchase-hint-sheet {
   width: 100%;
-  max-width: 280px;
-  background: rgba(245, 245, 247, 0.96);
-  border-radius: 16px;
+  background: #f2f2f2;
+  border-radius: 18px;
   padding: 28px 20px 18px;
   text-align: center;
-  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.22);
 }
 
 .hint-title {
   font-size: 18px;
   font-weight: 600;
   color: #1a1a1a;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .hint-desc {
   font-size: 13px;
-  color: #888;
+  color: #8a8a8a;
   line-height: 1.5;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .hint-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .btn-hint-cancel,
 .btn-hint-buy {
   flex: 1;
+  position: relative;
   border: none;
   border-radius: 100px;
-  padding: 10px 12px;
+  padding: 11px 12px;
   font-size: 15px;
+  color: #1a1a1a;
+  background: #fff;
   cursor: pointer;
 }
 
-.btn-hint-cancel {
-  background: #e8e8ea;
-  color: #333;
-}
-
-.btn-hint-buy {
-  background: #007AFF;
-  color: #fff;
-  font-weight: 500;
+.buy-dot {
+  position: absolute;
+  top: 8px;
+  right: 18px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffcc00;
 }
 
 /* 正在应用 */
