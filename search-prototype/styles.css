@@ -207,27 +207,44 @@ body {
   margin-bottom: 6px;
 }
 
-/* 右上角付费标识 — 半透明小胶囊 */
-.price-badge {
+/* 左上角标识：刷子 / 付费胶囊 */
+.corner-badge {
   position: absolute;
-  top: 4px;
-  right: 4px;
-  padding: 1px 5px;
-  border-radius: 100px;
-  font-size: 8px;
-  font-weight: 500;
-  line-height: 12px;
-  letter-spacing: 0.2px;
+  top: 5px;
+  left: 5px;
+  z-index: 2;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
   color: rgba(255, 255, 255, 0.95);
   background: rgba(0, 0, 0, 0.38);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  z-index: 2;
-  pointer-events: none;
+}
+
+.badge-brush {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
 }
 
 .badge-paid {
-  background: rgba(0, 0, 0, 0.38);
+  height: 18px;
+  padding: 0 6px 0 4px;
+  border-radius: 100px;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+}
+
+.brush-icon {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  display: block;
 }
 
 .result-title {
