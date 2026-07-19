@@ -269,6 +269,69 @@ body {
   background: #007AFF;
 }
 
+/* 付费提示弹窗 */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 180;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  animation: fadeIn 0.2s ease;
+}
+
+.purchase-hint-card {
+  width: 100%;
+  max-width: 280px;
+  background: rgba(245, 245, 247, 0.96);
+  border-radius: 16px;
+  padding: 28px 20px 18px;
+  text-align: center;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.22);
+}
+
+.hint-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.hint-desc {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.hint-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-hint-cancel,
+.btn-hint-buy {
+  flex: 1;
+  border: none;
+  border-radius: 100px;
+  padding: 10px 12px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-hint-cancel {
+  background: #e8e8ea;
+  color: #333;
+}
+
+.btn-hint-buy {
+  background: #007AFF;
+  color: #fff;
+  font-weight: 500;
+}
+
 /* 正在应用 */
 .loading-overlay {
   position: absolute;
