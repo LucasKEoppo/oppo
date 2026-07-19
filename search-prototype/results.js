@@ -22,15 +22,19 @@ searchInput.value = query;
 searchInput.placeholder =
   resourceType.id === 'wallpaper' ? '搜索在线壁纸' : resourceType.placeholder;
 
-/** 小刷子图标（斜向画笔：笔杆 + 笔头） */
+/** 小刷子图标（三齿笔头 + 箍 + 短笔杆，斜向） */
 const brushIconSvg = `
   <svg class="brush-icon" viewBox="0 0 24 24" aria-hidden="true">
-    <path fill="currentColor" d="
-      M15.1 2.9c.6-.6 1.6-.6 2.2 0l3.8 3.8c.6.6.6 1.6 0 2.2l-1.1 1.1-6-6 1.1-1.1z
-      M12.8 5.2l6 6-1.7 1.7-6-6 1.7-1.7z
-      M9.8 8.2l6 6c-1.1 1.8-2.9 3.1-5 3.7-.2-1.4-.8-2.7-1.8-3.7-1-1-2.3-1.6-3.7-1.8.6-2.1 1.9-3.9 3.7-5l.8.8z
-      M4.6 14.1c1.2.3 2.3.9 3.2 1.8.9.9 1.5 2 1.8 3.2C7.5 20.2 5.4 21 3.8 21c-.5 0-.8-.4-.8-.8 0-1.6.8-3.7 1.6-6.1z
-    "/>
+    <g fill="currentColor" transform="translate(12 12) rotate(-45) translate(-12 -12)">
+      <!-- 三齿笔头：中间更长 -->
+      <rect x="8.2" y="3.2" width="1.8" height="7.2" rx="0.4"/>
+      <rect x="11.1" y="2.2" width="1.8" height="8.2" rx="0.4"/>
+      <rect x="14" y="3.2" width="1.8" height="7.2" rx="0.4"/>
+      <!-- 金属箍 -->
+      <rect x="7.2" y="10.6" width="9.6" height="2.6" rx="0.5"/>
+      <!-- 短笔杆 -->
+      <rect x="10" y="13.2" width="4" height="7.2" rx="0.7"/>
+    </g>
   </svg>
 `;
 
