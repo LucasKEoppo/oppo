@@ -5,7 +5,7 @@ import {
   buildSearchUrl,
   searchResources,
   isPaidResource,
-} from './data.js?v=19';
+} from './data.js?v=20';
 
 const typeId = getTypeFromUrl();
 const resourceType = getResourceType(typeId);
@@ -38,6 +38,14 @@ const brushIconSvg = `
   </svg>
 `;
 
+/** 右下角下载图标（圆角箭头 + 托盘） */
+const downloadIconSvg = `
+  <svg class="download-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+      d="M12 4v10m0 0l-4-4m4 4l4-4M6 18h12"/>
+  </svg>
+`;
+
 /** 左上角标识：全部展示刷子；付费资源展示「刷子 + 付费」胶囊 */
 function renderCornerBadge(item) {
   if (isPaidResource(item)) {
@@ -46,11 +54,16 @@ function renderCornerBadge(item) {
   return `<span class="corner-badge badge-brush">${brushIconSvg}</span>`;
 }
 
+function renderDownloadIcon() {
+  return `<span class="download-icon" aria-hidden="true">${downloadIconSvg}</span>`;
+}
+
 function renderOfficialCard(item) {
   return `
     <div class="result-card result-card-official">
       <div class="result-thumb official-thumb" style="background:${item.color}">
         ${renderCornerBadge(item)}
+        ${renderDownloadIcon()}
         <span class="official-mark">系统</span>
       </div>
       <p class="result-title">${item.title}</p>
@@ -62,6 +75,7 @@ function renderNormalCard(item) {
     <div class="result-card">
       <div class="result-thumb" style="background:${item.color}">
         ${renderCornerBadge(item)}
+        ${renderDownloadIcon()}
       </div>
       <p class="result-title">${item.title}</p>
     </div>`;
