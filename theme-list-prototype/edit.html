@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>锁屏编辑</title>
+  <link rel="stylesheet" href="edit.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <header class="top-bar">
+      <button type="button" class="btn-cancel" id="btn-cancel">取消</button>
+      <h1 class="top-title">锁屏</h1>
+      <button type="button" class="btn-apply" id="btn-apply">应用</button>
+    </header>
+
+    <div class="lock-preview-area">
+      <div class="peek peek-left" aria-hidden="true"></div>
+      <div class="lock-preview-card">
+        <div class="lock-wallpaper" id="lock-wallpaper"></div>
+        <div class="lock-widget-date">
+          <span class="date-line">7月19日 周日</span>
+          <span class="time-line">17:39</span>
+        </div>
+        <div class="lock-widget-add">
+          <span class="add-icon">+</span>
+          <span>添加小组件</span>
+        </div>
+        <div class="lock-bottom-icons">
+          <div class="lock-icon-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M9 18h6"/>
+              <path d="M10 18v2a2 2 0 0 0 4 0v-2"/>
+              <path d="M8 10a4 4 0 0 1 8 0c0 3-2 4-2 6H10c0-2-2-3-2-6z"/>
+            </svg>
+          </div>
+          <span class="pinch-hint">双指捏合可裁剪壁纸</span>
+          <div class="lock-icon-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 8h3l1.5-2h7L17 8h3v11H4V8z"/>
+              <circle cx="12" cy="13.5" r="3.2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="peek peek-right" aria-hidden="true"></div>
+    </div>
+
+    <footer class="bottom-toolbar">
+      <div class="tool-item">
+        <div class="tool-icon wallpaper-icon">
+          <div class="mini-wallpaper"></div>
+        </div>
+        <span>壁纸</span>
+      </div>
+      <div class="tool-item">
+        <div class="tool-icon style-icon">✦</div>
+        <span>样式</span>
+      </div>
+      <div class="tool-item active">
+        <div class="tool-icon depth-icon">▣</div>
+        <span>景深</span>
+      </div>
+    </footer>
+
+    <!-- 正在应用 -->
+    <div id="loading-overlay" class="loading-overlay hidden" aria-live="polite">
+      <div class="loading-card">
+        <div class="loading-spinner" aria-hidden="true">
+          <svg class="loading-spinner-svg" viewBox="0 0 48 48">
+            <circle class="loading-spinner-arc" cx="24" cy="24" r="20" />
+          </svg>
+        </div>
+        <p class="loading-text">正在应用...</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="edit.js"></script>
+</body>
+</html>

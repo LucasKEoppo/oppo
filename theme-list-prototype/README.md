@@ -8,10 +8,12 @@
 - 部分付费资源：左上角「刷子 + 付费」胶囊
 - 全部卡片右下角：下载按钮
 - 点击下载：按钮变为环形进度条（灰轨 + 白弧 + 前端圆点）
+- 下载完成：进入锁屏编辑框架页
+- 编辑页点「应用」：显示「正在应用...」进度弹窗
 - 资源缩略图统一蓝色系占位
 - 其余布局（标题、副标题、三列卡片）保持不变
 
 ## 预览
 
 `Ctrl+P` 打开 `theme-list-prototype/index.html`  
-或 http://localhost:8080/theme-list-prototype/index.html
+下载完成后会进入 `edit.html`；也可直接打开 `theme-list-prototype/edit.html`

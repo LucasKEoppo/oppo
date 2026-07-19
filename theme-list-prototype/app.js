@@ -130,6 +130,12 @@ function startDownloadProgress(btn) {
       btn.classList.remove('is-downloading');
       btn.classList.add('is-done');
       activeDownloads.delete(btn);
+      // 下载完成 → 进入锁屏编辑框架
+      const card = btn.closest('.theme-card');
+      const id = card?.dataset.id || '';
+      setTimeout(() => {
+        window.location.href = `edit.html?id=${encodeURIComponent(id)}`;
+      }, 280);
     }
   }
 
