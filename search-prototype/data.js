@@ -6,7 +6,7 @@ export const RESOURCE_TYPES = {
   wallpaper: {
     id: 'wallpaper',
     name: '壁纸',
-    placeholder: '搜索系统、在线壁纸',
+    placeholder: '搜索在线壁纸',
     history: [
       '小星星',
       '简约',
