@@ -5,7 +5,7 @@ import {
   buildSearchUrl,
   searchResources,
   isPaidResource,
-} from './data.js?v=16';
+} from './data.js?v=17';
 
 const typeId = getTypeFromUrl();
 const resourceType = getResourceType(typeId);
