@@ -2,7 +2,7 @@ import {
   getResourceType,
   getTypeFromUrl,
   buildResultsUrl,
-} from './data.js';
+} from './data.js?v=12';
 
 const HISTORY_COLLAPSE_COUNT = 7;
 
@@ -19,9 +19,8 @@ let hotWords = resourceType.hotSearch.map((item) =>
 );
 let historyExpanded = false;
 
-if (resourceType.placeholder) {
-  searchInput.placeholder = resourceType.placeholder;
-}
+searchInput.placeholder =
+  resourceType.id === 'wallpaper' ? '搜索在线壁纸' : resourceType.placeholder;
 
 function renderHistory() {
   if (historyWords.length === 0) {
