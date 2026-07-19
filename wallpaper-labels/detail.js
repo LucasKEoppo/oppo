@@ -47,8 +47,7 @@ btnBack.addEventListener('click', () => {
   window.location.href = 'index.html';
 });
 
+/** 设为 → 进入锁屏编辑框架（免费直接应用 / 付费需购买） */
 btnSet.addEventListener('click', () => {
-  btnSet.textContent = '已设为';
-  btnSet.disabled = true;
-  btnSet.style.opacity = '0.7';
+  window.location.href = `edit.html?id=${encodeURIComponent(wallpaper.id)}`;
 });
