@@ -45,19 +45,21 @@ function adjustColor(hex, amount) {
   return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
 }
 
-function renderWallpaperCard(wallpaper) {
+function renderWallpaperCard(wallpaper, categoryId) {
   const bg = `linear-gradient(160deg, ${wallpaper.color} 0%, ${adjustColor(wallpaper.color, -28)} 100%)`;
   return `
-    <div class="wallpaper-card" data-id="${wallpaper.id}">
+    <a class="wallpaper-card" href="detail.html?id=${encodeURIComponent(wallpaper.id)}" data-id="${wallpaper.id}" data-category="${categoryId}">
       <div class="wallpaper-placeholder" style="background: ${bg}"></div>
       ${renderCornerBadge(wallpaper)}
       ${renderDownloadIcon(wallpaper)}
-    </div>
+    </a>
   `;
 }
 
 function renderCategorySection(category) {
-  const cards = category.wallpapers.map(renderWallpaperCard).join('');
+  const cards = category.wallpapers
+    .map((wp) => renderWallpaperCard(wp, category.id))
+    .join('');
   return `
     <section class="category-section" data-category-id="${category.id}">
       <div class="category-header">

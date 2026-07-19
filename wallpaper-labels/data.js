@@ -65,3 +65,18 @@ export const wallpaperCategories = [
     ],
   },
 ];
+
+export function findWallpaper(id) {
+  for (const category of wallpaperCategories) {
+    const wallpaper = category.wallpapers.find((wp) => wp.id === id);
+    if (wallpaper) return { wallpaper, category };
+  }
+  const fallback = wallpaperCategories[0];
+  return { wallpaper: fallback.wallpapers[0], category: fallback };
+}
+
+export function getRelatedWallpapers(categoryId, currentId) {
+  const category = wallpaperCategories.find((c) => c.id === categoryId);
+  if (!category) return [];
+  return category.wallpapers.filter((wp) => wp.id !== currentId);
+}
