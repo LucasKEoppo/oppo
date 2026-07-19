@@ -5,7 +5,7 @@ import {
   buildSearchUrl,
   searchResources,
   isPaidResource,
-} from './data.js';
+} from './data.js?v=12';
 
 const typeId = getTypeFromUrl();
 const resourceType = getResourceType(typeId);
@@ -20,7 +20,8 @@ const btnClearInput = document.getElementById('btn-clear-input');
 const results = searchResources(typeId, query);
 
 searchInput.value = query;
-searchInput.placeholder = resourceType.placeholder;
+searchInput.placeholder =
+  resourceType.id === 'wallpaper' ? '搜索在线壁纸' : resourceType.placeholder;
 resultsCount.textContent = `已为您搜到 ${results.length} 个${resourceType.name}`;
 
 function renderPaidBadge(item) {
