@@ -5,12 +5,14 @@ import {
   buildSearchUrl,
   searchResources,
   isPaidResource,
-} from './data.js?v=21';
+} from './data.js?v=23';
 
 const typeId = getTypeFromUrl();
 const resourceType = getResourceType(typeId);
 const params = new URLSearchParams(window.location.search);
 const query = params.get('q') || '简约';
+/** 编辑框架内搜索：结果页展示下载标识；独立入口搜索不展示 */
+const showDownload = params.get('from') === 'edit';
 
 const searchInput = document.getElementById('search-input');
 const resultsGrid = document.getElementById('results-grid');
@@ -38,12 +40,28 @@ const brushIconSvg = `
   </svg>
 `;
 
+/** 右下角下载图标（仅编辑框架内搜索展示） */
+const downloadIconSvg = `
+  <svg class="download-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3.5v11"/>
+      <path d="M7.5 10.5L12 15l4.5-4.5"/>
+      <path d="M5 16.5v2.2c0 .7.5 1.3 1.2 1.3h11.6c.7 0 1.2-.6 1.2-1.3v-2.2"/>
+    </g>
+  </svg>
+`;
+
 /** 左上角标识：全部展示刷子；付费资源展示「刷子 + 付费」胶囊 */
 function renderCornerBadge(item) {
   if (isPaidResource(item)) {
     return `<span class="corner-badge badge-paid">${brushIconSvg}<span>付费</span></span>`;
   }
   return `<span class="corner-badge badge-brush">${brushIconSvg}</span>`;
+}
+
+function renderDownloadIcon(item) {
+  if (!showDownload || item.isOfficial) return '';
+  return `<span class="download-icon" aria-hidden="true">${downloadIconSvg}</span>`;
 }
 
 function renderOfficialCard(item) {
@@ -62,6 +80,7 @@ function renderNormalCard(item) {
     <div class="result-card">
       <div class="result-thumb" style="background:${item.color}">
         ${renderCornerBadge(item)}
+        ${renderDownloadIcon(item)}
       </div>
       <p class="result-title">${item.title}</p>
     </div>`;

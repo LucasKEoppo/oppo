@@ -2,7 +2,7 @@ import {
   getResourceType,
   getTypeFromUrl,
   buildResultsUrl,
-} from './data.js?v=14';
+} from './data.js?v=23';
 
 const HISTORY_COLLAPSE_COUNT = 7;
 

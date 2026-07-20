@@ -119,11 +119,20 @@ export function getTypeFromUrl() {
 
 export function buildResultsUrl(typeId, query) {
   const params = new URLSearchParams({ type: typeId, q: query });
+  // 保留编辑框架内搜索上下文，结果页据此展示下载标识
+  const current = new URLSearchParams(window.location.search);
+  if (current.get('from') === 'edit') {
+    params.set('from', 'edit');
+  }
   return `results.html?${params.toString()}`;
 }
 
 export function buildSearchUrl(typeId) {
-  return typeId === 'wallpaper' ? 'index.html' : `index.html?type=${typeId}`;
+  const current = new URLSearchParams(window.location.search);
+  const fromEdit = current.get('from') === 'edit';
+  const base = typeId === 'wallpaper' ? 'index.html' : `index.html?type=${typeId}`;
+  if (!fromEdit) return base;
+  return base.includes('?') ? `${base}&from=edit` : `${base}?from=edit`;
 }
 
 /** 官方资源检索关键词 */
