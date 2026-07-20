@@ -1,11 +1,12 @@
 # 多资源应用原型
 
-桌面编辑场景下，多个资源需先获取再应用。
+桌面编辑场景下，多个壁纸资源需先获取再应用。
 
 ## 预览
 
-`http://localhost:8080/preview.html?p=multi-paid`
+`multi-paid-prototype/index.html`  
+或 `preview.html?p=multi-paid`
 
 ## 流程
 
-点击「购买」→ 底部弹窗「需先获取以下资源」→ VIP 开通 / 更多获取方式（直接购买、金币兑换）→ 正在应用
+点击「购买」→ **全屏页**「需先获取以下资源」（两个蓝色壁纸）→ VIP / 直接购买 / 金币兑换 → 正在应用
