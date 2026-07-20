@@ -1,0 +1,145 @@
+/**
+ * 编辑框架内付费资源应用原型
+ *
+ * 流程：
+ *   锁屏页 → 点击「应用」→ 付费资源弹窗（未解锁时）
+ *   付费资源弹窗 → 「购买」→ 购买方式弹窗 → 解锁 → 正在应用
+ *   付费资源弹窗 → 「做任务免费领」→ 免费领弹窗 → 解锁 → 正在应用
+ *   已解锁 → 点击「应用」→ 正在应用
+ */
+
+const RESOURCE_NAME = '风来啦全局';
+const APPLY_DURATION_MS = 2500;
+
+let resourceUnlocked = false;
+let isApplying = false;
+
+const modalPaid = document.getElementById('modal-paid');
+const modalPurchase = document.getElementById('modal-purchase');
+const modalFree = document.getElementById('modal-free');
+const loadingOverlay = document.getElementById('loading-overlay');
+const btnApply = document.getElementById('btn-apply');
+btnApply.textContent = '应用';
+
+document.getElementById('resource-name').textContent = `"${RESOURCE_NAME}"`;
+
+function showModal(modal, asSheet = false) {
+  modal.classList.remove('hidden');
+  modal.classList.toggle('sheet-mode', asSheet);
+}
+
+function hideModal(modal) {
+  modal.classList.add('hidden');
+}
+
+function hideAllModals() {
+  [modalPaid, modalPurchase, modalFree].forEach(hideModal);
+}
+
+function showLoading() {
+  loadingOverlay.classList.remove('hidden');
+  btnApply.classList.add('loading');
+}
+
+function hideLoading() {
+  loadingOverlay.classList.add('hidden');
+  btnApply.classList.remove('loading');
+}
+
+/** 模拟解锁后应用资源，展示正在应用加载态 */
+function startApplying(onComplete) {
+  if (isApplying) return;
+  isApplying = true;
+
+  hideAllModals();
+  showLoading();
+
+  setTimeout(() => {
+    resourceUnlocked = true;
+    hideLoading();
+    isApplying = false;
+    btnApply.textContent = '已应用';
+    btnApply.classList.add('applied');
+    if (onComplete) onComplete();
+  }, APPLY_DURATION_MS);
+}
+
+// 屏幕1 → 屏幕2 或 直接应用
+btnApply.addEventListener('click', () => {
+  if (isApplying) return;
+
+  if (resourceUnlocked) {
+    startApplying();
+    return;
+  }
+
+  hideAllModals();
+  showModal(modalPaid);
+});
+
+// 屏幕2 → 屏幕3：点击「购买」
+document.getElementById('btn-buy').addEventListener('click', () => {
+  hideModal(modalPaid);
+  showModal(modalPurchase, true);
+});
+
+// 屏幕2 → 屏幕4：点击「做任务免费领」
+document.getElementById('btn-free-task').addEventListener('click', () => {
+  hideModal(modalPaid);
+  showModal(modalFree, true);
+});
+
+// 屏幕2：点击「取消」
+document.getElementById('btn-paid-cancel').addEventListener('click', () => {
+  hideModal(modalPaid);
+});
+
+// 屏幕3：点击「取消」
+document.getElementById('btn-purchase-cancel').addEventListener('click', () => {
+  hideModal(modalPurchase);
+});
+
+// 屏幕4：点击「取消」
+document.getElementById('btn-free-cancel').addEventListener('click', () => {
+  hideModal(modalFree);
+});
+
+// 点击遮罩关闭弹窗
+[modalPaid, modalPurchase, modalFree].forEach((modal) => {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) hideModal(modal);
+  });
+});
+
+// 购买方式：选项切换
+document.querySelectorAll('.purchase-option').forEach((option) => {
+  option.addEventListener('click', () => {
+    document.querySelectorAll('.purchase-option').forEach((o) => {
+      o.classList.remove('selected');
+      o.querySelector('.radio').classList.remove('checked');
+    });
+    option.classList.add('selected');
+    option.querySelector('.radio').classList.add('checked');
+
+    const isVip = option.dataset.option === 'vip';
+    document.getElementById('btn-open-vip').textContent = isVip ? '立即开通' : '立即购买';
+  });
+});
+
+// 购买完成 → 解锁并应用
+document.getElementById('btn-open-vip').addEventListener('click', () => {
+  startApplying();
+});
+
+// 赚金币免费兑 → 解锁并应用（原型模拟金币已够）
+document.getElementById('btn-earn-coins').addEventListener('click', () => {
+  startApplying();
+});
+
+document.getElementById('btn-rules').addEventListener('click', () => {
+  alert('原型演示：查看活动规则');
+});
+
+document.getElementById('btn-lock-cancel').addEventListener('click', () => {
+  hideAllModals();
+});
