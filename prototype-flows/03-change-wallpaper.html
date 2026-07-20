@@ -3,88 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3. 更换壁纸页资源应用流程</title>
+  <title>3. 更换壁纸页 · 交互流程图</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="board">
-    <a class="back-link" href="index.html">← 返回总览</a>
+    <a class="back-link" href="flow.html">← 返回总览</a>
     <header class="board-header">
-      <h1>3. 更换壁纸页资源应用流程</h1>
-      <p>对应：进入更换壁纸页 → 选官方/在线资源替换回编辑框架 →「应用」；在线付费需校验购买状态。</p>
+      <h1>更换壁纸页资源应用 · 交互流程</h1>
+      <p>每一步为真实原型截图；箭头标注用户操作</p>
     </header>
 
     <section class="section">
-      <h2 class="section-title">① 公共：更换壁纸页选资源 → 回编辑框架</h2>
+      <h2 class="section-title">① 公共路径：选资源 → 回编辑框架</h2>
       <div class="story">
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/index.html"><img src="assets/wp-list.png" alt="更换壁纸"></a>
-          <figcaption>更换壁纸页<br>（按规则展示栏目）</figcaption>
+          <a class="phone" href="../wallpaper-labels/index.html">
+            <img src="assets/wp-list.png" alt="更换壁纸">
+          </a>
+          <figcaption>更换壁纸页</figcaption>
         </figure>
         <div class="action"><span class="action-label">选中资源</span></div>
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/detail.html?id=sz-1"><img src="assets/wp-detail-free.png" alt="预览"></a>
-          <figcaption>预览 / 资源详情</figcaption>
+          <a class="phone" href="../wallpaper-labels/detail.html?id=sz-1">
+            <img src="assets/wp-detail-free.png" alt="预览">
+          </a>
+          <figcaption>资源详情 / 预览</figcaption>
         </figure>
-        <div class="action"><span class="action-label">设为 / 替换</span></div>
+        <div class="action"><span class="action-label">点击「设为」</span></div>
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/edit.html?id=sz-1"><img src="assets/wp-edit-free.png" alt="回编辑"></a>
-          <figcaption>替换并返回编辑框架</figcaption>
+          <a class="phone" href="../wallpaper-labels/edit.html?id=sz-1">
+            <img src="assets/wp-edit-free.png" alt="回编辑">
+          </a>
+          <figcaption>返回编辑框架</figcaption>
         </figure>
       </div>
     </section>
 
     <section class="section free">
-      <h2 class="section-title">② 官方 / 本地栏目：直接应用成功</h2>
+      <h2 class="section-title">② 官方 / 本地：直接应用</h2>
       <div class="story">
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/edit.html?id=sz-1"><img src="assets/wp-edit-free.png" alt="编辑"></a>
-          <figcaption>编辑框架</figcaption>
+          <a class="phone" href="../wallpaper-labels/edit.html?id=sz-1">
+            <img src="assets/wp-edit-free.png" alt="编辑">
+          </a>
+          <figcaption>编辑页</figcaption>
         </figure>
         <div class="action"><span class="action-label">点击「应用」</span></div>
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/edit.html?id=sz-1"><img src="assets/wp-applying.png" alt="成功"></a>
-          <figcaption>应用成功 → 退出编辑</figcaption>
+          <a class="phone" href="../wallpaper-labels/edit.html?id=sz-1">
+            <img src="assets/wp-applying.png" alt="正在应用">
+          </a>
+          <figcaption>正在应用...</figcaption>
         </figure>
       </div>
     </section>
 
     <section class="section paid">
-      <h2 class="section-title">③ 在线栏目付费：校验 → 购买 → 再应用</h2>
+      <h2 class="section-title">③ 在线付费：购买后再应用</h2>
       <div class="story">
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/edit.html?id=qc-1"><img src="assets/wp-edit-paid.png" alt="在线付费"></a>
-          <figcaption>编辑框架（在线付费）</figcaption>
+          <a class="phone" href="../wallpaper-labels/edit.html?id=qc-1">
+            <img src="assets/wp-edit-paid.png" alt="付费编辑">
+          </a>
+          <figcaption>编辑页（付费未购）</figcaption>
         </figure>
         <div class="action"><span class="action-label">点击「应用」</span></div>
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/edit.html?id=qc-1"><img src="assets/wp-purchase-hint.png" alt="付费弹窗"></a>
-          <figcaption>弹窗：主题商店付费资源</figcaption>
+          <a class="phone" href="../wallpaper-labels/edit.html?id=qc-1">
+            <img src="assets/wp-purchase-hint.png" alt="购买提示">
+          </a>
+          <figcaption>购买后即可使用</figcaption>
         </figure>
-        <div class="action"><span class="action-label">去购买</span></div>
+        <div class="action"><span class="action-label">点击「去购买」</span></div>
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/store-detail.html?id=qc-1"><img src="assets/wp-store.png" alt="商店"></a>
-          <figcaption>商店详情 · 购买流程</figcaption>
+          <a class="phone" href="../wallpaper-labels/store-detail.html?id=qc-1">
+            <img src="assets/wp-store.png" alt="商店">
+          </a>
+          <figcaption>主题商店详情</figcaption>
         </figure>
       </div>
       <div class="story story-continue">
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/edit.html?id=qc-1&unlocked=1"><img src="assets/wp-edit-unlocked.png" alt="校验通过"></a>
-          <figcaption>购买成功 · 回编辑</figcaption>
+          <a class="phone" href="../wallpaper-labels/store-detail.html?id=qc-1">
+            <img src="assets/wp-store.png" alt="完成购买">
+          </a>
+          <figcaption>完成购买 / 免费领</figcaption>
+        </figure>
+        <div class="action"><span class="action-label">返回编辑</span></div>
+        <figure class="step">
+          <a class="phone" href="../wallpaper-labels/edit.html?id=qc-1&unlocked=1">
+            <img src="assets/wp-edit-unlocked.png" alt="已解锁">
+          </a>
+          <figcaption>编辑页（已解锁）</figcaption>
         </figure>
         <div class="action"><span class="action-label">再次「应用」</span></div>
         <figure class="step">
-          <a class="phone" href="../wallpaper-labels/edit.html?id=qc-1&unlocked=1"><img src="assets/wp-apply-after-buy.png" alt="下载应用"></a>
-          <figcaption>下载/应用成功</figcaption>
+          <a class="phone" href="../wallpaper-labels/edit.html?id=qc-1&unlocked=1">
+            <img src="assets/wp-apply-after-buy.png" alt="正在应用">
+          </a>
+          <figcaption>正在应用...</figcaption>
         </figure>
       </div>
     </section>
 
     <footer class="board-footer">
-      <span>点击截图可进入对应原型页体验</span>
+      <span>点击任一原型图可进入对应页面体验</span>
       <div class="links">
+        <a href="../wallpaper-labels/index.html">更换壁纸页</a>
+        <a href="../wallpaper-labels/edit.html?id=sz-1">编辑(免费)</a>
+        <a href="../wallpaper-labels/edit.html?id=qc-1">编辑(付费)</a>
         <a href="02-theme-entry.html">← 上一条</a>
-        <a href="04-search-independent.html">下一条：独立入口搜索 →</a>
+        <a href="04-search-independent.html">下一条 →</a>
       </div>
     </footer>
   </div>
