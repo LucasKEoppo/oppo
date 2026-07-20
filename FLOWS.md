@@ -27,3 +27,9 @@ python3 -m http.server 8080
 5. http://127.0.0.1:8080/search-prototype/in-edit-flow.html
 
 > 不要点 GitHub 上的 `.html` 源码页；也不要用云端对话里的 localhost（那是远程机器，你电脑访问不到）。
+
+## 本地下载包
+
+仓库根目录文件：**五条交互流程图.zip**（约 5.3MB）
+
+解压后双击 `打开这里.html` 即可离线查看 5 条流程图，无需启动 python 服务。
