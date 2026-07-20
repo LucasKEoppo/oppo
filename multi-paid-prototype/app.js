@@ -11,25 +11,25 @@ const APPLY_DURATION_MS = 2500;
 
 let resources = pendingPaidResources.map((item) => ({ ...item, unlocked: false }));
 let isApplying = false;
-let moreExpanded = false;
 
-const sheetMulti = document.getElementById('sheet-multi');
+const screenDesktop = document.getElementById('screen-desktop');
+const screenAcquire = document.getElementById('screen-acquire');
 const dialogInfo = document.getElementById('dialog-info');
 const loadingOverlay = document.getElementById('loading-overlay');
-const moreOptions = document.getElementById('more-options');
-const chevron = document.getElementById('chevron');
 const btnApply = document.getElementById('btn-apply');
 
 function getPending() {
   return getPendingResources(resources);
 }
 
-function showSheet() {
-  sheetMulti.classList.remove('hidden');
+function showAcquire() {
+  screenDesktop.classList.remove('active');
+  screenAcquire.classList.add('active');
 }
 
-function hideSheet() {
-  sheetMulti.classList.add('hidden');
+function hideAcquire() {
+  screenAcquire.classList.remove('active');
+  screenDesktop.classList.add('active');
 }
 
 function showDialog() {
@@ -41,7 +41,7 @@ function hideDialog() {
 }
 
 function hideAll() {
-  hideSheet();
+  hideAcquire();
   hideDialog();
 }
 
@@ -62,7 +62,7 @@ function renderResourceList() {
     .map(
       (item) => `
       <div class="resource-row">
-        <div class="resource-thumb" style="background: ${item.gradient}"></div>
+        <div class="resource-thumb wallpaper-thumb" style="background: ${item.gradient}"></div>
         <div class="resource-meta">
           <span class="resource-type">${item.type}</span>
           <span class="resource-name">${item.name}</span>
@@ -74,12 +74,6 @@ function renderResourceList() {
       </div>`
     )
     .join('');
-}
-
-function setMoreExpanded(expanded) {
-  moreExpanded = expanded;
-  moreOptions.classList.toggle('hidden', !expanded);
-  chevron.classList.toggle('expanded', expanded);
 }
 
 function startApplying() {
@@ -109,13 +103,10 @@ function handleBuyClick() {
 
   hideDialog();
   renderResourceList();
-  setMoreExpanded(false);
-  showSheet();
+  showAcquire();
 }
 
 btnApply.addEventListener('click', handleBuyClick);
-
-document.getElementById('btn-sheet-close').addEventListener('click', hideSheet);
 
 document.getElementById('btn-info').addEventListener('click', showDialog);
 
@@ -123,19 +114,11 @@ document.getElementById('btn-info-ok').addEventListener('click', hideDialog);
 
 document.getElementById('btn-vip').addEventListener('click', startApplying);
 
-document.getElementById('btn-more-toggle').addEventListener('click', () => {
-  setMoreExpanded(!moreExpanded);
-});
-
 document.getElementById('btn-direct-buy').addEventListener('click', startApplying);
 
 document.getElementById('btn-coin-exchange').addEventListener('click', startApplying);
 
 document.getElementById('btn-cancel').addEventListener('click', hideAll);
-
-sheetMulti.addEventListener('click', (e) => {
-  if (e.target === sheetMulti) hideSheet();
-});
 
 dialogInfo.addEventListener('click', (e) => {
   if (e.target === dialogInfo) hideDialog();

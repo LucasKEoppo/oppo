@@ -38,18 +38,16 @@
       </div>
     </div>
 
-    <!-- 多资源获取底部弹窗 -->
-    <div id="sheet-multi" class="sheet-overlay hidden">
-      <div class="acquire-sheet">
-        <header class="sheet-top">
-          <button class="btn-close" id="btn-sheet-close">关闭</button>
-          <h2 class="sheet-title">需先获取以下资源</h2>
-          <div class="sheet-top-spacer"></div>
-        </header>
+    <!-- 需先获取资源 · 全屏页 -->
+    <div id="screen-acquire" class="screen acquire-screen">
+      <header class="acquire-header">
+        <h1 class="acquire-title">需先获取以下资源</h1>
+      </header>
 
-        <button class="info-banner" id="btn-info">
+      <div class="acquire-body">
+        <button class="info-banner" id="btn-info" type="button">
           <span class="info-icon">i</span>
-          <span class="info-text">可单独购买锁屏、图标资源</span>
+          <span class="info-text">可单独购买壁纸资源</span>
           <svg class="info-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 6l6 6-6 6"/>
           </svg>
@@ -66,33 +64,36 @@
             </div>
             <p class="vip-desc">开通VIP全场装扮免费用</p>
           </div>
-          <button class="btn-vip" id="btn-vip">立即开通</button>
+          <button class="btn-vip" id="btn-vip" type="button">立即开通</button>
         </div>
 
-        <button class="more-toggle" id="btn-more-toggle">
-          <span>更多获取方式</span>
-          <svg class="chevron" id="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 9l6 6 6-6"/>
-          </svg>
-        </button>
-
-        <div class="more-options hidden" id="more-options">
-          <button class="option-card" id="btn-direct-buy">
+        <div class="more-options" id="more-options">
+          <button class="option-card" id="btn-direct-buy" type="button">
             <div class="option-text">
               <span class="option-title">直接购买</span>
               <span class="option-desc">购买后资源永久有效</span>
             </div>
-            <span class="option-price" id="direct-price">¥4.0</span>
+            <div class="option-aside">
+              <span class="option-price" id="direct-price">¥4.0</span>
+              <svg class="option-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 6l6 6-6 6"/>
+              </svg>
+            </div>
           </button>
-          <button class="option-card" id="btn-coin-exchange">
+          <button class="option-card" id="btn-coin-exchange" type="button">
             <div class="option-text">
               <span class="option-title">金币兑换</span>
               <span class="option-desc">做任务免费获取资源</span>
             </div>
-            <span class="option-price coin">
-              <span id="coin-total">400</span>
-              <span class="coin-icon">🪙</span>
-            </span>
+            <div class="option-aside">
+              <span class="option-price coin">
+                <span class="coin-icon" aria-hidden="true"></span>
+                <span id="coin-total">400</span>
+              </span>
+              <svg class="option-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 6l6 6-6 6"/>
+              </svg>
+            </div>
           </button>
         </div>
       </div>
@@ -102,7 +103,7 @@
     <div id="dialog-info" class="dialog-overlay hidden">
       <div class="dialog-card">
         <h3 class="dialog-title">说明</h3>
-        <p class="dialog-body">现在可以单独购买锁屏、图标资源，无需整套主题。享受灵活的选择和经济实惠的购物体验，轻松打造独特的手机风格。</p>
+        <p class="dialog-body">现在可以单独购买壁纸资源，无需整套主题。享受灵活的选择和经济实惠的购物体验，轻松打造独特的手机风格。</p>
         <button class="btn-dialog-ok" id="btn-info-ok">知道了</button>
       </div>
     </div>

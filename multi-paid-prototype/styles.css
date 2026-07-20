@@ -107,7 +107,7 @@ body {
 .desktop-wallpaper {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #FFF59D 0%, #FFEE58 40%, #FFD54F 100%);
+  background: linear-gradient(180deg, #1565C0 0%, #1976D2 40%, #64B5F6 100%);
 }
 
 .desktop-wallpaper::after {
@@ -118,7 +118,7 @@ body {
   transform: translateX(-50%);
   width: 120px;
   height: 100px;
-  background: radial-gradient(ellipse, rgba(255, 183, 77, 0.7) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(100, 181, 246, 0.55) 0%, transparent 70%);
   border-radius: 50%;
 }
 
@@ -160,62 +160,30 @@ body {
   background: rgba(255, 255, 255, 0.7);
 }
 
-/* ========== 底部弹窗 ========== */
-.sheet-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 100;
-  display: flex;
-  align-items: flex-end;
-  animation: fadeIn 0.25s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.acquire-sheet {
-  width: 100%;
+/* ========== 全屏：需先获取资源 ========== */
+.acquire-screen {
   background: #f0f0f0;
-  border-radius: 20px 20px 0 0;
-  padding-bottom: 28px;
-  animation: slideUp 0.35s ease;
-  max-height: 72%;
-  overflow-y: auto;
 }
 
-.sheet-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px 12px;
+.acquire-header {
+  flex-shrink: 0;
+  padding: 54px 20px 14px;
+  text-align: center;
+  background: #f0f0f0;
 }
 
-.btn-close {
-  background: none;
-  border: none;
-  color: #FF3B30;
-  font-size: 16px;
-  cursor: pointer;
-  min-width: 48px;
-  text-align: left;
-}
-
-.sheet-title {
+.acquire-title {
   font-size: 17px;
   font-weight: 600;
   color: #1a1a1a;
 }
 
-.sheet-top-spacer {
-  min-width: 48px;
+.acquire-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 0 28px;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* 信息条 */
@@ -286,6 +254,12 @@ body {
   height: 56px;
   border-radius: 12px;
   flex-shrink: 0;
+}
+
+.resource-thumb.wallpaper-thumb {
+  width: 48px;
+  height: 72px;
+  border-radius: 10px;
 }
 
 .resource-meta {
@@ -373,31 +347,7 @@ body {
   white-space: nowrap;
 }
 
-/* 更多获取方式 */
-.more-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 100%;
-  padding: 10px;
-  background: none;
-  border: none;
-  color: #666;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.chevron {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.25s ease;
-}
-
-.chevron.expanded {
-  transform: rotate(180deg);
-}
-
+/* 获取方式 */
 .more-options {
   padding: 0 16px 8px;
   display: flex;
@@ -416,6 +366,7 @@ body {
   cursor: pointer;
   text-align: left;
   width: 100%;
+  gap: 12px;
 }
 
 .option-text {
@@ -435,11 +386,17 @@ body {
   color: #999;
 }
 
+.option-aside {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
 .option-price {
   font-size: 17px;
   font-weight: 700;
-  color: #1a1a1a;
-  flex-shrink: 0;
+  color: #e53935;
 }
 
 .option-price.coin {
@@ -449,7 +406,17 @@ body {
 }
 
 .coin-icon {
-  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFD54F, #F9A825);
+  display: inline-block;
+}
+
+.option-arrow {
+  width: 16px;
+  height: 16px;
+  color: #ccc;
 }
 
 /* 说明弹窗 */
