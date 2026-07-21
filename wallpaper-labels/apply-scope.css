@@ -4,41 +4,52 @@
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
-  background: #1a1a1a;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 16px;
+  background: #0D47A1;
   -webkit-font-smoothing: antialiased;
 }
 
+/* 全屏铺满，不留边空 */
 .phone-frame {
   position: relative;
-  width: 390px;
-  height: 844px;
-  max-height: calc(100vh - 32px);
-  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
-  background: #000;
+  background: #0D47A1;
 }
 
 .preview {
   position: absolute;
   inset: 0;
-  /* 与其他原型页统一的蓝色占位 */
-  background: linear-gradient(165deg, #1976D2 0%, #1565C0 55%, #0D47A1 100%);
+  background: linear-gradient(165deg, #1976D2 0%, #1565C0 45%, #0D47A1 100%);
+}
+
+.preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 40% 28%, rgba(255, 255, 255, 0.14), transparent 48%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, transparent 28%, transparent 50%, rgba(0, 0, 0, 0.28) 100%);
+  pointer-events: none;
 }
 
 .btn-back {
   position: absolute;
-  top: 52px;
-  left: 16px;
+  top: max(44px, env(safe-area-inset-top, 0px) + 12px);
+  left: 12px;
   z-index: 3;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border: none;
   border-radius: 50%;
   background: transparent;
@@ -47,7 +58,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
 }
 
 .sheet {
@@ -56,9 +67,10 @@ body {
   right: 0;
   bottom: 0;
   z-index: 4;
+  width: 100%;
   background: #f5f5f5;
   border-radius: 28px 28px 0 0;
-  padding: 22px 0 calc(18px + env(safe-area-inset-bottom, 0px));
+  padding: 22px 0 calc(12px + env(safe-area-inset-bottom, 0px));
   text-align: center;
 }
 
@@ -80,6 +92,7 @@ body {
 .options {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .option {
@@ -91,11 +104,8 @@ body {
   font-weight: 400;
   line-height: 1.2;
   padding: 16px 24px;
+  width: 100%;
   cursor: pointer;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.option:first-child {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
