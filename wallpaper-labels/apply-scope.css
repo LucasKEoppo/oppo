@@ -28,16 +28,8 @@ body {
 .preview {
   position: absolute;
   inset: 0;
-  /* 贴近产品截图的绿色草纹氛围（占位） */
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.08), transparent 50%),
-    repeating-linear-gradient(
-      105deg,
-      #2f6b3a 0px,
-      #3d8a4a 2px,
-      #245530 4px,
-      #357a42 6px
-    );
+  /* 与其他原型页统一的蓝色占位 */
+  background: linear-gradient(165deg, #1976D2 0%, #1565C0 55%, #0D47A1 100%);
 }
 
 .btn-back {
