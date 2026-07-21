@@ -16,7 +16,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 全屏铺满，不留边空 */
+/* 全屏铺满，不留屏幕边空 */
 .phone-frame {
   position: relative;
   width: 100%;
@@ -61,17 +61,19 @@ body {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
 }
 
+/* 悬浮弹窗：四角圆角，左右与底部留空隙（对齐原图） */
 .sheet {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 20px;
+  right: 20px;
+  bottom: max(28px, env(safe-area-inset-bottom, 0px) + 20px);
   z-index: 4;
-  width: 100%;
-  background: #f5f5f5;
-  border-radius: 28px 28px 0 0;
-  padding: 22px 0 calc(12px + env(safe-area-inset-bottom, 0px));
+  width: auto;
+  background: #f2f2f2;
+  border-radius: 22px;
+  padding: 22px 0 8px;
   text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
 }
 
 .sheet h1 {
@@ -79,14 +81,14 @@ body {
   font-weight: 650;
   color: #1a1a1a;
   margin-bottom: 6px;
-  padding: 0 24px;
+  padding: 0 20px;
 }
 
 .sheet-sub {
   font-size: 13px;
   color: #8a8a8a;
-  margin-bottom: 10px;
-  padding: 0 24px;
+  margin-bottom: 12px;
+  padding: 0 20px;
 }
 
 .options {
@@ -103,10 +105,14 @@ body {
   font-size: 17px;
   font-weight: 400;
   line-height: 1.2;
-  padding: 16px 24px;
+  padding: 16px 20px;
   width: 100%;
   cursor: pointer;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.option:last-child {
+  border-radius: 0 0 22px 22px;
 }
 
 .option:active {
