@@ -28,8 +28,20 @@ python3 -m http.server 8080
 
 > 不要点 GitHub 上的 `.html` 源码页；也不要用云端对话里的 localhost（那是远程机器，你电脑访问不到）。
 
-## 本地下载包
+## 静态站点部署（含 index.html 入口）
 
-仓库根目录文件：**五条交互流程图.zip**（约 5.3MB）
+上传平台若提示「未找到可用的 index.html」，请用这个包：
 
-解压后双击 `打开这里.html` 即可离线查看 5 条流程图，无需启动 python 服务。
+- 目录：`flows-deploy/`
+- 压缩包：`flows-deploy.zip`
+
+**注意**：zip 解压后根目录就是 `index.html`，不要再套一层文件夹再上传。
+
+本地预览：
+
+```bash
+cd flows-deploy
+python3 -m http.server 8080
+```
+
+打开 http://127.0.0.1:8080/
