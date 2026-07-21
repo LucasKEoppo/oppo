@@ -47,7 +47,7 @@ btnBack.addEventListener('click', () => {
   window.location.href = 'index.html';
 });
 
-/** 设为 → 进入锁屏编辑框架（免费直接应用 / 付费需购买） */
+/** 设为 → 先选择应用范围，再进入编辑框架 */
 btnSet.addEventListener('click', () => {
-  window.location.href = `edit.html?id=${encodeURIComponent(wallpaper.id)}`;
+  window.location.href = `apply-scope.html?id=${encodeURIComponent(wallpaper.id)}`;
 });
