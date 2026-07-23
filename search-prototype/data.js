@@ -119,7 +119,6 @@ export function getTypeFromUrl() {
 
 export function buildResultsUrl(typeId, query) {
   const params = new URLSearchParams({ type: typeId, q: query });
-  // 保留编辑框架内搜索上下文，结果页据此展示下载标识
   const current = new URLSearchParams(window.location.search);
   if (current.get('from') === 'edit') {
     params.set('from', 'edit');
