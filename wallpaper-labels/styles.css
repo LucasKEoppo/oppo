@@ -18,7 +18,7 @@ body {
   width: 390px;
   height: 844px;
   max-height: 844px;
-  background: #fff;
+  background: #f2f2f2;
   border-radius: 40px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
@@ -30,36 +30,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 54px 20px 14px;
-  background: #fff;
+  padding: 54px 16px 12px;
+  background: #f2f2f2;
   flex-shrink: 0;
 }
 
-.header-cancel {
-  font-size: 16px;
-  color: #333;
-  background: none;
-  border: none;
-  cursor: pointer;
-  min-width: 48px;
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
 }
 
 .header-title {
   font-size: 18px;
   font-weight: 600;
   color: #1a1a1a;
-}
-
-.header-spacer {
-  min-width: 48px;
+  line-height: 1;
 }
 
 .header-actions {
-  min-width: 48px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .header-icon-btn {
@@ -73,7 +68,10 @@ body {
   justify-content: center;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
 }
 
 .header-icon-btn:active {
@@ -85,6 +83,7 @@ body {
   min-height: 0;
   padding: 4px 16px 8px;
   overflow: hidden; /* 仅首屏 */
+  background: #fff;
 }
 
 .category-section {
