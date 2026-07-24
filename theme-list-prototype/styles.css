@@ -1,0 +1,221 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 16px 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.phone-frame {
+  width: 390px;
+  height: 844px;
+  max-height: 844px;
+  background: #f7f7f7;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 52px 16px 14px;
+  background: #f7f7f7;
+  flex-shrink: 0;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: #1a1a1a;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  padding: 4px 16px 16px;
+  overflow: hidden; /* 仅展示首屏，不提供框内滚动 */
+}
+
+.theme-section {
+  margin-bottom: 28px;
+}
+
+.section-heading {
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.section-subtitle {
+  font-size: 13px;
+  color: #999;
+  line-height: 1.4;
+}
+
+.theme-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.theme-card {
+  cursor: pointer;
+}
+
+.theme-card:active {
+  opacity: 0.88;
+}
+
+.theme-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ddd;
+}
+
+.theme-thumb-shine {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.12), transparent 45%),
+    linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.18) 100%);
+  pointer-events: none;
+}
+
+/* 左上角：刷子 / 付费 */
+.corner-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 2;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.badge-brush {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.badge-paid {
+  height: 18px;
+  padding: 0 6px 0 4px;
+  border-radius: 100px;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+}
+
+.brush-icon {
+  width: 12px;
+  height: 12px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.badge-paid .brush-icon {
+  width: 10px;
+  height: 10px;
+}
+
+/* 右下角下载按钮 / 环形进度 */
+.download-btn {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+  -webkit-tap-highlight-color: transparent;
+}
+
+.download-btn:active {
+  opacity: 0.85;
+}
+
+.download-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.download-icon-svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.download-progress {
+  width: 20px;
+  height: 20px;
+  display: block;
+  pointer-events: none;
+}
+
+.progress-ring-svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.progress-track {
+  stroke: rgba(255, 255, 255, 0.28);
+}
+
+.progress-arc {
+  stroke: #fff;
+  stroke-linecap: round;
+}
+
+.progress-tip {
+  fill: #fff;
+}

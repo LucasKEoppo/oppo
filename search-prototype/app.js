@@ -1,0 +1,151 @@
+import {
+  getResourceType,
+  getTypeFromUrl,
+  buildResultsUrl,
+} from './data.js?v=23';
+
+const HISTORY_COLLAPSE_COUNT = 7;
+
+const resourceType = getResourceType(getTypeFromUrl());
+const searchInput = document.getElementById('search-input');
+const historyList = document.getElementById('history-list');
+const hotList = document.getElementById('hot-list');
+const sectionHistory = document.getElementById('section-history');
+const btnClearInput = document.getElementById('btn-clear-input');
+const btnRefreshHot = document.getElementById('btn-refresh-hot');
+const showHotSearch = Boolean(hotList && btnRefreshHot);
+
+let historyWords = [...resourceType.history];
+let hotWords = resourceType.hotSearch.map((item) =>
+  typeof item === 'string' ? item : item.word
+);
+let historyExpanded = false;
+
+searchInput.placeholder =
+  resourceType.id === 'wallpaper' ? '搜索在线壁纸' : resourceType.placeholder;
+
+function renderHistory() {
+  if (historyWords.length === 0) {
+    sectionHistory.classList.add('hidden');
+    return;
+  }
+
+  sectionHistory.classList.remove('hidden');
+  const visible = historyExpanded
+    ? historyWords
+    : historyWords.slice(0, HISTORY_COLLAPSE_COUNT);
+  const showExpand = !historyExpanded && historyWords.length > HISTORY_COLLAPSE_COUNT;
+
+  historyList.innerHTML =
+    visible.map((word) => `<button class="tag" data-word="${word}">${word}</button>`).join('') +
+    (showExpand
+      ? `<button class="tag tag-expand" id="btn-expand-history" aria-label="展开更多历史">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>`
+      : '');
+
+  historyList.querySelectorAll('.tag[data-word]').forEach((el) => {
+    el.addEventListener('click', () => goSearch(el.dataset.word));
+  });
+
+  const expandBtn = document.getElementById('btn-expand-history');
+  if (expandBtn) {
+    expandBtn.addEventListener('click', () => {
+      historyExpanded = true;
+      renderHistory();
+    });
+  }
+}
+
+/** 裁剪热门标签，保证只展示两行 */
+function trimHotTagsToTwoRows() {
+  const tags = [...hotList.querySelectorAll('.tag')];
+  if (tags.length === 0) return;
+
+  const firstTop = tags[0].offsetTop;
+  let secondTop = -1;
+
+  for (const tag of tags) {
+    const top = tag.offsetTop;
+    if (top > firstTop + 1 && secondTop < 0) {
+      secondTop = top;
+    }
+    if (secondTop >= 0 && top > secondTop + 1) {
+      tag.remove();
+    }
+  }
+}
+
+function renderHotSearch() {
+  if (!showHotSearch) return;
+
+  hotList.innerHTML = hotWords
+    .map((word) => `<button class="tag" data-word="${word}">${word}</button>`)
+    .join('');
+
+  hotList.querySelectorAll('.tag').forEach((el) => {
+    el.addEventListener('click', () => goSearch(el.dataset.word));
+  });
+
+  requestAnimationFrame(trimHotTagsToTwoRows);
+}
+
+function shuffleHotWords() {
+  if (!showHotSearch) return;
+
+  const next = [...hotWords];
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [next[i], next[j]] = [next[j], next[i]];
+  }
+  hotWords = next;
+  renderHotSearch();
+}
+
+function goSearch(query) {
+  const q = query.trim();
+  if (!q) return;
+  window.location.href = buildResultsUrl(resourceType.id, q);
+}
+
+function updateClearBtn() {
+  btnClearInput.classList.toggle('hidden', !searchInput.value);
+}
+
+renderHistory();
+renderHotSearch();
+updateClearBtn();
+
+document.getElementById('btn-search').addEventListener('click', () => {
+  goSearch(searchInput.value);
+});
+
+searchInput.addEventListener('input', updateClearBtn);
+
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') goSearch(searchInput.value);
+});
+
+btnClearInput.addEventListener('click', () => {
+  searchInput.value = '';
+  updateClearBtn();
+  searchInput.focus();
+});
+
+document.getElementById('btn-clear-history').addEventListener('click', () => {
+  historyWords = [];
+  historyExpanded = false;
+  renderHistory();
+});
+
+if (btnRefreshHot) {
+  btnRefreshHot.addEventListener('click', shuffleHotWords);
+}
+
+document.getElementById('btn-back').addEventListener('click', () => {
+  history.back();
+});
+
+searchInput.focus();

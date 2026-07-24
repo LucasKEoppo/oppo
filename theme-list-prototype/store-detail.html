@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>主题商店资源详情</title>
+  <link rel="stylesheet" href="store-detail.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- 全屏预览 -->
+    <div class="hero" id="hero">
+      <div class="hero-shine" aria-hidden="true"></div>
+      <div class="hero-badge" aria-hidden="true"></div>
+
+      <header class="store-header">
+        <button type="button" class="btn-icon" id="btn-back" aria-label="返回">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M15 6l-6 6 6 6"/>
+          </svg>
+        </button>
+        <button type="button" class="btn-icon" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M20 20l-3.5-3.5"/>
+          </svg>
+        </button>
+      </header>
+
+      <div class="resource-meta">
+        <p class="resource-title">
+          <span class="resource-type">壁纸</span>
+          <span class="resource-name" id="resource-name">琉璃</span>
+          <span class="resource-chevron">&gt;</span>
+        </p>
+        <p class="resource-price">
+          <span>1.0 可币</span>
+          <span class="vip-free">VIP 免费</span>
+        </p>
+      </div>
+    </div>
+
+    <footer class="store-footer">
+      <button type="button" class="footer-fav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M12 3.5l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.8 7.2 18.4l.9-5.4L4.2 9.2l5.4-.8L12 3.5z"/>
+        </svg>
+        <span>2.5 万</span>
+      </button>
+      <button type="button" class="btn-free" id="btn-free">免费领</button>
+      <button type="button" class="btn-buy" id="btn-buy">购买</button>
+    </footer>
+
+    <!-- 购买确认 -->
+    <div id="modal-buy" class="modal-overlay hidden">
+      <div class="buy-sheet">
+        <h2 class="buy-title">确认购买</h2>
+        <p class="buy-desc">支付 <strong>1.0 可币</strong> 购买该资源，购买后可返回编辑页应用。</p>
+        <div class="buy-actions">
+          <button type="button" class="btn-sheet-cancel" id="btn-buy-cancel">取消</button>
+          <button type="button" class="btn-sheet-confirm" id="btn-buy-confirm">确认购买</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="store-detail.js"></script>
+</body>
+</html>

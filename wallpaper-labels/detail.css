@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 16px 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.phone-frame {
+  width: 390px;
+  height: 844px;
+  max-height: 844px;
+  background: #111;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.detail-hero {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(165deg, #0D47A1 0%, #1976D2 50%, #64B5F6 100%);
+}
+
+.detail-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 40% 28%, rgba(255, 255, 255, 0.16), transparent 48%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, transparent 30%, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+}
+
+.btn-back {
+  position: absolute;
+  top: 54px;
+  left: 16px;
+  z-index: 5;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.detail-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  padding: 0 16px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.recommend-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 2px;
+}
+
+.recommend-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.recommend-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 72px;
+  height: 128px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.recommend-card.is-current {
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.recommend-thumb {
+  width: 100%;
+  height: 100%;
+}
+
+/* 同栏目付费：仅「付费」小标 */
+.paid-tag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 2;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.btn-set {
+  width: 100%;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #1a1a1a;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.set-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex-shrink: 0;
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>编辑框架内搜索 · 交互流程图</title>
+  <link rel="stylesheet" href="flow.css">
+</head>
+<body>
+  <div class="board">
+    <header class="board-header">
+      <h1>编辑框架内搜索 · 交互流程</h1>
+      <p>每一步为真实原型截图；箭头标注用户操作。搜索结果页无下载按钮。</p>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title">① 编辑场景进入搜索并选资源</h2>
+      <div class="story">
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/00-list.png" alt="更换壁纸">
+          </a>
+          <figcaption>更换壁纸页</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">上滑 · 点搜索</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/01-entry.png" alt="搜索页">
+          </a>
+          <figcaption>搜索页</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">发起搜索</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/02-results.png" alt="结果">
+          </a>
+          <figcaption>搜索结果（无下载）</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点在线资源</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/05-edit-paid.png" alt="回编辑">
+          </a>
+          <figcaption>进入编辑框架</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section free">
+      <h2 class="section-title">② 免费资源：直接应用</h2>
+      <div class="story">
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/05-edit-free.png" alt="免费">
+          </a>
+          <figcaption>编辑页（免费）</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点击「应用」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/08-applying.png" alt="成功">
+          </a>
+          <figcaption>正在应用...</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section paid">
+      <h2 class="section-title">③ 付费资源：购买后再应用</h2>
+      <div class="story">
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/05-edit-paid.png" alt="付费">
+          </a>
+          <figcaption>编辑页（付费未购）</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点击「应用」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/06-purchase-hint.png" alt="弹窗">
+          </a>
+          <figcaption>购买后即可使用</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点击「去购买」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/03-store.png" alt="商店">
+          </a>
+          <figcaption>主题商店详情</figcaption>
+        </figure>
+      </div>
+
+      <div class="story story-continue">
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/03-store.png" alt="完成购买">
+          </a>
+          <figcaption>完成购买 / 免费领</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">返回编辑</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/07-edit-unlocked.png" alt="已解锁">
+          </a>
+          <figcaption>编辑页（已解锁）</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">再次「应用」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="#">
+            <img src="flow-assets/04-apply.png" alt="成功">
+          </a>
+          <figcaption>正在应用...</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="board-footer">
+      <span>点击任一原型图可进入对应页面体验</span>
+      <div class="links"><a href="../index.html">返回总览</a></div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>更换壁纸页 · 交互流程图</title>
+  <link rel="stylesheet" href="flow.css">
+</head>
+<body>
+  <div class="board">
+    <header class="board-header">
+      <h1>更换壁纸页资源应用 · 交互流程</h1>
+      <p>每一步为真实原型截图；箭头标注用户操作。选中资源后返回编辑框架，不经过详情预览。</p>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title">① 公共路径：选资源 → 返回编辑框架</h2>
+      <div class="story">
+        <figure class="step">
+          <a class="phone" href="index.html">
+            <img src="flow-assets/01-list.png" alt="更换壁纸页">
+          </a>
+          <figcaption>更换壁纸页</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">选中资源</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="edit.html?id=sz-1">
+            <img src="flow-assets/03-edit-free.png" alt="返回编辑">
+          </a>
+          <figcaption>返回编辑框架</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section free">
+      <h2 class="section-title">② 免费资源：直接应用</h2>
+      <div class="story">
+        <figure class="step">
+          <a class="phone" href="edit.html?id=sz-1">
+            <img src="flow-assets/03-edit-free.png" alt="编辑页">
+          </a>
+          <figcaption>编辑页</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点击「应用」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="edit.html?id=sz-1">
+            <img src="flow-assets/04-applying.png" alt="正在应用">
+          </a>
+          <figcaption>正在应用...</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section paid">
+      <h2 class="section-title">③ 在线付费：购买后再应用</h2>
+      <div class="story">
+        <figure class="step">
+          <a class="phone" href="edit.html?id=qc-1">
+            <img src="flow-assets/03-edit-paid.png" alt="付费未购">
+          </a>
+          <figcaption>编辑页（付费未购）</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点击「应用」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="edit.html?id=qc-1">
+            <img src="flow-assets/05-purchase-hint.png" alt="购买提示">
+          </a>
+          <figcaption>购买后即可使用</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点击「去购买」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="store-detail.html?id=qc-1">
+            <img src="flow-assets/06-store.png" alt="商店详情">
+          </a>
+          <figcaption>主题商店详情</figcaption>
+        </figure>
+      </div>
+
+      <div class="story story-continue">
+        <figure class="step">
+          <a class="phone" href="store-detail.html?id=qc-1">
+            <img src="flow-assets/06-store.png" alt="完成购买">
+          </a>
+          <figcaption>完成购买 / 免费领</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">返回编辑</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="edit.html?id=qc-1&unlocked=1">
+            <img src="flow-assets/07-edit-unlocked.png" alt="已解锁">
+          </a>
+          <figcaption>编辑页（已解锁）</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">再次「应用」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="edit.html?id=qc-1&unlocked=1">
+            <img src="flow-assets/08-apply-after-buy.png" alt="正在应用">
+          </a>
+          <figcaption>正在应用...</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="board-footer">
+      <span>点击任一原型图可进入对应页面体验</span>
+      <div class="links">
+        <a href="index.html">更换壁纸页</a>
+        <a href="edit.html?id=sz-1">编辑(免费)</a>
+        <a href="edit.html?id=qc-1">编辑(付费)</a>
+        <a href="store-detail.html?id=qc-1">商店详情</a>
+        <a href="../flows.html">全部流程</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

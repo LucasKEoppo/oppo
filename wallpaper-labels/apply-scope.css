@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: #0D47A1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 全屏铺满，不留屏幕边空 */
+.phone-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #0D47A1;
+}
+
+.preview {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(165deg, #1976D2 0%, #1565C0 45%, #0D47A1 100%);
+}
+
+.preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 40% 28%, rgba(255, 255, 255, 0.14), transparent 48%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, transparent 28%, transparent 50%, rgba(0, 0, 0, 0.28) 100%);
+  pointer-events: none;
+}
+
+.btn-back {
+  position: absolute;
+  top: max(44px, env(safe-area-inset-top, 0px) + 12px);
+  left: 12px;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+/* 悬浮弹窗：四角圆角，左右与底部留空隙（对齐原图） */
+.sheet {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: max(28px, env(safe-area-inset-bottom, 0px) + 20px);
+  z-index: 4;
+  width: auto;
+  background: #f2f2f2;
+  border-radius: 22px;
+  padding: 22px 0 8px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.sheet h1 {
+  font-size: 18px;
+  font-weight: 650;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  padding: 0 20px;
+}
+
+.sheet-sub {
+  font-size: 13px;
+  color: #8a8a8a;
+  margin-bottom: 12px;
+  padding: 0 20px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.option {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #007AFF;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;
+  padding: 16px 20px;
+  width: 100%;
+  cursor: pointer;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.option:last-child {
+  border-radius: 0 0 22px 22px;
+}
+
+.option:active {
+  background: rgba(0, 0, 0, 0.04);
+}
