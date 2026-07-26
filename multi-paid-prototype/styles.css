@@ -17,7 +17,7 @@ body {
 .phone-frame {
   width: 390px;
   height: 844px;
-  background: #f5f5f5;
+  background: #111;
   border-radius: 40px;
   overflow: hidden;
   position: relative;
@@ -39,7 +39,7 @@ body {
   display: none !important;
 }
 
-/* ========== 顶部导航 ========== */
+/* ========== 桌面编辑顶栏 ========== */
 .top-bar {
   display: flex;
   align-items: center;
@@ -62,19 +62,20 @@ body {
 }
 
 .top-title.dark {
-  color: #1a1a1a;
+  color: #fff;
 }
 
-.btn-text {
+.btn-pill {
   border: none;
-  font-size: 16px;
-  padding: 6px 4px;
+  font-size: 14px;
+  padding: 7px 14px;
+  border-radius: 100px;
   cursor: pointer;
-  background: none;
 }
 
-.btn-text.light {
-  color: #1a1a1a;
+.btn-pill.dark {
+  background: rgba(60, 60, 60, 0.85);
+  color: #fff;
 }
 
 .btn-apply {
@@ -102,24 +103,16 @@ body {
   flex: 1;
   position: relative;
   overflow: hidden;
+  background: #222;
 }
 
 .desktop-wallpaper {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #1565C0 0%, #1976D2 40%, #64B5F6 100%);
-}
-
-.desktop-wallpaper::after {
-  content: '';
-  position: absolute;
-  bottom: 28%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 100px;
-  background: radial-gradient(ellipse, rgba(100, 181, 246, 0.55) 0%, transparent 70%);
-  border-radius: 50%;
+  background:
+    radial-gradient(circle at 20% 30%, #fff59d 0%, transparent 28%),
+    radial-gradient(circle at 70% 55%, #81c784 0%, transparent 30%),
+    linear-gradient(180deg, #fdd835 0%, #fbc02d 45%, #f9a825 100%);
 }
 
 .desktop-icons {
@@ -137,7 +130,7 @@ body {
   aspect-ratio: 1;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.55);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .desktop-dock {
@@ -162,79 +155,58 @@ body {
 
 /* ========== 全屏：需先获取资源 ========== */
 .acquire-screen {
-  background: #f0f0f0;
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: #f2f2f2;
 }
 
 .acquire-header {
   flex-shrink: 0;
-  padding: 54px 20px 14px;
-  text-align: center;
-  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 54px 16px 14px;
+  background: #f2f2f2;
+}
+
+.btn-close {
+  border: none;
+  background: none;
+  color: #FF3B30;
+  font-size: 16px;
+  padding: 4px 0;
+  min-width: 48px;
+  text-align: left;
+  cursor: pointer;
 }
 
 .acquire-title {
   font-size: 17px;
   font-weight: 600;
   color: #1a1a1a;
+  text-align: center;
+  flex: 1;
+}
+
+.header-spacer {
+  min-width: 48px;
 }
 
 .acquire-body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 0 0 28px;
+  padding: 8px 16px 32px;
   -webkit-overflow-scrolling: touch;
+  background: #f2f2f2;
 }
 
-/* 信息条 */
-.info-banner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 16px 12px;
-  padding: 10px 14px;
-  background: #e8e8e8;
-  border: none;
-  border-radius: 10px;
-  width: calc(100% - 32px);
-  cursor: pointer;
-  text-align: left;
-}
-
-.info-icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #bbb;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  font-style: italic;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.info-text {
-  flex: 1;
-  font-size: 13px;
-  color: #666;
-}
-
-.info-arrow {
-  width: 16px;
-  height: 16px;
-  color: #bbb;
-  flex-shrink: 0;
-}
-
-/* 资源列表卡片 */
 .resource-card {
-  margin: 0 16px 12px;
   background: #fff;
   border-radius: 14px;
   padding: 4px 16px;
+  margin-bottom: 12px;
 }
 
 .resource-row {
@@ -242,24 +214,14 @@ body {
   align-items: center;
   gap: 14px;
   padding: 14px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.resource-row:last-child {
-  border-bottom: none;
 }
 
 .resource-thumb {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-.resource-thumb.wallpaper-thumb {
   width: 48px;
   height: 72px;
   border-radius: 10px;
+  flex-shrink: 0;
+  background: #ddd;
 }
 
 .resource-meta {
@@ -297,12 +259,11 @@ body {
   font-size: 12px;
 }
 
-/* VIP 底栏 */
 .vip-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 16px 8px;
+  margin-bottom: 12px;
   padding: 14px 16px;
   background: #fff;
   border-radius: 14px;
@@ -312,10 +273,10 @@ body {
 .vip-price-row {
   display: flex;
   align-items: baseline;
+  flex-wrap: wrap;
   gap: 4px;
   font-size: 15px;
   color: #1a1a1a;
-  margin-bottom: 4px;
 }
 
 .vip-price-row strong {
@@ -324,14 +285,9 @@ body {
 }
 
 .vip-origin {
-  font-size: 12px;
+  font-size: 13px;
   color: #bbb;
   text-decoration: line-through;
-}
-
-.vip-desc {
-  font-size: 12px;
-  color: #999;
 }
 
 .btn-vip {
@@ -340,16 +296,14 @@ body {
   color: #fff;
   border: none;
   border-radius: 100px;
-  padding: 10px 20px;
+  padding: 10px 18px;
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
 }
 
-/* 获取方式 */
 .more-options {
-  padding: 0 16px 8px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -389,7 +343,7 @@ body {
 .option-aside {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
@@ -403,6 +357,8 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
+  color: #1a1a1a;
+  font-size: 16px;
 }
 
 .coin-icon {
@@ -419,52 +375,14 @@ body {
   color: #ccc;
 }
 
-/* 说明弹窗 */
-.dialog-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-}
-
-.dialog-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 24px 20px 20px;
-  width: 100%;
-  max-width: 300px;
-}
-
-.dialog-title {
-  font-size: 17px;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 16px;
-  color: #1a1a1a;
-}
-
-.dialog-body {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.btn-dialog-ok {
-  display: block;
-  width: 100%;
-  padding: 12px;
+.btn-exchange {
   background: #FF3B30;
   color: #fff;
-  border: none;
   border-radius: 100px;
-  font-size: 16px;
+  padding: 7px 14px;
+  font-size: 14px;
   font-weight: 500;
-  cursor: pointer;
+  line-height: 1;
 }
 
 /* 加载层 */

@@ -14,7 +14,6 @@ let isApplying = false;
 
 const screenDesktop = document.getElementById('screen-desktop');
 const screenAcquire = document.getElementById('screen-acquire');
-const dialogInfo = document.getElementById('dialog-info');
 const loadingOverlay = document.getElementById('loading-overlay');
 const btnApply = document.getElementById('btn-apply');
 
@@ -30,19 +29,6 @@ function showAcquire() {
 function hideAcquire() {
   screenAcquire.classList.remove('active');
   screenDesktop.classList.add('active');
-}
-
-function showDialog() {
-  dialogInfo.classList.remove('hidden');
-}
-
-function hideDialog() {
-  dialogInfo.classList.add('hidden');
-}
-
-function hideAll() {
-  hideAcquire();
-  hideDialog();
 }
 
 function showLoading() {
@@ -62,7 +48,7 @@ function renderResourceList() {
     .map(
       (item) => `
       <div class="resource-row">
-        <div class="resource-thumb wallpaper-thumb" style="background: ${item.gradient}"></div>
+        <div class="resource-thumb" style="background: ${item.gradient}"></div>
         <div class="resource-meta">
           <span class="resource-type">${item.type}</span>
           <span class="resource-name">${item.name}</span>
@@ -80,7 +66,7 @@ function startApplying() {
   if (isApplying) return;
   isApplying = true;
 
-  hideAll();
+  hideAcquire();
   showLoading();
 
   setTimeout(() => {
@@ -101,16 +87,13 @@ function handleBuyClick() {
     return;
   }
 
-  hideDialog();
   renderResourceList();
   showAcquire();
 }
 
 btnApply.addEventListener('click', handleBuyClick);
 
-document.getElementById('btn-info').addEventListener('click', showDialog);
-
-document.getElementById('btn-info-ok').addEventListener('click', hideDialog);
+document.getElementById('btn-acquire-close').addEventListener('click', hideAcquire);
 
 document.getElementById('btn-vip').addEventListener('click', startApplying);
 
@@ -118,10 +101,8 @@ document.getElementById('btn-direct-buy').addEventListener('click', startApplyin
 
 document.getElementById('btn-coin-exchange').addEventListener('click', startApplying);
 
-document.getElementById('btn-cancel').addEventListener('click', hideAll);
-
-dialogInfo.addEventListener('click', (e) => {
-  if (e.target === dialogInfo) hideDialog();
+document.getElementById('btn-cancel').addEventListener('click', () => {
+  hideAcquire();
 });
 
 document.getElementById('vip-price').textContent = VIP_PRICE;
