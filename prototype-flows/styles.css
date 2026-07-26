@@ -158,11 +158,13 @@ body {
 .action-label.wrap {
   display: inline-block;
   white-space: normal;
-  max-width: 110px;
+  width: max-content;
+  max-width: none;
   text-align: center;
   line-height: 1.35;
   border-radius: 12px;
   padding: 8px 10px;
+  word-break: keep-all;
 }
 
 .action-label::after {
