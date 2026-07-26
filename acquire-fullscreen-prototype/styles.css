@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 16px 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.phone-frame {
+  width: 390px;
+  height: 844px;
+  background: #111;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 54px 16px 14px;
+  background: #fff;
+}
+
+.btn-close {
+  border: none;
+  background: transparent;
+  color: #eb3b3b;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px 0;
+  min-width: 48px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+}
+
+.header-spacer {
+  min-width: 48px;
+}
+
+.body {
+  flex: 1;
+  padding: 12px 16px 24px;
+  overflow-y: auto;
+}
+
+.resource-card {
+  display: flex;
+  gap: 12px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.thumb {
+  width: 72px;
+  height: 96px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  background:
+    radial-gradient(circle at 30% 35%, #fff59d 0%, transparent 32%),
+    radial-gradient(circle at 68% 62%, #81c784 0%, transparent 34%),
+    linear-gradient(180deg, #fdd835 0%, #fbc02d 50%, #f9a825 100%);
+}
+
+.resource-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.resource-type {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+.resource-name {
+  font-size: 13px;
+  color: #8a8a8a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resource-price {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.price-num {
+  color: #000;
+  font-weight: 600;
+}
+
+.price-unit {
+  color: #666;
+}
+
+.vip-tag {
+  margin-left: 4px;
+  color: #c9a06a;
+}
+
+.vip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.vip-text {
+  font-size: 15px;
+  color: #000;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.vip-text strong {
+  font-weight: 700;
+}
+
+.vip-origin {
+  color: #b0b0b0;
+  text-decoration: line-through;
+  font-size: 13px;
+}
+
+.btn-vip {
+  border: none;
+  background: #eb3b3b;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 100px;
+  white-space: nowrap;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.option-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.option-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+.option-desc {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.option-aside {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.option-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+.chevron {
+  width: 18px;
+  height: 18px;
+  color: #c0c0c0;
+}
+
+.coin-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+.coin-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffd54f, #ffb300);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn-exchange {
+  background: #ff4d8d;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 100px;
+}
