@@ -139,8 +139,9 @@ body {
 }
 
 .action-label.wrap {
+  display: inline-block;
   white-space: normal;
-  max-width: 84px;
+  max-width: 110px;
   text-align: center;
   line-height: 1.35;
   border-radius: 12px;
