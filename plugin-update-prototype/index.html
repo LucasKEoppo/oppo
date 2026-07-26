@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>插件更新中 · 原型</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="screen">
+      <div class="bg" aria-hidden="true"></div>
+
+      <header class="top-bar">
+        <button class="btn-icon" type="button" id="btn-back" aria-label="返回">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M15 6l-6 6 6 6"/>
+          </svg>
+        </button>
+        <button class="btn-icon" type="button" aria-label="搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M20 20l-3.5-3.5"/>
+          </svg>
+        </button>
+      </header>
+
+      <div class="preview-wrap">
+        <div class="preview-card">
+          <div class="preview-date">10-09 星期一 农历 四月十四</div>
+          <div class="preview-time">08:08</div>
+          <div class="preview-art" aria-hidden="true">
+            <div class="cat"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-mask" id="sheet-mask"></div>
+      <section class="update-sheet" id="update-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+        <h1 class="sheet-title" id="sheet-title">插件更新中....</h1>
+        <div class="progress" aria-hidden="true">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p class="sheet-desc">
+          为了此主题内的新玩法可以正常生效，必须先更新官方插件。此插件已经过安全检测，请放心安装
+        </p>
+        <button class="btn-cancel" type="button" id="btn-cancel">取消</button>
+      </section>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
