@@ -1,4 +1,4 @@
-import { themeSections } from './data.js';
+import { themeSections } from './data.js?v=2';
 
 /** 小刷子图标（三齿笔头 + 箍 + 短笔杆，斜向） */
 const brushIconSvg = `
