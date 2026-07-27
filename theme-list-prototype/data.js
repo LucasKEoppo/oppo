@@ -28,7 +28,7 @@ export const themeSections = [
   },
   {
     id: 'seize-now',
-    title: '趁现在',
+    title: '灵感主题栏目2',
     subtitle: '尽兴而活，就趁现在',
     themes: [
       { id: 'sn-1', paid: false, gradient: BLUE[3] },
