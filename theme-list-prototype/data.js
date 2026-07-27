@@ -18,7 +18,7 @@ const BLUE = [
 export const themeSections = [
   {
     id: 'live-clock',
-    title: 'Live 时钟',
+    title: '灵感主题栏目1',
     subtitle: '在时间的缝隙里捕捉光阴',
     themes: [
       { id: 'lc-1', paid: true, gradient: BLUE[0] },
