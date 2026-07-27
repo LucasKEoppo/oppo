@@ -38,7 +38,7 @@ export const themeSections = [
   },
   {
     id: 'with-light',
-    title: '与光同行者',
+    title: '灵感主题栏目3',
     subtitle: '每个追光瞬间都彰显独特生命力',
     themes: [
       { id: 'wl-1', paid: true, gradient: BLUE[6] },
