@@ -13,6 +13,8 @@ const hotList = document.getElementById('hot-list');
 const sectionHistory = document.getElementById('section-history');
 const btnClearInput = document.getElementById('btn-clear-input');
 const btnRefreshHot = document.getElementById('btn-refresh-hot');
+const btnClearHistory = document.getElementById('btn-clear-history');
+const showHistory = Boolean(historyList && sectionHistory);
 const showHotSearch = Boolean(hotList && btnRefreshHot);
 
 let historyWords = [...resourceType.history];
@@ -25,6 +27,8 @@ searchInput.placeholder =
   resourceType.id === 'wallpaper' ? '搜索在线壁纸' : resourceType.placeholder;
 
 function renderHistory() {
+  if (!showHistory) return;
+
   if (historyWords.length === 0) {
     sectionHistory.classList.add('hidden');
     return;
@@ -134,11 +138,13 @@ btnClearInput.addEventListener('click', () => {
   searchInput.focus();
 });
 
-document.getElementById('btn-clear-history').addEventListener('click', () => {
-  historyWords = [];
-  historyExpanded = false;
-  renderHistory();
-});
+if (btnClearHistory) {
+  btnClearHistory.addEventListener('click', () => {
+    historyWords = [];
+    historyExpanded = false;
+    renderHistory();
+  });
+}
 
 if (btnRefreshHot) {
   btnRefreshHot.addEventListener('click', shuffleHotWords);
