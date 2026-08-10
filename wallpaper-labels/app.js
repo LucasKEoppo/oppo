@@ -1,4 +1,4 @@
-import { wallpaperCategories } from './data.js';
+import { wallpaperCategories } from './data.js?v=8';
 
 /** 小刷子图标（三齿笔头 + 箍 + 短笔杆，斜向） */
 const brushIconSvg = `
@@ -32,8 +32,7 @@ function renderCornerBadge(wallpaper) {
   return `<span class="corner-badge badge-brush">${brushIconSvg}</span>`;
 }
 
-function renderDownloadIcon(wallpaper) {
-  if (!wallpaper.download) return '';
+function renderDownloadIcon() {
   return `<span class="download-icon" aria-hidden="true">${downloadIconSvg}</span>`;
 }
 
@@ -51,7 +50,7 @@ function renderWallpaperCard(wallpaper, categoryId) {
     <a class="wallpaper-card" href="detail.html?id=${encodeURIComponent(wallpaper.id)}" data-id="${wallpaper.id}" data-category="${categoryId}">
       <div class="wallpaper-placeholder" style="background: ${bg}"></div>
       ${renderCornerBadge(wallpaper)}
-      ${renderDownloadIcon(wallpaper)}
+      ${renderDownloadIcon()}
     </a>
   `;
 }
