@@ -1,4 +1,7 @@
-import { wallpaperCategories } from './data.js?v=8';
+import { wallpaperCategories } from './data.js?v=9';
+
+const DOWNLOAD_STORAGE_KEY = 'wallpaper-labels-downloaded';
+const DOWNLOAD_DURATION_MS = 2200;
 
 /** 小刷子图标（三齿笔头 + 箍 + 短笔杆，斜向） */
 const brushIconSvg = `
@@ -24,6 +27,23 @@ const downloadIconSvg = `
   </svg>
 `;
 
+function loadDownloadedIds() {
+  try {
+    const raw = sessionStorage.getItem(DOWNLOAD_STORAGE_KEY);
+    const list = raw ? JSON.parse(raw) : [];
+    return new Set(Array.isArray(list) ? list : []);
+  } catch {
+    return new Set();
+  }
+}
+
+function saveDownloadedIds(ids) {
+  sessionStorage.setItem(DOWNLOAD_STORAGE_KEY, JSON.stringify([...ids]));
+}
+
+const downloadedIds = loadDownloadedIds();
+const downloadingIds = new Set();
+
 function renderCornerBadge(wallpaper) {
   if (!wallpaper.brush && !wallpaper.paid) return '';
   if (wallpaper.paid) {
@@ -32,8 +52,42 @@ function renderCornerBadge(wallpaper) {
   return `<span class="corner-badge badge-brush">${brushIconSvg}</span>`;
 }
 
-function renderDownloadIcon() {
-  return `<span class="download-icon" aria-hidden="true">${downloadIconSvg}</span>`;
+/** 环形进度条：灰底轨 + 白色进度弧 + 前端小圆点 */
+function renderProgressRing(progress = 0) {
+  const size = 20;
+  const stroke = 2.2;
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const p = Math.max(0, Math.min(1, progress));
+  const offset = c * (1 - p);
+  const angle = -Math.PI / 2 + p * Math.PI * 2;
+  const cx = size / 2 + r * Math.cos(angle);
+  const cy = size / 2 + r * Math.sin(angle);
+  const showDot = p > 0.01 && p < 0.995;
+
+  return `
+    <span class="download-progress" role="progressbar" aria-valuenow="${Math.round(p * 100)}" aria-valuemin="0" aria-valuemax="100">
+      <svg class="progress-ring-svg" viewBox="0 0 ${size} ${size}" aria-hidden="true">
+        <circle class="progress-track" cx="${size / 2}" cy="${size / 2}" r="${r}"
+          fill="none" stroke-width="${stroke}"/>
+        <circle class="progress-arc" cx="${size / 2}" cy="${size / 2}" r="${r}"
+          fill="none" stroke-width="${stroke}"
+          stroke-dasharray="${c.toFixed(2)}"
+          stroke-dashoffset="${offset.toFixed(2)}"
+          transform="rotate(-90 ${size / 2} ${size / 2})"/>
+        ${showDot ? `<circle class="progress-tip" cx="${cx.toFixed(2)}" cy="${cy.toFixed(2)}" r="2.1"/>` : ''}
+      </svg>
+    </span>
+  `;
+}
+
+function renderDownloadSlot(wallpaperId) {
+  if (downloadedIds.has(wallpaperId)) return '';
+  return `
+    <span class="download-icon" data-download-slot="${wallpaperId}" aria-hidden="true">
+      ${downloadIconSvg}
+    </span>
+  `;
 }
 
 function adjustColor(hex, amount) {
@@ -46,11 +100,16 @@ function adjustColor(hex, amount) {
 
 function renderWallpaperCard(wallpaper, categoryId) {
   const bg = `linear-gradient(160deg, ${wallpaper.color} 0%, ${adjustColor(wallpaper.color, -28)} 100%)`;
+  const done = downloadedIds.has(wallpaper.id);
   return `
-    <a class="wallpaper-card" href="detail.html?id=${encodeURIComponent(wallpaper.id)}" data-id="${wallpaper.id}" data-category="${categoryId}">
+    <a class="wallpaper-card${done ? ' is-downloaded' : ''}"
+       href="detail.html?id=${encodeURIComponent(wallpaper.id)}"
+       data-id="${wallpaper.id}"
+       data-category="${categoryId}"
+       data-state="${done ? 'done' : 'idle'}">
       <div class="wallpaper-placeholder" style="background: ${bg}"></div>
       ${renderCornerBadge(wallpaper)}
-      ${renderDownloadIcon()}
+      ${renderDownloadSlot(wallpaper.id)}
     </a>
   `;
 }
@@ -74,6 +133,71 @@ function renderCategorySection(category) {
   `;
 }
 
+function startCardDownload(card) {
+  const id = card.dataset.id;
+  if (!id || downloadingIds.has(id) || downloadedIds.has(id)) return;
+
+  downloadingIds.add(id);
+  card.dataset.state = 'downloading';
+  card.classList.add('is-downloading');
+
+  const slot = card.querySelector('[data-download-slot]');
+  if (!slot) {
+    downloadingIds.delete(id);
+    return;
+  }
+
+  const start = performance.now();
+
+  function tick(now) {
+    const t = Math.min(1, (now - start) / DOWNLOAD_DURATION_MS);
+    const progress = 1 - (1 - t) * (1 - t);
+    slot.innerHTML = renderProgressRing(progress);
+
+    if (t < 1) {
+      requestAnimationFrame(tick);
+      return;
+    }
+
+    downloadedIds.add(id);
+    saveDownloadedIds(downloadedIds);
+    downloadingIds.delete(id);
+    card.dataset.state = 'done';
+    card.classList.remove('is-downloading');
+    card.classList.add('is-downloaded');
+    slot.remove();
+  }
+
+  slot.innerHTML = renderProgressRing(0.02);
+  requestAnimationFrame(tick);
+}
+
 document.getElementById('content').innerHTML = wallpaperCategories
   .map(renderCategorySection)
   .join('');
+
+document.getElementById('content').addEventListener('click', (e) => {
+  const card = e.target.closest('.wallpaper-card');
+  if (!card) return;
+
+  const id = card.dataset.id;
+  if (!id) return;
+
+  // 下载中：拦截跳转
+  if (downloadingIds.has(id) || card.dataset.state === 'downloading') {
+    e.preventDefault();
+    return;
+  }
+
+  // 未下载：首次点击开始下载，不进详情
+  if (!downloadedIds.has(id)) {
+    e.preventDefault();
+    startCardDownload(card);
+  }
+  // 已下载：放行，进入详情页
+});
+
+const btnBack = document.getElementById('btn-back');
+if (btnBack) {
+  btnBack.addEventListener('click', () => history.back());
+}

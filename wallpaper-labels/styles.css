@@ -208,6 +208,37 @@ body {
   display: block;
 }
 
+.download-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.progress-ring-svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.progress-track {
+  stroke: rgba(255, 255, 255, 0.35);
+}
+
+.progress-arc {
+  stroke: #fff;
+  stroke-linecap: round;
+}
+
+.progress-tip {
+  fill: #fff;
+}
+
+.wallpaper-card.is-downloading {
+  pointer-events: auto;
+}
+
 .footer-more {
   flex-shrink: 0;
   padding: 10px 24px 28px;
