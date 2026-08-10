@@ -36,32 +36,57 @@ body {
   position: relative;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  z-index: 1;
+}
+
 .header-side {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-width: 78px;
+  min-width: 72px;
   z-index: 1;
 }
 
-.header-left {
+.header-centered .header-left {
   justify-content: flex-start;
 }
 
 .header-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   font-size: 18px;
   font-weight: 600;
   color: #1a1a1a;
   line-height: 1;
+}
+
+.header-centered .header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   white-space: nowrap;
   pointer-events: none;
 }
 
 .header-actions {
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.header-text-btn {
+  border: none;
+  background: transparent;
+  color: #1a1a1a;
+  font-size: 16px;
+  padding: 6px 4px;
+  cursor: pointer;
 }
 
 .header-icon-btn {
