@@ -33,28 +33,35 @@ body {
   padding: 54px 16px 12px;
   background: #f2f2f2;
   flex-shrink: 0;
+  position: relative;
 }
 
-.header-left {
+.header-side {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-width: 0;
+  min-width: 78px;
+  z-index: 1;
+}
+
+.header-left {
+  justify-content: flex-start;
 }
 
 .header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 18px;
   font-weight: 600;
   color: #1a1a1a;
   line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .header-actions {
-  display: flex;
-  align-items: center;
   justify-content: flex-end;
-  gap: 10px;
-  flex-shrink: 0;
 }
 
 .header-icon-btn {
