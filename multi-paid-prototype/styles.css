@@ -411,6 +411,42 @@ body {
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #FFD54F, #F9A825);
   display: inline-block;
+  flex-shrink: 0;
+}
+
+.coin-exchange-card {
+  align-items: center;
+}
+
+.coin-cost-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.coin-cost-now {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e53935;
+  line-height: 1;
+}
+
+.coin-cost-origin {
+  font-size: 13px;
+  color: #b0b0b0;
+  text-decoration: line-through;
+  line-height: 1;
+}
+
+.btn-exchange {
+  background: #ffe8ee;
+  color: #e53935;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 100px;
+  flex-shrink: 0;
 }
 
 .option-arrow {

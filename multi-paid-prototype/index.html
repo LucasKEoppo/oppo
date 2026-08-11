@@ -72,20 +72,17 @@
               </svg>
             </div>
           </button>
-          <button class="option-card" id="btn-coin-exchange" type="button">
+          <button class="option-card coin-exchange-card" id="btn-coin-exchange" type="button">
             <div class="option-text">
               <span class="option-title">金币兑换</span>
               <span class="option-desc">做任务免费获取资源</span>
-            </div>
-            <div class="option-aside">
-              <span class="option-price coin">
+              <div class="coin-cost-row">
+                <span class="coin-cost-now" id="coin-total">100</span>
                 <span class="coin-icon" aria-hidden="true"></span>
-                <span id="coin-total">100</span>
-              </span>
-              <svg class="option-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 6l6 6-6 6"/>
-              </svg>
+                <span class="coin-cost-origin">100</span>
+              </div>
             </div>
+            <span class="btn-exchange">兑换</span>
           </button>
         </div>
       </div>
