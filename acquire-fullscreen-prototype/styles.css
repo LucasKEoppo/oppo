@@ -84,9 +84,8 @@ body {
   border-radius: 10px;
   flex-shrink: 0;
   background:
-    radial-gradient(circle at 30% 35%, #fff59d 0%, transparent 32%),
-    radial-gradient(circle at 68% 62%, #81c784 0%, transparent 34%),
-    linear-gradient(180deg, #fdd835 0%, #fbc02d 50%, #f9a825 100%);
+    radial-gradient(circle at 28% 30%, rgba(255, 255, 255, 0.28) 0%, transparent 36%),
+    linear-gradient(165deg, #0D47A1 0%, #1976D2 50%, #64B5F6 100%);
 }
 
 .resource-meta {
