@@ -406,12 +406,19 @@ body {
 }
 
 .coin-icon {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #FFD54F, #F9A825);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
+  line-height: 0;
+}
+
+.coin-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
 }
 
 .coin-exchange-card {
