@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>选择壁纸应用范围</title>
+  <link rel="stylesheet" href="apply-scope.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="preview" id="preview"></div>
+
+    <button type="button" class="btn-back" id="btn-back" aria-label="返回">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <path d="M15 6l-6 6 6 6"/>
+      </svg>
+    </button>
+
+    <div class="sheet" role="dialog" aria-labelledby="scope-title">
+      <h1 id="scope-title">选择壁纸应用范围</h1>
+      <p class="sheet-sub">选择范围后，可预览效果和编辑</p>
+      <div class="options" id="options">
+        <button type="button" class="option" data-scope="lock">锁屏</button>
+        <button type="button" class="option" data-scope="home">桌面</button>
+        <button type="button" class="option" data-scope="both">锁屏和桌面</button>
+        <button type="button" class="option" data-scope="carousel">锁屏轮播壁纸</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="apply-scope.js"></script>
+</body>
+</html>

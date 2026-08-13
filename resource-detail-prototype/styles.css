@@ -1,0 +1,560 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 16px 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.phone-frame {
+  width: 390px;
+  height: 844px;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.detail-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* ========== 主资源预览 ========== */
+.detail-hero {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+/* 模拟油画笔触纹理 */
+.detail-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(0, 0, 0, 0.06) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* ========== 返回按钮 ========== */
+.btn-back {
+  position: absolute;
+  top: 54px;
+  left: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* ========== 底部推荐区 ========== */
+.detail-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 16px 12px;
+  z-index: 10;
+}
+
+.recommend-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 16px;
+  justify-content: center;
+}
+
+.recommend-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.recommend-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 56px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.recommend-card:active {
+  opacity: 0.85;
+}
+
+.recommend-thumb {
+  width: 100%;
+  height: 100%;
+}
+
+/* 右上角付费标识 — 半透明小胶囊 */
+.price-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding: 1px 5px;
+  border-radius: 100px;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 12px;
+  letter-spacing: 0.2px;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.badge-paid {
+  background: rgba(0, 0, 0, 0.38);
+}
+
+/* ========== 设为按钮 ========== */
+.btn-set {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  padding: 14px 0;
+  border: none;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+.btn-set:active {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.home-indicator {
+  width: 134px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 3px;
+  margin: 12px auto 4px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ========== 弹窗通用 ========== */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal-overlay.sheet-mode {
+  align-items: flex-end;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.paid-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 300px;
+  padding: 28px 24px 20px;
+  text-align: center;
+  animation: scaleIn 0.3s ease;
+}
+
+.modal-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.modal-preview {
+  margin-bottom: 24px;
+}
+
+.preview-wallpaper {
+  width: 140px;
+  height: 260px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.btn-primary {
+  background: #FF3B30;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 13px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #FF3B30;
+  font-size: 15px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn-text-red {
+  background: none;
+  border: none;
+  color: #FF3B30;
+  font-size: 15px;
+  cursor: pointer;
+  min-width: 48px;
+}
+
+.btn-full {
+  margin: 0 20px 36px;
+  width: calc(100% - 40px);
+}
+
+.bottom-sheet {
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  animation: slideUp 0.35s ease;
+  max-height: 85%;
+}
+
+.sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sheet-header.three-col {
+  padding: 16px;
+}
+
+.sheet-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.header-spacer {
+  min-width: 48px;
+}
+
+.purchase-options {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.purchase-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.purchase-option.selected {
+  border-color: #FF3B30;
+}
+
+.option-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.option-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.option-tag {
+  background: linear-gradient(90deg, #FF9500, #FF3B30);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.option-desc {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.single-desc {
+  color: #333;
+  font-size: 14px;
+}
+
+.option-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.price-main {
+  font-size: 22px;
+  font-weight: 700;
+  color: #FF3B30;
+}
+
+.price-origin {
+  font-size: 13px;
+  color: #bbb;
+  text-decoration: line-through;
+}
+
+.radio {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.radio.checked {
+  border-color: #FF3B30;
+}
+
+.radio.checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #FF3B30;
+  border-radius: 50%;
+}
+
+.purchase-agreement {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 0 20px 16px;
+  font-size: 11px;
+  color: #999;
+  line-height: 1.5;
+}
+
+.purchase-agreement input {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.purchase-agreement a {
+  color: #007AFF;
+  text-decoration: none;
+}
+
+.free-sheet {
+  padding-bottom: 8px;
+}
+
+.free-progress-card {
+  display: flex;
+  gap: 14px;
+  margin: 20px 20px 24px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 12px;
+}
+
+.free-thumb {
+  width: 56px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.free-thumb-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.free-progress-info {
+  flex: 1;
+}
+
+.free-progress-title {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.free-progress-title strong {
+  color: #FF3B30;
+  font-weight: 700;
+}
+
+.progress-bar-wrap {
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #e8e8e8;
+  border-radius: 3px;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF9500, #FF3B30);
+  border-radius: 3px;
+}
+
+.progress-coin {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle at 35% 35%, #FFD700, #FFA500);
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #999;
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.loading-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 148px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+}
+
+.loading-spinner-svg {
+  width: 40px;
+  height: 40px;
+  animation: spin 0.85s linear infinite;
+}
+
+.loading-spinner-arc {
+  fill: none;
+  stroke: #1a1a1a;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 48 78;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 16px;
+  font-size: 15px;
+  color: #1a1a1a;
+  font-weight: 400;
+}
+
+.btn-set.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.btn-set.applied {
+  background: rgba(255, 255, 255, 0.55);
+  color: rgba(26, 26, 26, 0.55);
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 条流程 · 原型图预览</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+      background: #e8ecf2;
+      color: #1a1a1a;
+      padding: 24px 16px 64px;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    header {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(20,40,80,.06);
+    }
+    h1 { font-size: 22px; margin-bottom: 6px; }
+    header p { font-size: 13px; color: #6b7280; line-height: 1.5; }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    nav a {
+      font-size: 13px;
+      color: #2563eb;
+      text-decoration: none;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+    nav a:hover { background: #dbeafe; }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px 16px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(20,40,80,.06);
+      scroll-margin-top: 16px;
+    }
+    .card h2 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eef0f4;
+    }
+    .card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      background: #f8fafc;
+    }
+    .hint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+    .hint a { color: #2563eb; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>5 条「逐步原型截图」故事板 · 直接看图</h1>
+      <p>本页是图片预览，不是代码。向下滚动即可查看全部 5 条流程。也可在 Cursor 用 Markdown 预览打开「查看原型图.md」。</p>
+      <nav>
+        <a href="#f0">总览</a>
+        <a href="#f1">1 壁纸入口</a>
+        <a href="#f2">2 主题入口</a>
+        <a href="#f3">3 更换壁纸</a>
+        <a href="#f4">4 独立搜索</a>
+        <a href="#f5">5 编辑内搜索</a>
+      </nav>
+    </header>
+
+    <section class="card" id="f0">
+      <h2>总览</h2>
+      <img src="previews/00-overview.png" alt="流程总览">
+    </section>
+    <section class="card" id="f1">
+      <h2>1. 壁纸资源独立入口应用流程</h2>
+      <img src="previews/01-wallpaper-entry.png" alt="壁纸独立入口">
+      <p class="hint">交互原型：<a href="../wallpaper-labels/index.html">壁纸列表</a></p>
+    </section>
+    <section class="card" id="f2">
+      <h2>2. 主题资源独立入口应用流程</h2>
+      <img src="previews/02-theme-entry.png" alt="主题独立入口">
+      <p class="hint">交互原型：<a href="../theme-list-prototype/index.html">灵感主题列表</a></p>
+    </section>
+    <section class="card" id="f3">
+      <h2>3. 更换壁纸页资源应用流程</h2>
+      <img src="previews/03-change-wallpaper.png" alt="更换壁纸页">
+      <p class="hint">交互原型：<a href="../wallpaper-labels/change.html">更换壁纸页</a></p>
+    </section>
+    <section class="card" id="f4">
+      <h2>4. 独立入口资源列表搜索流程</h2>
+      <img src="previews/04-search-independent.png" alt="独立入口搜索">
+      <p class="hint">交互原型：<a href="../search-prototype/index.html">搜索入口</a></p>
+    </section>
+    <section class="card" id="f5">
+      <h2>5. 编辑框架内搜索流程</h2>
+      <img src="previews/05-search-in-edit.png" alt="编辑框架内搜索">
+    </section>
+  </div>
+</body>
+</html>

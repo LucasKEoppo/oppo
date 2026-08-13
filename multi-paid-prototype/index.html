@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>多资源应用原型</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+
+    <!-- 桌面编辑页 -->
+    <div id="screen-desktop" class="screen active">
+      <header class="top-bar light">
+        <button class="btn-text light" id="btn-cancel">取消</button>
+        <h1 class="top-title dark">桌面</h1>
+        <button class="btn-apply" id="btn-apply">购买</button>
+      </header>
+
+      <div class="desktop-preview">
+        <div class="desktop-wallpaper"></div>
+        <div class="desktop-icons">
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+          <div class="icon-cell"></div>
+        </div>
+        <div class="desktop-dock">
+          <div class="dock-icon"></div>
+          <div class="dock-icon"></div>
+          <div class="dock-icon"></div>
+          <div class="dock-icon"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 需先获取资源 · 全屏页 -->
+    <div id="screen-acquire" class="screen acquire-screen">
+      <header class="acquire-header">
+        <h1 class="acquire-title">需先获取以下资源</h1>
+      </header>
+
+      <div class="acquire-body">
+        <div class="resource-card" id="resource-list"></div>
+
+        <div class="vip-bar">
+          <div class="vip-bar-text">
+            <div class="vip-price-row">
+              <span>开通VIP</span>
+              <strong>¥ <span id="vip-price">4</span></strong>
+              <span class="vip-origin">¥<span id="vip-origin">15</span>/月</span>
+            </div>
+            <p class="vip-desc">开通VIP全场装扮免费用</p>
+          </div>
+          <button class="btn-vip" id="btn-vip" type="button">立即开通</button>
+        </div>
+
+        <div class="more-options" id="more-options">
+          <button class="option-card" id="btn-direct-buy" type="button">
+            <div class="option-text">
+              <span class="option-title">直接购买</span>
+              <span class="option-desc">购买后资源永久有效</span>
+            </div>
+            <div class="option-aside">
+              <span class="option-price" id="direct-price">¥1.0</span>
+              <svg class="option-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 6l6 6-6 6"/>
+              </svg>
+            </div>
+          </button>
+          <button class="option-card coin-exchange-card" id="btn-coin-exchange" type="button">
+            <div class="option-text">
+              <span class="option-title">金币兑换</span>
+              <span class="option-desc">做任务免费获取资源</span>
+              <div class="coin-cost-row">
+                <span class="coin-cost-now" id="coin-total">100</span>
+                <span class="coin-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16">
+                    <circle cx="12" cy="12" r="11" fill="#F5A623"/>
+                    <circle cx="12" cy="12" r="8.5" fill="#FFD54F"/>
+                    <text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#C47A00">币</text>
+                  </svg>
+                </span>
+                <span class="coin-cost-origin">100</span>
+              </div>
+            </div>
+            <span class="btn-exchange">兑换</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 应用加载层 -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+      <div class="loading-card">
+        <div class="loading-spinner" aria-hidden="true">
+          <svg class="loading-spinner-svg" viewBox="0 0 48 48">
+            <circle class="loading-spinner-arc" cx="24" cy="24" r="20" />
+          </svg>
+        </div>
+        <p class="loading-text">正在应用</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原型预览</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+      background: #111;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .top {
+      padding: 20px 24px 12px;
+      border-bottom: 1px solid #333;
+    }
+    h1 { font-size: 20px; margin-bottom: 6px; }
+    .tip { font-size: 13px; color: #999; line-height: 1.6; }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 12px 24px;
+      overflow-x: auto;
+      border-bottom: 1px solid #333;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1px solid #444;
+      background: #1a1a1a;
+      color: #ccc;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .tab:hover { border-color: #666; color: #fff; }
+    .tab.active {
+      background: #007AFF;
+      border-color: #007AFF;
+      color: #fff;
+    }
+    .viewer {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px;
+      min-height: calc(100vh - 120px);
+    }
+    .phone-wrap {
+      width: 390px;
+      height: 844px;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      background: #000;
+      transition: width .2s, height .2s, border-radius .2s;
+    }
+    .phone-wrap.wide {
+      width: min(1100px, calc(100vw - 48px));
+      height: calc(100vh - 180px);
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+    }
+    .phone-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #fff;
+    }
+    .open-full {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      color: #007AFF;
+      font-size: 13px;
+      text-decoration: none;
+    }
+    .open-full:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <h1>原型预览</h1>
+    <p class="tip">下方为实时渲染的手机原型，可直接操作。切换顶部标签查看不同页面。</p>
+  </div>
+
+  <nav class="tabs" id="tabs">
+    <a class="tab" href="?p=flows" data-src="prototype-flows/flow.html">流程总览(同款flow)</a>
+    <a class="tab" href="?p=flows-gallery" data-src="prototype-flows/gallery.html">流程原型图(PNG图集)</a>
+    <a class="tab" href="?p=flow-1" data-src="prototype-flows/01-wallpaper-entry.html">流程1 壁纸入口</a>
+    <a class="tab" href="?p=flow-2" data-src="prototype-flows/02-theme-entry.html">流程2 主题入口</a>
+    <a class="tab" href="?p=flow-3" data-src="prototype-flows/03-change-wallpaper.html">流程3 更换壁纸</a>
+    <a class="tab" href="?p=flow-4" data-src="prototype-flows/04-search-independent.html">流程4 独立搜索</a>
+    <a class="tab" href="?p=flow-5" data-src="prototype-flows/05-search-in-edit.html">流程5 编辑内搜索</a>
+    <a class="tab" href="?p=lockscreen" data-src="lockscreen-prototype/index.html?v=apply">单资源解锁</a>
+    <a class="tab" href="?p=multi-paid" data-src="multi-paid-prototype/index.html">多资源应用</a>
+    <a class="tab" href="?p=plugin-update" data-src="plugin-update-prototype/index.html">插件更新弹窗</a>
+    <a class="tab" href="?p=wallpaper" data-src="wallpaper-labels/index.html">壁纸独立入口列表</a>
+    <a class="tab" href="?p=wallpaper-change" data-src="wallpaper-labels/change.html">更换壁纸页</a>
+    <a class="tab" href="?p=wallpaper-detail" data-src="wallpaper-labels/detail.html?id=qc-1">壁纸资源详情</a>
+    <a class="tab" href="?p=wallpaper-edit" data-src="wallpaper-labels/edit.html?id=sz-1">壁纸编辑(免费)</a>
+    <a class="tab" href="?p=wallpaper-edit-paid" data-src="wallpaper-labels/edit.html?id=qc-1">壁纸编辑(付费)</a>
+    <a class="tab" href="?p=detail" data-src="resource-detail-prototype/index.html">资源详情</a>
+    <a class="tab" href="?p=search" data-src="search-prototype/index.html">资源搜索</a>
+    <a class="tab" href="?p=search-no-history" data-src="search-prototype/index-no-history.html">搜索（无历史）</a>
+    <a class="tab" href="?p=search-no-hot" data-src="search-prototype/index-no-hot.html">搜索（无热门）</a>
+    <a class="tab" href="?p=theme-list" data-src="theme-list-prototype/index.html">灵感主题列表</a>
+    <a class="tab" href="?p=theme-flow" data-src="theme-list-prototype/flow.html">主题流程示意</a>
+    <a class="tab" href="?p=theme-edit" data-src="theme-list-prototype/edit.html?id=lc-2">主题编辑(免费)</a>
+    <a class="tab" href="?p=theme-edit-paid" data-src="theme-list-prototype/edit.html?id=lc-1">主题编辑(付费)</a>
+    <a class="tab" href="?p=theme-store" data-src="theme-list-prototype/store-detail.html?id=lc-1">主题商店详情</a>
+    <a class="tab" href="?p=ops" data-src="ops-backend-prototype/index.html">运营后台</a>
+  </nav>
+
+  <div class="viewer">
+    <div>
+      <div class="phone-wrap">
+        <iframe id="proto-frame" title="原型预览" src="lockscreen-prototype/index.html?v=apply"></iframe>
+      </div>
+      <a class="open-full" id="open-full" href="lockscreen-prototype/index.html?v=apply" target="_blank">全屏打开当前原型</a>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const frame = document.getElementById('proto-frame');
+    const openFull = document.getElementById('open-full');
+
+    const map = {
+      'flows-gallery': 'prototype-flows/gallery.html',
+      flows: 'prototype-flows/index.html',
+      'flow-1': 'prototype-flows/01-wallpaper-entry.html',
+      'flow-2': 'prototype-flows/02-theme-entry.html',
+      'flow-3': 'prototype-flows/03-change-wallpaper.html',
+      'flow-4': 'prototype-flows/04-search-independent.html',
+      'flow-5': 'prototype-flows/05-search-in-edit.html',
+      lockscreen: 'lockscreen-prototype/index.html?v=apply',
+      'multi-paid': 'multi-paid-prototype/index.html',
+      'plugin-update': 'plugin-update-prototype/index.html',
+      wallpaper: 'wallpaper-labels/index.html',
+      'wallpaper-change': 'wallpaper-labels/change.html',
+      'wallpaper-detail': 'wallpaper-labels/detail.html?id=qc-1',
+      'wallpaper-edit': 'wallpaper-labels/edit.html?id=sz-1',
+      'wallpaper-edit-paid': 'wallpaper-labels/edit.html?id=qc-1',
+      detail: 'resource-detail-prototype/index.html',
+      search: 'search-prototype/index.html',
+      'search-no-history': 'search-prototype/index-no-history.html',
+      'search-no-hot': 'search-prototype/index-no-hot.html',
+      'theme-list': 'theme-list-prototype/index.html',
+      'theme-flow': 'theme-list-prototype/flow.html',
+      'theme-edit': 'theme-list-prototype/edit.html?id=lc-2',
+      'theme-edit-paid': 'theme-list-prototype/edit.html?id=lc-1',
+      'theme-store': 'theme-list-prototype/store-detail.html?id=lc-1',
+      ops: 'ops-backend-prototype/index.html',
+    };
+
+    const wideKeys = new Set([
+      'flows-gallery', 'flows', 'flow-1', 'flow-2', 'flow-3', 'flow-4', 'flow-5', 'theme-flow',
+    ]);
+
+    function activate(key) {
+      const src = map[key] || map.lockscreen;
+      frame.src = src;
+      openFull.href = src;
+      frame.parentElement.classList.toggle('wide', wideKeys.has(key));
+      tabs.forEach((t) => {
+        const isActive = t.dataset.src === src;
+        t.classList.toggle('active', isActive);
+      });
+    }
+
+    const params = new URLSearchParams(location.search);
+    activate(params.get('p') || 'lockscreen');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        const src = tab.dataset.src;
+        const key = Object.keys(map).find((k) => map[k] === src) || 'lockscreen';
+        history.replaceState(null, '', `?p=${key}`);
+        activate(key);
+      });
+    });
+  </script>
+</body>
+</html>

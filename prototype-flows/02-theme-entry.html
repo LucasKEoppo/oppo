@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2. 主题资源独立入口 · 交互流程图</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="board">
+    <a class="back-link" href="flow.html">← 返回总览</a>
+    <header class="board-header">
+      <h1>主题资源独立入口 · 交互流程</h1>
+      <p>每一步为真实原型截图；箭头标注用户操作</p>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title">① 公共路径：下载进入编辑</h2>
+      <div class="story">
+        <figure class="step">
+          <a class="phone" href="../theme-list-prototype/index.html">
+            <img src="assets/theme-list.png" alt="主题列表">
+          </a>
+          <figcaption>主题列表</figcaption>
+        </figure>
+        <div class="action"><span class="action-label">点击下载</span></div>
+        <figure class="step">
+          <a class="phone" href="../theme-list-prototype/index.html">
+            <img src="assets/theme-downloading.png" alt="下载进度">
+          </a>
+          <figcaption>下载进度</figcaption>
+        </figure>
+        <div class="action"><span class="action-label">下载完成</span></div>
+        <figure class="step">
+          <a class="phone" href="../theme-list-prototype/edit.html?id=lc-1">
+            <img src="assets/theme-edit-paid.png" alt="编辑框架">
+          </a>
+          <figcaption>锁屏编辑框架</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section free">
+      <h2 class="section-title">② 免费 / 已购资源：直接应用（含登录态判断）</h2>
+      <div class="story">
+        <figure class="step">
+          <a class="phone" href="edit.html?id=lc-2">
+            <img src="flow-assets/03-edit-free.png" alt="编辑页-免费">
+          </a>
+          <figcaption>编辑页（免费 / 已购）</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点击「应用」</span>
+        </div>
+        <div class="decision">
+          <div class="decision-shape"></div>
+          <div class="decision-text">是否已登录<br>账号？</div>
+        </div>
+        <div class="branch-box">
+          <div class="branch">
+            <span class="action-label no">否</span>
+            <figure class="step">
+              <div class="phone login" aria-hidden="true">
+                <div class="phone-inner">
+                  <div class="login-ui">
+                    <div class="login-top">
+                      <span class="login-icon">×</span>
+                      <span class="login-icon">?</span>
+                    </div>
+                    <div class="login-logo">OPPO</div>
+                    <p class="login-sub">登录账号以使用更多官方软件服务</p>
+                    <div class="login-field"><span class="code">+86</span>请输入手机号码</div>
+                    <div class="login-field">请输入密码</div>
+                    <div class="login-links"><span>验证码登录</span><span>忘记密码</span></div>
+                    <div class="login-btn">登录</div>
+                    <p class="login-reg">还没有账号，<b>前往注册</b></p>
+                    <div class="login-other">其他登录方式<div class="mail">✉</div></div>
+                  </div>
+                </div>
+              </div>
+              <figcaption>拉起 OPPO 登录面板</figcaption>
+            </figure>
+            <div class="action">
+              <span class="action-label wrap">登录成功后<br>再次「应用」</span>
+            </div>
+            <figure class="step">
+              <a class="phone" href="edit.html?id=lc-2">
+                <img src="flow-assets/04-applying.png" alt="正在应用">
+              </a>
+              <figcaption>下载原图并应用<br>不跳转商店详情</figcaption>
+            </figure>
+          </div>
+          <div class="branch">
+            <span class="action-label yes">是</span>
+            <figure class="step">
+              <a class="phone" href="edit.html?id=lc-2">
+                <img src="flow-assets/04-applying.png" alt="正在应用">
+              </a>
+              <figcaption>下载原图并应用<br>不跳转商店详情</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section paid">
+      <h2 class="section-title">③ 付费资源：购买后再应用（含登录态判断）</h2>
+      <div class="story">
+        <figure class="step">
+          <a class="phone" href="edit.html?id=lc-1">
+            <img src="flow-assets/05-edit-paid.png" alt="编辑页-付费未购">
+          </a>
+          <figcaption>编辑页（付费未购）</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点击「应用」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="edit.html?id=lc-1">
+            <img src="flow-assets/06-purchase-hint.png" alt="购买后即可使用">
+          </a>
+          <figcaption>购买后即可使用</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">点击「去购买」</span>
+        </div>
+        <div class="decision">
+          <div class="decision-shape"></div>
+          <div class="decision-text">领取 / 购买前<br>是否已登录？</div>
+        </div>
+        <div class="branch-box">
+          <div class="branch">
+            <span class="action-label no">否</span>
+            <figure class="step">
+              <div class="phone login" aria-hidden="true">
+                <div class="phone-inner">
+                  <div class="login-ui">
+                    <div class="login-top">
+                      <span class="login-icon">×</span>
+                      <span class="login-icon">?</span>
+                    </div>
+                    <div class="login-logo">OPPO</div>
+                    <p class="login-sub">登录账号以使用更多官方软件服务</p>
+                    <div class="login-field"><span class="code">+86</span>请输入手机号码</div>
+                    <div class="login-field">请输入密码</div>
+                    <div class="login-links"><span>验证码登录</span><span>忘记密码</span></div>
+                    <div class="login-btn">登录</div>
+                    <p class="login-reg">还没有账号，<b>前往注册</b></p>
+                    <div class="login-other">其他登录方式<div class="mail">✉</div></div>
+                  </div>
+                </div>
+              </div>
+              <figcaption>拉起 OPPO 登录面板</figcaption>
+            </figure>
+            <div class="action">
+              <span class="action-label">登录成功</span>
+            </div>
+            <figure class="step">
+              <a class="phone" href="store-detail.html?id=lc-1">
+                <img src="flow-assets/07-store-detail.png" alt="主题商店详情">
+              </a>
+              <figcaption>主题商店详情<br>完成购买 / 免费领</figcaption>
+            </figure>
+          </div>
+          <div class="branch">
+            <span class="action-label yes">是</span>
+            <figure class="step">
+              <a class="phone" href="store-detail.html?id=lc-1">
+                <img src="flow-assets/07-store-detail.png" alt="主题商店详情">
+              </a>
+              <figcaption>主题商店详情<br>完成购买 / 免费领</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="story story-continue">
+        <div class="logic-note"><strong>购买完成后</strong><br>自动下载资源，返回编辑框架并<strong>保留编辑态</strong></div>
+        <div class="action">
+          <span class="action-label">返回编辑</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="edit.html?id=lc-1&unlocked=1">
+            <img src="flow-assets/08-edit-unlocked.png" alt="已解锁编辑页">
+          </a>
+          <figcaption>编辑页（已解锁）</figcaption>
+        </figure>
+        <div class="action">
+          <span class="action-label">再次「应用」</span>
+        </div>
+        <figure class="step">
+          <a class="phone" href="edit.html?id=lc-1&unlocked=1">
+            <img src="flow-assets/09-apply-after-purchase.png" alt="购买后正在应用">
+          </a>
+          <figcaption>下载原图并应用</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="board-footer">
+      <span>点击任一原型图可进入对应页面体验</span>
+      <div class="links">
+        <a href="../theme-list-prototype/index.html">主题列表</a>
+        <a href="../theme-list-prototype/edit.html?id=lc-2">编辑(免费)</a>
+        <a href="../theme-list-prototype/edit.html?id=lc-1">编辑(付费)</a>
+        <a href="../theme-list-prototype/store-detail.html?id=lc-1">商店详情</a>
+        <a href="../theme-list-prototype/flow.html">同款主题流程页</a>
+        <a href="01-wallpaper-entry.html">← 上一条</a>
+        <a href="03-change-wallpaper.html">下一条 →</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
