@@ -4,13 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>需先获取资源 · 全屏原型</title>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <div class="phone-frame">
     <div class="screen">
       <header class="header">
-        <button class="btn-close" type="button">关闭</button>
+        <button class="btn-close" type="button" aria-label="返回">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 6l-6 6 6 6"/>
+          </svg>
+        </button>
         <h1 class="title">需先获取以下资源</h1>
         <span class="header-spacer" aria-hidden="true"></span>
       </header>
